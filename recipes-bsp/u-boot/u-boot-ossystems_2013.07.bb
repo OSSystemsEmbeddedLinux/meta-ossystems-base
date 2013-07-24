@@ -15,4 +15,9 @@ SRC_URI = "git://code.ossystems.com.br/bsp/u-boot;protocol=http"
 
 S = "${WORKDIR}/git"
 
+UBOOT_LOGO_BMP ?= "logos/ossystems.bmp"
+
+# By default use O.S. Systems logo
+EXTRA_OEMAKE += "LOGO_BMP=${UBOOT_LOGO_BMP}"
+
 PACKAGE_ARCH = "${MACHINE_ARCH}"
