@@ -1,0 +1,127 @@
+#!/bin/sh
+#/etc/init.d/watchdog: start watchdog daemon.
+
+### BEGIN INIT INFO
+# Provides:          watchdog
+# Short-Description: Start software watchdog daemon
+# Required-Start:    $all
+# Required-Stop:     $all
+# Should-Start:      
+# Should-Stop:       
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+### END INIT INFO
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+
+test -x /usr/sbin/watchdog || exit 0
+
+# For configuration of the init script use the file
+# /etc/default/watchdog, do not edit this init script.
+
+# Set run_watchdog to 1 to start watchdog or 0 to disable it.
+run_watchdog=0
+
+# Specify additional watchdog options here (see manpage).
+watchdog_options=""
+
+# Specify module to load
+watchdog_module="none"
+
+[ -e /etc/default/watchdog ] && . /etc/default/watchdog
+
+NAME=watchdog
+KEEPALIVE_NAME=wd_keepalive
+
+DAEMON=/usr/sbin/watchdog
+KEEPALIVE_DAEMON=/usr/sbin/wd_keepalive
+
+STOP_RETRY_SCHEDULE='TERM/10/forever/KILL/1'
+
+# Get lsb functions
+## . /lib/lsb/init-functions
+
+# Mock Debian stuff
+log_begin_msg() {
+    echo -n $*
+}
+
+log_end_msg() {
+    if [ "$1" = "0" ]; then
+        echo 'done'
+    else
+        echo 'error'
+    fi
+}
+
+log_daemon_msg() {
+    echo $*
+}
+
+log_progress_msg() {
+    echo $*
+}
+
+case "$1" in
+  start)
+    if [ $run_watchdog = 1 ]
+    then
+    	# do we have to load a module?
+	[ ${watchdog_module:-none} != "none" ] && /sbin/modprobe $watchdog_module
+	# make sure that wd_keepalive is stopped
+	log_begin_msg "Stopping watchdog keepalive daemon..."
+        start-stop-daemon --stop --quiet --oknodo $STOP_RETRY_SCHEDULE \
+            --pidfile /var/run/$KEEPALIVE_NAME.pid
+        log_end_msg $?
+
+	# Unconditionally start watchdog daemon because we want to run it even
+	# if wd_keepalive wasn't running
+	log_begin_msg "Starting watchdog daemon..."
+	start-stop-daemon --start --quiet --pidfile /var/run/$NAME.pid \
+             --exec $DAEMON -- $watchdog_options
+	log_end_msg $?
+    fi
+    ;;
+
+  stop)
+    if [ $run_watchdog = 1 ]
+    then
+	log_begin_msg "Stopping watchdog daemon..."
+	start-stop-daemon --stop --quiet $STOP_RETRY_SCHEDULE \
+	    --pidfile /var/run/$NAME.pid
+	log_end_msg $?
+	# make sure that wd_keepalive is started
+	log_begin_msg "Starting watchdog keepalive daemon..."
+	start-stop-daemon --start --quiet --pidfile /var/run/$KEEPALIVE_NAME.pid \
+	    --exec $KEEPALIVE_DAEMON -- $watchdog_options
+	log_end_msg $?
+    fi
+    ;;
+
+  restart)
+    $0 force-reload
+    ;;
+
+  force-reload)
+    if [ $run_watchdog = 0 ]; then exit 0; fi
+    log_daemon_msg "Restarting ${NAME}"
+    log_progress_msg "Stopping $NAME daemon..."
+    start-stop-daemon --stop --pidfile /var/run/$NAME.pid --quiet \
+	$STOP_RETRY_SCHEDULE || log_end_msg $?
+    log_progress_msg "Starting $NAME daemon..."
+    start-stop-daemon --start --quiet --pidfile /var/run/$NAME.pid \
+	--exec $DAEMON -- $watchdog_options
+    log_end_msg $?
+    ;;
+
+  status)
+    status_of_proc "$DAEMON" watchdog
+    ;;
+
+  *)
+    echo "Usage: /etc/init.d/watchdog {start|stop|restart|force-reload|status}"
+    exit 1
+
+esac
+
+exit 0
