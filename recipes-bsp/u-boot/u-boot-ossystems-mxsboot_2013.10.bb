@@ -1,16 +1,18 @@
 DESCRIPTION = "U-boot bootloader mxsboot tool"
 LICENSE = "GPLv2+"
-LIC_FILES_CHKSUM = "file://COPYING;md5=1707d6db1d42237583f50183a5651ecb"
+LIC_FILES_CHKSUM = "file://Licenses/README;md5=025bf9f768cbcb1a165dbe1a110babfb"
 SECTION = "bootloader"
+DEPENDS = "openssl"
+PROVIDES = "u-boot-mxsboot"
 
-PV = "v2013.07"
+PV = "v2013.10"
 
-SRCREV = "9ea6798ba8a8c82b4f0b8b75c98d52fc5be69239"
+SRCREV = "82a70d56402bead4189bf1354818c769e5b97504"
 SRC_URI = "git://code.ossystems.com.br/bsp/u-boot;protocol=http"
 
 S = "${WORKDIR}/git"
 
-EXTRA_OEMAKE = 'HOSTCC="${CC}" HOSTLD="${LD}" HOSTSTRIP=true CONFIG_MX28=y'
+EXTRA_OEMAKE = 'HOSTCC="${CC} ${CPPFLAGS}" HOSTLDFLAGS="-L${libdir} -L${base_libdir}" HOSTSTRIP=true CONFIG_MX28=y'
 
 do_compile () {
     oe_runmake tools
