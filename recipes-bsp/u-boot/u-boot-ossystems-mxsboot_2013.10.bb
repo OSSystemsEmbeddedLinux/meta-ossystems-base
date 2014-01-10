@@ -7,7 +7,7 @@ PROVIDES = "u-boot-mxsboot"
 
 PV = "v2013.10"
 
-SRCREV = "82a70d56402bead4189bf1354818c769e5b97504"
+SRCREV = "d99e899bd27becf8a44571ad59640a8a323d2a88"
 SRC_URI = "git://code.ossystems.com.br/bsp/u-boot;protocol=http"
 
 S = "${WORKDIR}/git"
