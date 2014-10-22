@@ -1,18 +1,17 @@
 require recipes-bsp/u-boot/u-boot.inc
 
 LICENSE = "GPLv2+"
-LIC_FILES_CHKSUM = "file://Licenses/README;md5=025bf9f768cbcb1a165dbe1a110babfb"
-COMPATIBLE_MACHINE = "(mxs|mx3|mx5|mx6)"
+LIC_FILES_CHKSUM = "file://Licenses/README;md5=c7383a594871c03da76b3707929d2919"
 
 DEPENDS_mxs += "elftosb-native openssl-native"
 
 PROVIDES += "u-boot"
 
-PV = "v2014.07"
+PV = "v2014.10"
 
-SRCREV = "875bc4261901d3e51358791ff0628989fa6d69be"
+SRCREV = "8bd40dee889f232b66866b980e077219c4439a92"
 SRC_URI = "git://code.ossystems.com.br/bsp/u-boot;protocol=http;branch=${SRCBRANCH}"
-SRCBRANCH = "patches-2014.07"
+SRCBRANCH = "2014.10+ossystems"
 
 S = "${WORKDIR}/git"
 
@@ -29,3 +28,4 @@ EXTRA_OEMAKE += 'HOSTCC="${BUILD_CC} ${BUILD_CPPFLAGS}" \
                  HOSTSTRIP=true'
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
+COMPATIBLE_MACHINE = "(mxs|mx3|mx5|mx6)"
