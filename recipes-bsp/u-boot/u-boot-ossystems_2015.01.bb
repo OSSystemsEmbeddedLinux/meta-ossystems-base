@@ -15,7 +15,7 @@ SRCBRANCH = "2015.01+ossystems"
 
 S = "${WORKDIR}/git"
 
-UBOOT_LOGO_BMP ?= "tools/logos/ossystems.bmp"
+UBOOT_LOGO_BMP ?= "${S}/tools/logos/ossystems.bmp"
 
 # By default use O.S. Systems logo
 EXTRA_OEMAKE += "LOGO_BMP=${UBOOT_LOGO_BMP}"
