@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa57193c_254bc72c",
+        "filename": "conf/distro/include/oel.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2015-03-04T17:12:12Z",
+      "side": 1,
+      "message": "Here we need to sync with Dizzy. This doesn\u0027t match.",
+      "revId": "50bf0602a7e2d9da70a0a4446747c0a0b53506cb",
+      "serverId": "57f9965e-cfb2-4db6-8589-8b17f788c97f",
+      "unresolved": false
+    }
+  ]
+}
