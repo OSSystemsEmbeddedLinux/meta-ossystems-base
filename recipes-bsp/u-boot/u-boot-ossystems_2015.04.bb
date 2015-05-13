@@ -7,11 +7,11 @@ DEPENDS_mxs += "elftosb-native openssl-native"
 
 PROVIDES += "u-boot"
 
-PV = "v2015.01"
+PV = "v2015.04"
 
-SRCREV = "6cabaf3d6ce7684a8876890b74b016346b09d4aa"
+SRCREV = "016d0ebcee6e67498ff7b204acd54bd8063c99e0"
 SRC_URI = "git://code.ossystems.com.br/bsp/u-boot;protocol=http;branch=${SRCBRANCH}"
-SRCBRANCH = "2015.01+ossystems"
+SRCBRANCH = "2015.04+ossystems"
 
 S = "${WORKDIR}/git"
 
