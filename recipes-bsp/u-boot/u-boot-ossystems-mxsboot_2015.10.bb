@@ -7,7 +7,7 @@ PROVIDES = "u-boot-mxsboot"
 
 PV = "v2015.10+git${SRCPV}"
 
-SRCREV = "57c9e1b4dbacbd2f9008ae2ee54f3839a42ece54"
+SRCREV = "3fb8c1c248f76f59d817848b7a6062f6a58fce97"
 SRC_URI = "git://code.ossystems.com.br/bsp/u-boot;protocol=http;branch=${SRCBRANCH}"
 SRCBRANCH = "2015.10+ossystems"
 
