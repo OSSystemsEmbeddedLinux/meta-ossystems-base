@@ -3,4 +3,5 @@ SRC_URI_append = "\
     file://setsid.cfg \
     file://resize.cfg \
     file://pidof.cfg \
+    file://top.cfg \
 "
