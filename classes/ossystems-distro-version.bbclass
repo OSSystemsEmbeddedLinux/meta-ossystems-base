@@ -2,7 +2,7 @@
 # ossystems-distro-version.bbclass provides a DISTRO_VERSION variable
 # that can be used to identify the release of a product.
 #
-# Copyright (C) 2009-2015, O.S. Systems Softwares Ltda.  All Rights Reserved
+# Copyright (C) 2009-2016, O.S. Systems Softwares Ltda.  All Rights Reserved
 # Released under the MIT license (see packages/COPYING)
 
 def ossystems_get_distro_version(d):
@@ -26,4 +26,4 @@ def ossystems_get_distro_version(d):
 
     return "0.0.0+git+devel"
 
-DISTRO_VERSION = "${@ossystems_get_distro_version(d)}"
+DISTRO_VERSION := "${@ossystems_get_distro_version(d)}"
