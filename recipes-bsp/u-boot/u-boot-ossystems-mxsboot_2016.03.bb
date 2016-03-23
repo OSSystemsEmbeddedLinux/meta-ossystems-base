@@ -1,15 +1,15 @@
 DESCRIPTION = "U-boot bootloader mxsboot tool"
 LICENSE = "GPLv2+"
-LIC_FILES_CHKSUM = "file://Licenses/README;md5=0507cd7da8e7ad6d6701926ec9b84c95"
+LIC_FILES_CHKSUM = "file://Licenses/README;md5=a2c678cfd4a4d97135585cad908541c6"
 SECTION = "bootloader"
 DEPENDS = "openssl"
 PROVIDES = "u-boot-mxsboot"
 
-PV = "v2015.10+git${SRCPV}"
+PV = "v2016.03+git${SRCPV}"
 
-SRCREV = "3fb8c1c248f76f59d817848b7a6062f6a58fce97"
+SRCREV = "c29b4676ad6f9ab0d09e6ddf2b42ffe32b9be26f"
 SRC_URI = "git://code.ossystems.com.br/bsp/u-boot;protocol=http;branch=${SRCBRANCH}"
-SRCBRANCH = "2015.10+ossystems"
+SRCBRANCH = "2016.03+ossystems"
 
 S = "${WORKDIR}/git"
 
