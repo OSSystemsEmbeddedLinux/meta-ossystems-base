@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bad4c104_c795ad89",
+        "filename": "recipes-core/release/files/bundle-shar-extract.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000121
+      },
+      "writtenOn": "2016-04-11T18:59:48Z",
+      "side": 1,
+      "message": "Remove extra space.",
+      "revId": "de030e0d35509cbd6c0226ac145f355e3da8a6b7",
+      "serverId": "57f9965e-cfb2-4db6-8589-8b17f788c97f",
+      "unresolved": false
+    }
+  ]
+}
