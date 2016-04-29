@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bad4c104_7b68f8f5",
+        "filename": "recipes-extended/chkconfig/chkconfig-alternatives_1.3.59.bb",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2016-04-29T13:04:39Z",
+      "side": 1,
+      "message": "Drop 0001- prefix.",
+      "revId": "8c2203294f0540b5026fc9d3011fb72e73385685",
+      "serverId": "57f9965e-cfb2-4db6-8589-8b17f788c97f",
+      "unresolved": false
+    }
+  ]
+}
