@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bad4c104_fb85e8ad",
+        "filename": "recipes-core/tiny-init/tiny-init.bb",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2016-04-29T13:01:03Z",
+      "side": 1,
+      "message": "Basic init system for constrained systems",
+      "revId": "5f6f1769927f7833a986dcabff2ec02929495fa6",
+      "serverId": "57f9965e-cfb2-4db6-8589-8b17f788c97f",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bad4c104_1b936cfb",
+        "filename": "recipes-core/tiny-init/tiny-init.bb",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2016-04-29T13:01:03Z",
+      "side": 1,
+      "message": "Drop.",
+      "revId": "5f6f1769927f7833a986dcabff2ec02929495fa6",
+      "serverId": "57f9965e-cfb2-4db6-8589-8b17f788c97f",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bad4c104_3b9030ec",
+        "filename": "recipes-core/tiny-init/tiny-init.bb",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2016-04-29T13:01:03Z",
+      "side": 1,
+      "message": "Drop.",
+      "revId": "5f6f1769927f7833a986dcabff2ec02929495fa6",
+      "serverId": "57f9965e-cfb2-4db6-8589-8b17f788c97f",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bad4c104_5bbc146d",
+        "filename": "recipes-core/tiny-init/tiny-init.bb",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2016-04-29T13:01:03Z",
+      "side": 1,
+      "message": "Replace with do_configure[noexec] \u003d \"1\"",
+      "revId": "5f6f1769927f7833a986dcabff2ec02929495fa6",
+      "serverId": "57f9965e-cfb2-4db6-8589-8b17f788c97f",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bad4c104_7bc1d8e3",
+        "filename": "recipes-core/tiny-init/tiny-init.bb",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2016-04-29T13:01:03Z",
+      "side": 1,
+      "message": "Same here.",
+      "revId": "5f6f1769927f7833a986dcabff2ec02929495fa6",
+      "serverId": "57f9965e-cfb2-4db6-8589-8b17f788c97f",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bad4c104_bbbb6071",
+        "filename": "recipes-core/tiny-init/tiny-init.bb",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2016-04-29T13:01:03Z",
+      "side": 1,
+      "message": "Drop.",
+      "revId": "5f6f1769927f7833a986dcabff2ec02929495fa6",
+      "serverId": "57f9965e-cfb2-4db6-8589-8b17f788c97f",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bad4c104_9bb69c89",
+        "filename": "recipes-core/tiny-init/tiny-init.bb",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2016-04-29T13:01:03Z",
+      "side": 1,
+      "message": "install -Dm ...",
+      "revId": "5f6f1769927f7833a986dcabff2ec02929495fa6",
+      "serverId": "57f9965e-cfb2-4db6-8589-8b17f788c97f",
+      "unresolved": false
+    }
+  ]
+}
