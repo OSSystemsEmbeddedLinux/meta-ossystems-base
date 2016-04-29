@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bad4c104_1baa8c19",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2016-04-29T13:03:55Z",
+      "side": 1,
+      "message": "distro/oel-tiny: ...",
+      "revId": "5f2734942e8bdb21e1e236f6a42888fbd0d16eae",
+      "serverId": "57f9965e-cfb2-4db6-8589-8b17f788c97f",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bad4c104_3ba75051",
+        "filename": "conf/distro/oel-tiny.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2016-04-29T13:03:55Z",
+      "side": 1,
+      "message": "Add:\n\n# Copyright (c) 2016, O.S. Systems Software LTDA.",
+      "revId": "5f2734942e8bdb21e1e236f6a42888fbd0d16eae",
+      "serverId": "57f9965e-cfb2-4db6-8589-8b17f788c97f",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bad4c104_fbac0838",
+        "filename": "conf/distro/oel-tiny.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2016-04-29T13:03:55Z",
+      "side": 1,
+      "message": "Change here.",
+      "revId": "5f2734942e8bdb21e1e236f6a42888fbd0d16eae",
+      "serverId": "57f9965e-cfb2-4db6-8589-8b17f788c97f",
+      "unresolved": false
+    }
+  ]
+}
