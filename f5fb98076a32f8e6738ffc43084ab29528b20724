@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bad4c104_fb5a484f",
+        "filename": "recipes-core/tiny-init-system/tiny-init-system.bb",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2016-04-29T13:50:38Z",
+      "side": 1,
+      "message": "Move after FILES",
+      "revId": "f5fb98076a32f8e6738ffc43084ab29528b20724",
+      "serverId": "57f9965e-cfb2-4db6-8589-8b17f788c97f",
+      "unresolved": false
+    }
+  ]
+}
