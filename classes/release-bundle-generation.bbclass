@@ -47,6 +47,9 @@ python() {
                     " ".join(map(lambda x:
                                         x + ":do_collect_recipe_source",
                                  recipes)))
+
+    d.delVarFlag('do_build', 'recrdeptask')
+    d.delVarFlag('do_build', 'depends')
 }
 
 addtask collect_platform_source before do_release_bundle_finalize
