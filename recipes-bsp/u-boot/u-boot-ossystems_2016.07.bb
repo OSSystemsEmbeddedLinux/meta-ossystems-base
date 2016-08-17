@@ -9,7 +9,7 @@ PROVIDES += "u-boot"
 
 PV = "v2016.07+git${SRCPV}"
 
-SRCREV = "67b195dd9dd0dd091847a47cc9e177f2e729e8da"
+SRCREV = "a7452b6bce874a897b9e87bfa293362d13b40b7a"
 SRC_URI = "git://code.ossystems.com.br/bsp/u-boot;protocol=http;branch=${SRCBRANCH}"
 SRCBRANCH = "2016.07+ossystems"
 
