@@ -244,3 +244,5 @@ require conf/distro/include/no-static-libs.inc
 # Enable uninative
 require conf/distro/include/yocto-uninative.inc
 INHERIT += "uninative"
+
+DISTROOVERRIDES = "oel"
