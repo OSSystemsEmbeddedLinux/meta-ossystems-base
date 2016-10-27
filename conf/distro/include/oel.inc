@@ -268,3 +268,8 @@ def arm_tune_handler(d):
     return tune
 
 DEFAULTTUNE_oel := "${@arm_tune_handler(d)}"
+
+ARM_INSTRUCTION_SET ??= "thumb"
+ARM_INSTRUCTION_SET_armv4t ?= "arm"
+ARM_INSTRUCTION_SET_armv5te ?= "arm"
+ARM_INSTRUCTION_SET_armv6 ?= "arm"
