@@ -33,6 +33,6 @@ def ossystems_get_distro_version(d):
         if is_devel:
             return "%s%s" % (is_devel.group(1), devel_version)
 
-    return "0.0.0+git%s" % devel_version
+    return "0.0.0-git%s" % devel_version
 
 DISTRO_VERSION := "${@ossystems_get_distro_version(d)}"
