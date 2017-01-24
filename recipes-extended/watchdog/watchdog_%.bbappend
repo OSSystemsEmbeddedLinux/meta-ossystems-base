@@ -25,6 +25,6 @@ do_install_append() {
 FILES_${PN}-keepalive = "${sysconfdir}/init.d/wd_keepalive \
                          ${sbindir}/wd_keepalive"
 
-RDEPENDS_${PN} = "${PN}-keepalive"
+RCONFLICTS_${PN} = "${PN}-keepalive"
 
 RRECOMMENDS_${PN} = "kernel-module-softdog"
