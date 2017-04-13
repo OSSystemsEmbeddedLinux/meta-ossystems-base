@@ -6,6 +6,7 @@ LIC_FILES_CHKSUM = "file://Licenses/README;md5=a2c678cfd4a4d97135585cad908541c6"
 DEPENDS_mxs += "elftosb-native openssl-native"
 
 PROVIDES += "u-boot"
+RPROVIDES_${PN} += "u-boot-fslc"
 
 PV = "v2016.09+git${SRCPV}"
 
