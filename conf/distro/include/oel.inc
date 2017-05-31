@@ -60,7 +60,7 @@ SANITY_TESTED_DISTROS ?= " \
 # that breaks the format and have been previously discussed on the mailing list
 # with general agreement from the core team.
 #
-OELAYOUT_ABI = "11"
+OELAYOUT_ABI = "12"
 
 DISTRO_EXTRA_RDEPENDS += " ${OEL_DEFAULT_EXTRA_RDEPENDS}"
 DISTRO_EXTRA_RRECOMMENDS += " ${OEL_DEFAULT_EXTRA_RRECOMMENDS}"
