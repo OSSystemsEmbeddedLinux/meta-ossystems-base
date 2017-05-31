@@ -44,13 +44,14 @@ ERROR_QA_append = " ${WARN_TO_ERROR_QA}"
 ROOTFS_POSTPROCESS_COMMAND_append = " rootfs_check_host_user_contaminated;"
 
 SANITY_TESTED_DISTROS ?= " \
-        ubuntu-14.04 \n \
-        ubuntu-14.10 \n \
         ubuntu-15.04 \n \
-        ubuntu-15.10 \n \
         ubuntu-16.04 \n \
+        ubuntu-16.10 \n \
+        fedora-24 \n \
+        fedora-25 \n \
         centos-7 \n \
         debian-8 \n \
+        opensuse-42.2 \n \
 "
 
 #
