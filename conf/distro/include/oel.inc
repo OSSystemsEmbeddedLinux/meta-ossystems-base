@@ -117,9 +117,8 @@ PRSERV_HOST ?= "localhost:0"
 #### Inherits
 ####
 
-# Remove .la files for packages, as they really aren't of much use.
-DISTRO_FEATURES_BACKFILL_CONSIDERED += "libtool-garbage"
-INHERIT += "libtool-garbage"
+# Remove .la files for packages
+INHERIT += "remove-libtool"
 
 # We want information about image contents
 INHERIT += "buildhistory"
