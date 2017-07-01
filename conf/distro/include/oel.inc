@@ -51,6 +51,7 @@ SANITY_TESTED_DISTROS ?= " \
         fedora-25 \n \
         centos-7 \n \
         debian-8 \n \
+        debian-9 \n \
         opensuse-42.2 \n \
 "
 
