@@ -254,7 +254,7 @@ DISTROOVERRIDES = "oel"
 def arm_tune_handler(d):
     features = d.getVar('TUNE_FEATURES', True).split()
     if 'armv7a' in features or 'armv7ve' in features:
-        tune = 'armv7athf'
+        tune = 'armv7ahf'
         if 'bigendian' in features:
             tune += 'b'
         if 'vfpv3' in features:
@@ -271,7 +271,7 @@ def arm_tune_handler(d):
 
 DEFAULTTUNE_oel := "${@arm_tune_handler(d)}"
 
-DISTRO_ARM_INSTRUCTION ?= "thumb"
+DISTRO_ARM_INSTRUCTION ?= "arm"
 DISTRO_ARM_INSTRUCTION_armv4 ?= "arm"
 DISTRO_ARM_INSTRUCTION_armv5 ?= "arm"
 DISTRO_ARM_INSTRUCTION_armv6 ?= "arm"
