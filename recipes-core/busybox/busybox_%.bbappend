@@ -4,4 +4,5 @@ SRC_URI_append = "\
     file://resize.cfg \
     file://pidof.cfg \
     file://top.cfg \
+    file://mdev.cfg \
 "
