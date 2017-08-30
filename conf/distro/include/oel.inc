@@ -92,7 +92,7 @@ QEMU_TARGETS ?= "arm aarch64 i386 x86_64"
 # Other QEMU_TARGETS "mips mipsel mips64 mips64el nios2 ppc sh4"
 
 # Preferred kernel version for QEMU based machines
-PREFERRED_VERSION_linux-yocto ?= "4.10%"
+PREFERRED_VERSION_linux-yocto ?= "4.12%"
 PREFERRED_VERSION_linux-yocto_qemux86 ?= "4.10%"
 PREFERRED_VERSION_linux-yocto_qemux86-64 ?= "4.10%"
 PREFERRED_VERSION_linux-yocto_qemuarm ?= "4.10%"
