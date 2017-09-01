@@ -153,17 +153,6 @@ PREFERRED_PROVIDER_jpeg-native        ??= "jpeg-native"
 PREFERRED_PROVIDER_u-boot              ?= "u-boot-ossystems"
 PREFERRED_PROVIDER_virtual/bootloader  ?= "u-boot-ossystems"
 
-# Prefer the chkconfig C implementation of alternatives
-VIRTUAL-RUNTIME_update-alternatives = "chkconfig-alternatives"
-PREFERRED_PROVIDER_virtual/update-alternatives = "chkconfig-alternatives"
-PACKAGECONFIG_remove_pn-opkg-utils = "update-alternatives"
-PREFERRED_PROVIDER_virtual/update-alternatives-native = "chkconfig-alternatives-native"
-PACKAGECONFIG_remove_pn-opkg-utils-native = "update-alternatives"
-
-# chkconfig-alternatives fails to build for sdkmingw32, so use this instead
-VIRTUAL-RUNTIME_update-alternatives_class-nativesdk = "opkg-utils"
-PREFERRED_PROVIDER_virtual/nativesdk-update-alternatives = "nativesdk-opkg-utils"
-
 # Ensure that we are not getting GUI for latencytop, as we don't want x11 to
 # be pulled into our console image.
 PACKAGECONFIG_pn-latencytop = ""
