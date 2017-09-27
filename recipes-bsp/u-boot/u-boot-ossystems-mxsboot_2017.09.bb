@@ -5,11 +5,11 @@ SECTION = "bootloader"
 DEPENDS = "openssl"
 PROVIDES = "u-boot-mxsboot"
 
-PV = "v2017.07+git${SRCPV}"
+PV = "v2017.09+git${SRCPV}"
 
-SRCREV = "d8a6bcb46c1f6933688a8166d075a32d0272e9d5"
+SRCREV = "d5e2dd8a4a39cfc9d910334cea328e05fd54c263"
 SRC_URI = "git://code.ossystems.com.br/bsp/u-boot;protocol=http;branch=${SRCBRANCH}"
-SRCBRANCH = "2017.07+ossystems"
+SRCBRANCH = "2017.09+ossystems"
 
 S = "${WORKDIR}/git"
 
