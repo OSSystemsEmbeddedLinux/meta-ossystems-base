@@ -1,0 +1,27 @@
+O.S. Systems Embedded Linux base OpenEmbedded/Yocto BSP layer
+=============================================================
+
+This layer provides the base for the O.S. Systems Embedded Linux.  It
+provides the "oel" distribution and a set of helpers used for multiple
+products being developed with OpenEmbedded and/or Yocto Project.
+
+This layer depends on:
+
+URI: git://git.openembedded.org/openembedded-core
+branch: master
+revision: HEAD
+
+Contributing
+------------
+
+To contribute to this layer you should submit the patches for review
+to our server at https://code.ossystems.com.br
+
+Please refer to:
+http://openembedded.org/wiki/Commit_Patch_Message_Guidelines
+
+for some useful guidelines to be followed when submitting patches.
+
+Source code:
+
+    https://code.ossystems.com.br/gitweb?p=meta-ossystems-base.git
