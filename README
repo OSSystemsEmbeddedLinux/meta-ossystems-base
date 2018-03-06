@@ -1,5 +1,5 @@
-O.S. Systems Embedded Linux base OpenEmbedded/Yocto BSP layer
-=============================================================
+O.S. Systems Embedded Linux distribution OpenEmbedded/Yocto layer
+=================================================================
 
 This layer provides the base for the O.S. Systems Embedded Linux.  It
 provides the "oel" distribution and a set of helpers used for multiple
