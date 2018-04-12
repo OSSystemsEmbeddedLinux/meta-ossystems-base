@@ -36,20 +36,20 @@ def ossystems_srcrev_handler(d):
     else:
         bb.plain("O.S. Systems SRCREV handler: Using 'AUTOREV' to build recipes...")
 
-    srcrevs_fd = open(srcrevs, 'r')
-    for line in srcrevs_fd.readlines():
-        pkg, version, srcrev = line.split()
+    with open(srcrevs, 'r') as srcrevs_fd:
+        for line in srcrevs_fd.readlines():
+            pkg, version, srcrev = line.split()
 
-        if _stable_release(d):
-            bb.debug(1, "O.S. Systems SRCREV handler: Setting %s for version %s (%s)..."
-                     % (pkg, version, srcrev))
-            rev = srcrev
-        else:
-            bb.debug(1, "O.S. Systems SRCREV handler: Setting %s for 'AUTOREV'..."
-                     % (pkg))
-            rev = "${AUTOREV}"
+            if _stable_release(d):
+                bb.debug(1, "O.S. Systems SRCREV handler: Setting %s for version %s (%s)..."
+                         % (pkg, version, srcrev))
+                rev = srcrev
+            else:
+                bb.debug(1, "O.S. Systems SRCREV handler: Setting %s for 'AUTOREV'..."
+                         % (pkg))
+                rev = "${AUTOREV}"
 
-        d.setVar("SRCREV_pn-%s" % pkg, rev)
+            d.setVar("SRCREV_pn-%s" % pkg, rev)
 
 addhandler ossystems_srcrev_eventhandler
 python ossystems_srcrev_eventhandler() {
