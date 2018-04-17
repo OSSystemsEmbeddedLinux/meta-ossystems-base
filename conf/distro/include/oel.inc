@@ -85,9 +85,6 @@ SDK_VERSION[vardepsexclude] = "DATE"
 # Lower the priority of meta-oe, as we prefer oe-core when recipes are duped
 BBFILE_PRIORITY_openembedded-layer = "1"
 
-# locales shouldn't be in lib32/lib64
-localedir = "${exec_prefix}/lib/locale"
-
 QEMU_TARGETS ?= "arm aarch64 i386 x86_64"
 # Other QEMU_TARGETS "mips mipsel mips64 mips64el nios2 ppc sh4"
 
