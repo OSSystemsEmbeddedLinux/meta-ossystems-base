@@ -31,5 +31,14 @@ do_install () {
     fi
 }
 
+pkg_postinst_${PN}() {
+    if ${@base_contains('DISTRO_FEATURES','systemd','true','false',d)}; then
+        if [ -n "$D" ]; then
+            OPTS="--root=$D"
+        fi
+        systemctl $OPTS mask tmp.mount
+    fi
+}
+
 RDEPENDS_${PN} = "e2fsprogs-tune2fs"
 RRECOMMENDS_${PN} = "kernel-module-zram"
