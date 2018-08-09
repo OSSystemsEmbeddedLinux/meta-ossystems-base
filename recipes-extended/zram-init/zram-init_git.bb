@@ -12,10 +12,7 @@ S = "${WORKDIR}/git"
 INITSCRIPT_NAME = "${PN}"
 INITSCRIPT_PARAMS = "defaults"
 
-SYSTEMD_SERVICE_${PN} = " \
-    zram_swap.service \
-    zram_tmp.service \
-"
+SYSTEMD_SERVICE_${PN} = "zram_swap.service"
 
 do_install () {
     install -Dm 0755 ${S}/sbin/${PN}  ${D}${base_sbindir}/${PN}
@@ -23,7 +20,6 @@ do_install () {
 
     if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
         install -Dm 0644 ${S}/systemd/system/zram_swap.service ${D}${systemd_unitdir}/system/zram_swap.service
-        install -Dm 0644 ${S}/systemd/system/zram_tmp.service ${D}${systemd_unitdir}/system/zram_tmp.service
     fi
     if ${@bb.utils.contains('DISTRO_FEATURES','sysvinit','true','false',d)}; then
         install -Dm 0755 ${S}/openrc/init.d/${PN} ${D}/${sysconfdir}/init.d/${PN}
