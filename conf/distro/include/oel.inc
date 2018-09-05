@@ -234,6 +234,9 @@ require conf/distro/include/no-static-libs.inc
 require conf/distro/include/yocto-uninative.inc
 INHERIT += "uninative"
 
+# Enable security flags
+require conf/distro/include/security_flags.inc
+
 DISTROOVERRIDES = "oel"
 
 # This function changes the default tune for machines which are based on armv7a
