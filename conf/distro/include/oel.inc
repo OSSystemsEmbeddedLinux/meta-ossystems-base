@@ -1,4 +1,4 @@
-DISTRO_VERSION = "18.04"
+DISTRO_VERSION = "18.04-snapshot-${DATE}"
 
 SDK_VENDOR = "-oelsdk"
 SDK_VERSION := "${@'${DISTRO_VERSION}'.replace('snapshot-${DATE}','snapshot')}"
