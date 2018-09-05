@@ -1,4 +1,4 @@
-DISTRO_VERSION = "17.2-snapshot-${DATE}"
+DISTRO_VERSION = "18.04"
 
 SDK_VENDOR = "-oelsdk"
 SDK_VERSION := "${@'${DISTRO_VERSION}'.replace('snapshot-${DATE}','snapshot')}"
@@ -36,7 +36,7 @@ INHERIT += "typecheck"
 # QA check settings - a little stricter than the OE-Core defaults
 WARN_TO_ERROR_QA = "already-stripped compile-host-path install-host-path \
                     installed-vs-shipped ldflags pn-overrides rpaths staticdev \
-                    useless-rpaths host-user-contaminated"
+                    useless-rpaths"
 WARN_QA_remove = "${WARN_TO_ERROR_QA}"
 ERROR_QA_append = " ${WARN_TO_ERROR_QA}"
 
@@ -146,8 +146,8 @@ PREFERRED_PROVIDER_jpeg               ??= "jpeg"
 PREFERRED_PROVIDER_jpeg-native        ??= "jpeg-native"
 
 # Prefer O.S. Systems U-Boot fork
-PREFERRED_PROVIDER_u-boot              ?= "u-boot-ossystems"
-PREFERRED_PROVIDER_virtual/bootloader  ?= "u-boot-ossystems"
+#PREFERRED_PROVIDER_u-boot              ?= "u-boot-ossystems"
+#PREFERRED_PROVIDER_virtual/bootloader  ?= "u-boot-ossystems"
 
 # Ensure that we are not getting GUI for latencytop, as we don't want x11 to
 # be pulled into our console image.
