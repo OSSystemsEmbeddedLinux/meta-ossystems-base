@@ -3,7 +3,7 @@ require u-boot-ossystems-common_${PV}.inc
 DESCRIPTION = "U-boot bootloader mxsboot tool"
 SECTION = "bootloader"
 
-DEPENDS = "openssl"
+DEPENDS = "bison-native dtc openssl"
 
 PROVIDES = "u-boot-mxsboot"
 
