@@ -83,7 +83,7 @@ OEL_DEFAULT_DISTRO_FEATURES = "largefile systemd"
 OEL_DEFAULT_EXTRA_RDEPENDS = "packagegroup-core-boot"
 OEL_DEFAULT_EXTRA_RRECOMMENDS = ""
 
-DISTRO_FEATURES ?= "${DISTRO_FEATURES_LIBC} \
+DISTRO_FEATURES ?= "${DISTRO_FEATURES_DEFAULT} \
                     ${OEL_DEFAULT_DISTRO_FEATURES}"
 
 # Default to systemd, not sysvinit
