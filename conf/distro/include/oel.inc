@@ -179,7 +179,7 @@ systemd_userunitdir_pn-pulseaudio = "${@bb.utils.contains('DISTRO_FEATURES', 'pa
 VIRTUAL-RUNTIME_login_manager = "busybox"
 
 # Use systemd as syslog in distros that has systemd in DISTRO_FEATURES
-VIRTUAL-RUNTIME_base-utils-syslog = "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', 'syslog', d)}"
+VIRTUAL-RUNTIME_base-utils-syslog = "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', 'busybox-syslog', d)}"
 
 # Default to these image types
 IMAGE_FSTYPES ?= "tar.bz2 ext3"
