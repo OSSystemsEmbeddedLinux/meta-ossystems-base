@@ -73,12 +73,17 @@ DISTRO_EXTRA_RRECOMMENDS += " ${OEL_DEFAULT_EXTRA_RRECOMMENDS}"
 ####
 
 # Override these in oel based distros
-OEL_DEFAULT_DISTRO_FEATURES = "largefile opengl multiarch argp xattr"
+OEL_DEFAULT_DISTRO_FEATURES = "largefile opengl multiarch argp xattr systemd"
 OEL_DEFAULT_EXTRA_RDEPENDS = "packagegroup-core-boot"
 OEL_DEFAULT_EXTRA_RRECOMMENDS = ""
 
 DISTRO_FEATURES ?= "${DISTRO_FEATURES_LIBC} \
                     ${OEL_DEFAULT_DISTRO_FEATURES}"
+
+# Default to systemd, not sysvinit
+DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit"
+VIRTUAL-RUNTIME_init_manager = "systemd"
+VIRTUAL-RUNTIME_initscripts = ""
 
 # Exclude DATE from DISTRO/SDK_VERSION checksums
 DISTRO_VERSION[vardepsexclude] = "DATE"
