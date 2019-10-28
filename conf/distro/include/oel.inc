@@ -44,17 +44,18 @@ ERROR_QA_append = " ${WARN_TO_ERROR_QA}"
 ROOTFS_POSTPROCESS_COMMAND_append = " rootfs_check_host_user_contaminated;"
 
 SANITY_TESTED_DISTROS ?= " \
-        ubuntu-15.04 \n \
-        ubuntu-16.04 \n \
-        ubuntu-16.10 \n \
-        fedora-24 \n \
-        fedora-25 \n \
-        centos-7 \n \
-        debian-8 \n \
-        debian-9 \n \
-        opensuse-42.2 \n \
+    ubuntu-16.04 \n \
+    ubuntu-18.04 \n \
+    fedora-28 \n \
+    fedora-29 \n \
+    fedora-30 \n \
+    centos-7 \n \
+    debian-8 \n \
+    debian-9 \n \
+    debian-10 \n \
+    opensuse-42.3 \n \
+    opensuseleap-15.1 \n \
 "
-
 #
 # OELAYOUT_ABI allows us to notify users when the format of TMPDIR changes in
 # an incompatible way. Such changes should usually be detailed in the commit
