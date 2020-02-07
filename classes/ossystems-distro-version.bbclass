@@ -24,14 +24,15 @@ def ossystems_get_distro_version(d):
     layerdir = os.path.join(bspdir, '.repo', 'manifests')
 
     cmd = 'cd %s ; git describe --always 2> /dev/null' % (layerdir)
-    output = os.popen(cmd).read().strip()
+    with os.popen(cmd) as cmd:
+        output = cmd.read().strip()
 
-    if re.compile(stable_version_re).match(output):
-        return output
-    else:
-        is_devel = re.compile(devel_version_re).match(output)
-        if is_devel:
-            return "%s%s" % (is_devel.group(1), devel_version)
+        if re.compile(stable_version_re).match(output):
+            return output
+        else:
+            is_devel = re.compile(devel_version_re).match(output)
+            if is_devel:
+                return "%s%s" % (is_devel.group(1), devel_version)
 
     return "0.0.0-git%s" % devel_version
 
