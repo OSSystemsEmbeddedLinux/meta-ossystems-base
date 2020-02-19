@@ -36,6 +36,9 @@ INHERIT += "typecheck"
 # Add reproducible build support
 INHERIT += "reproducible_build"
 
+BB_SIGNATURE_HANDLER ?= "OEEquivHash"
+BB_HASHSERVE ??= "auto"
+
 # QA check settings - a little stricter than the OE-Core defaults
 WARN_TO_ERROR_QA = "already-stripped compile-host-path install-host-path \
                     installed-vs-shipped ldflags pn-overrides rpaths staticdev \
