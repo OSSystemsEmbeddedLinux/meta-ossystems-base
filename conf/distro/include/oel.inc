@@ -79,7 +79,7 @@ DISTRO_EXTRA_RRECOMMENDS += " ${OEL_DEFAULT_EXTRA_RRECOMMENDS}"
 ####
 
 # Override these in oel based distros
-OEL_DEFAULT_DISTRO_FEATURES = "largefile opengl multiarch wayland vulkan systemd"
+OEL_DEFAULT_DISTRO_FEATURES = "largefile systemd"
 OEL_DEFAULT_EXTRA_RDEPENDS = "packagegroup-core-boot"
 OEL_DEFAULT_EXTRA_RRECOMMENDS = ""
 
