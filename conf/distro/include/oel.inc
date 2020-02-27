@@ -102,7 +102,7 @@ QEMU_TARGETS ?= "arm aarch64 i386 x86_64"
 # Other QEMU_TARGETS "mips mipsel mips64 mips64el nios2 ppc sh4"
 
 # Preferred kernel version for QEMU based machines
-PREFERRED_VERSION_linux-yocto ?= "5.2%"
+PREFERRED_VERSION_linux-yocto ?= "5.4%"
 
 OELQEMUDEPS = "${@bb.utils.contains("INCOMPATIBLE_LICENSE", "GPLv3", "", "packagegroup-core-device-devel",d)}"
 DISTRO_EXTRA_RDEPENDS_append_qemuarm = " ${OELQEMUDEPS}"
