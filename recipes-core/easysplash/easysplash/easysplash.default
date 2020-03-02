@@ -1,0 +1,2 @@
+# EASYSPLASH_GBM_DRM_DEVICE: Path to a DRI device node. Example: /dev/dri/card0.
+# EASYSPLASH_GBM_DRM_CONNECTOR: The DRM connector to use. Example HDMI input, LVDS pins, etc.
