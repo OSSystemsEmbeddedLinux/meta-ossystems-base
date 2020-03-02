@@ -1,0 +1,21 @@
+#!/bin/sh
+
+runtime_dir="__OSSYSTEMS_FACTORY_DEFAULTS_RUNTIME_DIR__"
+factory_dir="__OSSYSTEMS_FACTORY_DEFAULTS_DIR__"
+hooks_dir="__OSSYSTEMS_FACTORY_DEFAULTS_HOOKS_DIR__"
+anchor_file="$runtime_dir/.factory-defaults"
+
+if [ ! -e "$anchor_file" ]; then
+    echo "Restoring to factory defaults"
+    cd $factory_dir
+    tar cf - * | tar xvf - -C $runtime_dir
+
+    for hook in $hooks_dir/*; do
+        if [ ! -d "$hook" ] && [ -x "$hook" ]; then
+            echo "Running factory-defaults hook $hook"
+            $hook
+        fi
+    done
+
+    touch $anchor_file
+fi

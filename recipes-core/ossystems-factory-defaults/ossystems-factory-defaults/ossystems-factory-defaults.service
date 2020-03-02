@@ -1,0 +1,10 @@
+[Unit]
+Description=OS Systems Factory Defaults
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/factory-defaults
+
+[Install]
+WantedBy=multi-user.target
