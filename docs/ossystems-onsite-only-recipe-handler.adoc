@@ -1,0 +1,51 @@
+== `ossystems-onsite-only-recipe-handler`
+
+`ossystems-onsite-only-recipe-handler` is a class to allow recipes to
+be skipped when using BitBake in contexts where code repositories
+referenced by recipes cannot be reached, in which cases BitBake would
+error out.
+
+An example scenario would be: you have recipes in your company's layer
+that reference code repositories that are only available from within
+your company's internal network.  Those recipes would work fine when
+you are running BitBake at your company, but they would break if
+someone out of your company (e.g., a partner company) attempts to use
+your layer.
+
+The `ossystems-onsite-only-recipe-handler` class works around that
+issue by providing a variable (`OSSYSTEMS_ONSITE_ONLY_RECIPES`) that
+is used to specify which recipes should be ignored when running
+BitBake from a location that cannot access some restricted code
+repositories.
+
+The `OSSYSTEMS_USE_ONSITE_ONLY_RECIPES` variable specify when the
+on-site-only feature is enabled or not.  If its value is `1`
+(_enabled_), the recipes listed in `OSSYSTEMS_ONSITE_ONLY_RECIPES`
+will be actually used by BitBake. If its value is not `1`
+(_disabled_), recipes listed in `OSSYSTEMS_ONSITE_ONLY_RECIPES` will
+be ignored by BitBake.
+
+So, when building out of site, the `OSSYSTEMS_USE_ONSITE_ONLY_RECIPES`
+should be disabled (e.g., set to `0`) to make all recipes listed in
+`OSSYSTEMS_ONSITE_ONLY_RECIPES` be ignored.
+
+This class should be used from a "global" configuration file (e.g.,
+the distro configuration file or `local.conf`).  Here's an usage
+example:
+
+....
+# Inherit the class
+INHERIT += "ossystems-onsite-only-recipe-handler"
+
+# Specify which recipes should be skipped if
+# OSSYSTEMS_USE_ONSITE_ONLY_RECIPES is disabled
+OSSYSTEMS_ONSITE_ONLY_RECIPES += "\
+    recipe-1 \
+    recipe-2 \
+    ...
+"
+
+# OSSYSTEMS_USE_ONSITE_ONLY_RECIPES is enabled by default
+# (i.e., recipes won't be skipped), but may be overwritten
+OSSYSTEMS_USE_ONSITE_ONLY_RECIPES ?= "1"
+....
