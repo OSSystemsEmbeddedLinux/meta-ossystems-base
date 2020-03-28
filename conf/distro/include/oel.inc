@@ -112,6 +112,7 @@ DISTRO_EXTRA_RDEPENDS_append_qemuppc = " ${OELQEMUDEPS}"
 DISTRO_EXTRA_RDEPENDS_append_qemux86 = " ${OELQEMUDEPS}"
 DISTRO_EXTRA_RDEPENDS_append_qemux86-64 = " ${OELQEMUDEPS}"
 
+# We avoid appending TCLIBC name on the TMPDIR
 TCLIBCAPPEND = ""
 
 # Use a local PR server by default
