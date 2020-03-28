@@ -147,10 +147,6 @@ INHERIT += "deploy-license-manifest"
 # Ensure we have what we need for the below type checks
 OE_IMPORTS += "oe.terminal"
 
-# Restore any available saved headrevs (used for our installers)
-DUMP_HEADREVS_DB ?= "${MELDIR}/${MACHINE}/saved_persist_data.db"
-INHERIT += "restore-dumped-headrevs"
-
 ####
 #### Preferences and providers
 ####
@@ -217,10 +213,6 @@ DISTRO_EXTRA_RRECOMMENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 
 
 # Work around missing vardep bug in bitbake
 sstate_stage_all[vardeps] += "sstate_stage_dirs"
-
-# Restore any available saved headrevs (used for our installers)
-DUMP_HEADREVS_DB ?= "${MELDIR}/${MACHINE}/saved_persist_data.db"
-INHERIT += "restore-dumped-headrevs"
 
 # LAYERDIRs for our layers, by name
 INHERIT += "layerdirs"
