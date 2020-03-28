@@ -76,7 +76,7 @@ OELAYOUT_ABI = "12"
 ####
 
 # Override these in oel based distros
-OEL_DEFAULT_DISTRO_FEATURES = "largefile systemd"
+OEL_DEFAULT_DISTRO_FEATURES = "largefile"
 OEL_DEFAULT_EXTRA_RDEPENDS = "packagegroup-core-boot"
 OEL_DEFAULT_EXTRA_RRECOMMENDS = ""
 
@@ -87,9 +87,7 @@ DISTRO_EXTRA_RDEPENDS += "${OEL_DEFAULT_EXTRA_RDEPENDS}"
 DISTRO_EXTRA_RRECOMMENDS += "${OEL_DEFAULT_EXTRA_RRECOMMENDS}"
 
 # Default to systemd, not sysvinit
-DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit"
-VIRTUAL-RUNTIME_init_manager = "systemd"
-VIRTUAL-RUNTIME_initscripts = ""
+INIT_MANAGER ?= "systemd"
 
 # Exclude DATE from DISTRO/SDK_VERSION checksums
 DISTRO_VERSION[vardepsexclude] = "DATE"
