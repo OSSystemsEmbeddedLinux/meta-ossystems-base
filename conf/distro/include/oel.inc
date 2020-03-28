@@ -161,7 +161,7 @@ VOLATILE_BINDS_append = "\
 systemd_userunitdir_pn-pulseaudio = "${@bb.utils.contains('DISTRO_FEATURES', 'pam', '${systemd_unitdir}/user', '${systemd_unitdir}/system', d)}"
 
 # We prefer busybox rather than tinylogin
-VIRTUAL-RUNTIME_login_manager = "busybox"
+VIRTUAL-RUNTIME_login_manager ??= "busybox"
 
 # Use systemd as syslog in distros that has systemd in DISTRO_FEATURES
 VIRTUAL-RUNTIME_base-utils-syslog = "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', 'busybox-syslog', d)}"
