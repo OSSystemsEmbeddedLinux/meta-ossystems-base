@@ -151,24 +151,9 @@ OE_IMPORTS += "oe.terminal"
 #### Preferences and providers
 ####
 
-# Prefer normal jpeg implementation
-PREFERRED_PROVIDER_jpeg               ??= "jpeg"
-PREFERRED_PROVIDER_jpeg-native        ??= "jpeg-native"
-
 # Prefer O.S. Systems U-Boot fork
 #PREFERRED_PROVIDER_u-boot              ?= "u-boot-ossystems"
 #PREFERRED_PROVIDER_virtual/bootloader  ?= "u-boot-ossystems"
-
-# Ensure that we are not getting GUI for latencytop, as we don't want x11 to
-# be pulled into our console image.
-PACKAGECONFIG_pn-latencytop = ""
-
-# Ensure that we are not getting GUI for sysprof, as we don't want x11 to
-# be pulled into our console image.
-PACKAGECONFIG_pn-sysprof = ""
-
-# Enable systemd in pulseaudio when appropriate
-PACKAGECONFIG_append_pn-pulseaudio = "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', ' systemd', '', d)}"
 
 # Since many embedded systems don't have non-root users, allow autospawn for
 # root as well.
