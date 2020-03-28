@@ -118,11 +118,6 @@ TCLIBCAPPEND = ""
 # Use a local PR server by default
 PRSERV_HOST ?= "localhost:0"
 
-# Prefer pkgconfig over pkgconf
-PREFERRED_PROVIDER_pkgconfig = "pkgconfig"
-PREFERRED_PROVIDER_pkgconfig-native = "pkgconfig-native"
-PREFERRED_PROVIDER_nativesdk-pkgconfig = "nativesdk-pkgconfig"
-
 ####
 #### Inherits
 ####
