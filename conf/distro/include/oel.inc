@@ -108,14 +108,6 @@ QEMU_TARGETS ?= "arm aarch64 i386 x86_64"
 # Preferred kernel version for QEMU based machines
 PREFERRED_VERSION_linux-yocto ?= "5.4%"
 
-OELQEMUDEPS = "${@bb.utils.contains("INCOMPATIBLE_LICENSE", "GPLv3", "", "packagegroup-core-device-devel",d)}"
-DISTRO_EXTRA_RDEPENDS_append_qemuarm = " ${OELQEMUDEPS}"
-DISTRO_EXTRA_RDEPENDS_append_qemuarm64 = " ${OELQEMUDEPS}"
-DISTRO_EXTRA_RDEPENDS_append_qemumips = " ${OELQEMUDEPS}"
-DISTRO_EXTRA_RDEPENDS_append_qemuppc = " ${OELQEMUDEPS}"
-DISTRO_EXTRA_RDEPENDS_append_qemux86 = " ${OELQEMUDEPS}"
-DISTRO_EXTRA_RDEPENDS_append_qemux86-64 = " ${OELQEMUDEPS}"
-
 # We avoid appending TCLIBC name on the TMPDIR
 TCLIBCAPPEND = ""
 
