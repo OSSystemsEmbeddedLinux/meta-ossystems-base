@@ -103,7 +103,7 @@ SDK_VERSION[vardepsexclude] = "DATE"
 BBFILE_PRIORITY_openembedded-layer = "1"
 
 QEMU_TARGETS ?= "arm aarch64 i386 x86_64"
-# Other QEMU_TARGETS "mips mipsel mips64 mips64el nios2 ppc sh4"
+# Other QEMU_TARGETS "mips mipsel mips64 mips64el ppc ppc64 ppc64le riscv32 riscv64 sh4"
 
 # Preferred kernel version for QEMU based machines
 PREFERRED_VERSION_linux-yocto ?= "5.4%"
