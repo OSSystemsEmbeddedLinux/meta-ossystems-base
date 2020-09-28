@@ -1,0 +1,11 @@
+[Unit]
+Description=Cog Browser
+After=graphical.target network-online.target
+Requires=graphical.target network-online.target
+
+[Service]
+EnvironmentFile=/etc/default/cog
+ExecStart=/usr/bin/cog $COG_ARGS
+
+[Install]
+WantedBy=graphical.target
