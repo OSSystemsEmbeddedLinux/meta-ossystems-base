@@ -10,6 +10,21 @@ SRC_URI = "\
 
 inherit systemd update-rc.d
 
+## Configuration variables
+
+# The known good values are 'fdo' and 'rdk'; most machines use the 'fdo' as it
+# is the preferred backend.
+COG_PLATFORM   ?= "fdo"
+
+# Force fullscreen when using 'fdo' platform.
+COG_PLATFORM_FDO_VIEW_FULLSCREEN ?= "1"
+
+# URL to load when start.
+COG_URL        ?= "https://ossystems.com.br"
+
+# Extra arguments to pass to 'cog' application.
+COG_EXTRA_ARGS ?= ""
+
 # To start cog at boot it's necessary to set graphical login as default adding
 # this to your image recipe:
 #
@@ -33,6 +48,12 @@ do_install() {
     fi
 
     install -Dm 0644 ${WORKDIR}/${PN}.default ${D}${sysconfdir}/default/cog
+
+    sed -e 's,@COG_PLATFORM@,${COG_PLATFORM},g' \
+        -e 's,@COG_URL@,${COG_URL},g' \
+        -e 's,@COG_EXTRA_ARGS@,${COG_EXTRA_ARGS},g' \
+        -e 's,@COG_PLATFORM_FDO_VIEW_FULLSCREEN@,${COG_PLATFORM_FDO_VIEW_FULLSCREEN},g' \
+        -i ${D}${sysconfdir}/default/cog
 }
 
 RDEPENDS_${PN} += "cog"
