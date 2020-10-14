@@ -12,9 +12,10 @@ SECTION = "base"
 
 DEPENDS = "zlib libpng"
 
-SRCREV = "b75a39ded69de88cde13cc46104ce0cc9aba3e38"
+SRCREV = "41aa12405d5aebb3f99b2bf5b183ba4599cba18f"
+SRCBRANCH = "1.0.x"
 SRC_URI = "\
-    git://github.com/OSSystems/easysplash.git \
+    git://github.com/OSSystems/easysplash.git;branch=${SRCBRANCH} \
     file://${BPN}.default \
 "
 
