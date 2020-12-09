@@ -4,6 +4,6 @@
 # If you are using O.S. Systems Embedded Linux platform please refer to the
 # cog-init recipe to see the available configuration options.
 
-XDG_RUNTIME_DIR=/run/user/0
+XDG_RUNTIME_DIR=/run
 COG_PLATFORM_FDO_VIEW_FULLSCREEN=@COG_PLATFORM_FDO_VIEW_FULLSCREEN@
 COG_ARGS='-P @COG_PLATFORM@ @COG_EXTRA_ARGS@ @COG_URL@'
