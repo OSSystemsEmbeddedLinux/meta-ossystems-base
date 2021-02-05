@@ -1,0 +1,11 @@
+[Unit]
+Description=Net persisten MAC
+After=local-fs.target
+Wants=local-fs.target
+Before=network.target
+
+[Service]
+ExecStart=/usr/bin/net-persistent-mac
+
+[Install]
+WantedBy=multi-user.target
