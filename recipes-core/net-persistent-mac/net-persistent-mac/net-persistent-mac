@@ -1,0 +1,52 @@
+#!/bin/sh
+
+set -e
+
+[ -f /etc/default/net-persistent-mac ] && . /etc/default/net-persistent-mac
+
+mkdir -p "$MAC_DIR"
+
+IF_FILE="$MAC_DIR/$INTERFACE.mac"
+
+for if in $INTERFACES; do
+    mkdir -p "$MAC_DIR"
+    IF_FILE="$MAC_DIR/$if.mac"
+    IF_MAC="/sys/class/net/$if/address"
+
+    # Store MAC for reuse
+    if [ ! -r "$IF_FILE" ]; then
+        if [ -e "$IF_MAC" ]; then
+            echo "Storing MAC for $if for future use."
+            cat "$IF_MAC" > "$IF_FILE"
+        else
+            echo "Failed to read MAC for $if; skiping device."
+        fi
+    fi
+
+    if [ -r "$IF_FILE" ]; then
+        # Restore MAC setting
+        WANTED_MAC=`cat $IF_FILE`
+        if [ "$WANTED_MAC" != "`cat $IF_MAC`" ]; then
+            echo "Setting MAC of $if to $WANTED_MAC."
+            ifconfig $if hw ether "$WANTED_MAC"
+        fi
+    fi
+done
+# Store MAC for reuse
+if [ ! -r "$IF_FILE" ]; then
+    if [ -e "$IF_MAC" ]; then
+        echo "Storing MAC for $INTERFACE for future use."
+        cat "$IF_MAC" > "$IF_FILE"
+    else
+        echo "Failed to read MAC for $INTERFACE; skiping device."
+    fi
+fi
+
+if [ -r "$IF_FILE" ]; then
+    # Restore MAC setting
+    WANTED_MAC=`cat $IF_FILE`
+    if [ "$WANTED_MAC" != "`cat $IF_MAC`" ]; then
+        echo "Setting MAC of $INTERFACE to $WANTED_MAC."
+        ifconfig $INTERFACE hw ether "$WANTED_MAC"
+    fi
+fi

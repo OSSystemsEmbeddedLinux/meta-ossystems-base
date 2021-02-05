@@ -1,0 +1,2 @@
+INTERFACES="eth0"
+MAC_DIR="/data/net-persistent-mac"
