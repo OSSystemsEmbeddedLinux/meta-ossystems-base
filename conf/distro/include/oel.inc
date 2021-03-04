@@ -258,3 +258,6 @@ DISTRO_ARM_INSTRUCTION_armv6 ?= "arm"
 ARM_INSTRUCTION_SET = "${DISTRO_ARM_INSTRUCTION}"
 
 HOSTTOOLS += "id"
+
+# Default system locale used in /etc/locale.conf file
+DEFAULT_SYSTEM_LOCALE ?= "en_US.UTF-8"
