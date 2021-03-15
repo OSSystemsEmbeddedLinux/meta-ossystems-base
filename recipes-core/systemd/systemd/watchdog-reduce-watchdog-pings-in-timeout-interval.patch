@@ -1,0 +1,127 @@
+From 2ae026e2406a95a995efde030b31464403959d0e Mon Sep 17 00:00:00 2001
+From: Alin Popa <alin.popa@fxdata.ro>
+Date: Thu, 2 Apr 2020 09:10:55 +0200
+Subject: [PATCH] watchdog: reduce watchdog pings in timeout interval
+Organization: O.S. Systems Software LTDA.
+
+The watchdog ping is performed for every iteration of manager event
+loop. This results in a lot of ioctls on watchdog device driver
+especially during boot or if services are aggressively using sd_notify.
+Depending on the watchdog device driver this may have performance
+impact on embedded systems.
+The patch skips sending the watchdog to device driver if the ping is
+requested before half of the watchdog timeout.
+
+Upstream-Status: Backport [v246]
+(cherry picked from commit c5f8a179a2350717777bdd8ee2a5e04ab0afdbb3)
+---
+ src/core/manager.c    | 10 ++++------
+ src/shared/watchdog.c | 34 ++++++++++++++++++++++++++++++++++
+ src/shared/watchdog.h |  1 +
+ 3 files changed, 39 insertions(+), 6 deletions(-)
+
+diff --git a/src/core/manager.c b/src/core/manager.c
+index 13a6b49a8f..82da4d08b4 100644
+--- a/src/core/manager.c
++++ b/src/core/manager.c
+@@ -2910,12 +2910,10 @@ int manager_loop(Manager *m) {
+                 if (manager_dispatch_dbus_queue(m) > 0)
+                         continue;
+ 
+-                /* Sleep for half the watchdog time */
+-                if (timestamp_is_set(m->runtime_watchdog) && MANAGER_IS_SYSTEM(m)) {
+-                        wait_usec = m->runtime_watchdog / 2;
+-                        if (wait_usec <= 0)
+-                                wait_usec = 1;
+-                } else
++                /* Sleep for watchdog runtime wait time */
++                if (MANAGER_IS_SYSTEM(m))
++                        wait_usec = watchdog_runtime_wait();
++                else
+                         wait_usec = USEC_INFINITY;
+ 
+                 r = sd_event_run(m->event, wait_usec);
+diff --git a/src/shared/watchdog.c b/src/shared/watchdog.c
+index 98fefb3956..b64f423c51 100644
+--- a/src/shared/watchdog.c
++++ b/src/shared/watchdog.c
+@@ -16,6 +16,7 @@
+ static int watchdog_fd = -1;
+ static char *watchdog_device = NULL;
+ static usec_t watchdog_timeout = USEC_INFINITY;
++static usec_t watchdog_last_ping = USEC_INFINITY;
+ 
+ static int update_timeout(void) {
+         int r;
+@@ -57,6 +58,8 @@ static int update_timeout(void) {
+                 r = ioctl(watchdog_fd, WDIOC_KEEPALIVE, 0);
+                 if (r < 0)
+                         return log_warning_errno(errno, "Failed to ping hardware watchdog: %m");
++
++                watchdog_last_ping = now(clock_boottime_or_monotonic());
+         }
+ 
+         return 0;
+@@ -114,9 +117,38 @@ int watchdog_set_timeout(usec_t *usec) {
+         return r;
+ }
+ 
++usec_t watchdog_runtime_wait(void) {
++        usec_t rtwait;
++        usec_t ntime;
++
++        if (!timestamp_is_set(watchdog_timeout))
++                return USEC_INFINITY;
++
++        /* Sleep half the watchdog timeout since the last succesful ping at most */
++        if (timestamp_is_set(watchdog_last_ping)) {
++                ntime = now(clock_boottime_or_monotonic());
++                assert(ntime >= watchdog_last_ping);
++                rtwait = usec_sub_unsigned(watchdog_last_ping + (watchdog_timeout / 2), ntime);
++        } else
++                rtwait = watchdog_timeout / 2;
++
++        return rtwait;
++}
++
+ int watchdog_ping(void) {
++        usec_t ntime;
+         int r;
+ 
++        ntime = now(clock_boottime_or_monotonic());
++
++        /* Never ping earlier than watchdog_timeout/4 and try to ping
++         * by watchdog_timeout/2 plus scheduling latencies the latest */
++        if (timestamp_is_set(watchdog_last_ping)) {
++                assert(ntime >= watchdog_last_ping);
++                if ((ntime - watchdog_last_ping) < (watchdog_timeout / 4))
++                        return 0;
++        }
++
+         if (watchdog_fd < 0) {
+                 r = open_watchdog();
+                 if (r < 0)
+@@ -127,6 +159,8 @@ int watchdog_ping(void) {
+         if (r < 0)
+                 return log_warning_errno(errno, "Failed to ping hardware watchdog: %m");
+ 
++        watchdog_last_ping = ntime;
++
+         return 0;
+ }
+ 
+diff --git a/src/shared/watchdog.h b/src/shared/watchdog.h
+index a345e4ba7d..ce739fd8a3 100644
+--- a/src/shared/watchdog.h
++++ b/src/shared/watchdog.h
+@@ -10,6 +10,7 @@ int watchdog_set_device(char *path);
+ int watchdog_set_timeout(usec_t *usec);
+ int watchdog_ping(void);
+ void watchdog_close(bool disarm);
++usec_t watchdog_runtime_wait(void);
+ 
+ static inline void watchdog_free_device(void) {
+         (void) watchdog_set_device(NULL);
+-- 
+2.30.2
+
