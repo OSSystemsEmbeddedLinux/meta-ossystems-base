@@ -5,4 +5,5 @@ SRC_URI_append_oel = "\
     file://pidof.cfg \
     file://top.cfg \
     file://mdev.cfg \
+    file://history.cfg \
 "
