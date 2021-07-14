@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://${S}/README.md;beginline=5;endline=7;md5=1c6f4971407e
 
 inherit update-rc.d systemd
 
-SRC_URI = "git://github.com/vaeth/zram-init;protocol=https"
+SRC_URI = "git://github.com/vaeth/zram-init;branch=main"
 SRCREV = "703f63bd3e595b9b357d74c58db1370b40af250d"
 
 S = "${WORKDIR}/git"
