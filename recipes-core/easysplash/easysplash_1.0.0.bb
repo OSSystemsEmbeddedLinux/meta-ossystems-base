@@ -33,9 +33,9 @@ EXTRA_OECMAKE += "\
 "
 
 INITSCRIPT_NAME = "${PN}-start"
-INITSCRIPT_PARAMS_${PN} = "start 5 S ."
+INITSCRIPT_PARAMS:${PN} = "start 5 S ."
 
-SYSTEMD_SERVICE_${PN} = "${PN}-start.service ${PN}-quit.service"
+SYSTEMD_SERVICE:${PN} = "${PN}-start.service ${PN}-quit.service"
 
 PACKAGECONFIG_DISTRO ?= "\
     ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', 'sysvinit', '', d)} \
@@ -60,11 +60,11 @@ PACKAGECONFIG[rpi-dispmanx] = "-DDISPLAY_TYPE_GLES=TRUE -DEGL_PLATFORM_RPI_DISPM
 PACKAGECONFIG[sysvinit] = "-DENABLE_SYSVINIT_SUPPORT=TRUE, -DENABLE_SYSVINIT_SUPPORT=FALSE"
 PACKAGECONFIG[systemd] = "-DENABLE_SYSTEMD_SUPPORT=TRUE, -DENABLE_SYSTEMD_SUPPORT=FALSE, systemd"
 
-do_install_append() {
+do_install:append() {
     install -Dm 0644 ${WORKDIR}/${PN}.default ${D}${sysconfdir}/default/${PN}
 }
 
-RRECOMMENDS_${PN} = "easysplash-bootanimation-default"
+RRECOMMENDS:${PN} = "easysplash-bootanimation-default"
 
 # NXP SoC arch
 PACKAGE_ARCH_imx = "${MACHINE_SOCARCH}"

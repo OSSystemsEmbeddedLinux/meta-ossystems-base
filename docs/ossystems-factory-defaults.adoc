@@ -14,11 +14,11 @@ ossystems-factory-defaults:
 ----
 $ cat openssh_%.bbappend
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/openssh:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/openssh:"
 
 SRC_URI += "file://openssh.factory-defaults-hook"
 
-do_install_append() {
+do_install:append() {
     # Install the script referenced in SRC_URI in
     # ${sysconfdir}/factory-defaults.d/ as openssh. This script will
     # be invoked when users restore the factory-defaults configuration.

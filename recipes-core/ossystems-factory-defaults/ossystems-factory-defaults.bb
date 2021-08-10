@@ -13,7 +13,7 @@ INITSCRIPT_NAME = "factory-defaults"
 INITSCRIPT_PARAMS = "start 39 S ."
 
 SYSTEMD_PACKAGES = "${PN}"
-SYSTEMD_SERVICE_${PN} = "${PN}.service"
+SYSTEMD_SERVICE:${PN} = "${PN}.service"
 
 do_configure() {
     sed -e 's,__OSSYSTEMS_FACTORY_DEFAULTS_DIR__,${OSSYSTEMS_FACTORY_DEFAULTS_DIR}, ;

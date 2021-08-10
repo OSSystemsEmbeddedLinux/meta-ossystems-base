@@ -30,7 +30,7 @@ COG_EXTRA_ARGS ?= ""
 #
 #   SYSTEMD_DEFAULT_TARGET = "graphical.target"
 #
-SYSTEMD_SERVICE_${PN} = "cog.service"
+SYSTEMD_SERVICE:${PN} = "cog.service"
 
 # Start after weston-init
 INITSCRIPT_NAME = "cog"
@@ -56,6 +56,6 @@ do_install() {
         -i ${D}${sysconfdir}/default/cog
 }
 
-RDEPENDS_${PN} += "cog"
+RDEPENDS:${PN} += "cog"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"

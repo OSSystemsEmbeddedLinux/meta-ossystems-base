@@ -49,7 +49,7 @@ def ossystems_srcrev_handler(d):
                          % (pkg))
                 rev = "${AUTOREV}"
 
-            d.setVar("SRCREV_pn-%s" % pkg, rev)
+            d.setVar("SRCREV:pn-%s" % pkg, rev)
 
 addhandler ossystems_srcrev_eventhandler
 python ossystems_srcrev_eventhandler() {
