@@ -14,9 +14,9 @@ GO_LINKSHARED = ""
 GO_IMPORT = "github.com/influxdata/telegraf"
 GO_INSTALL = "github.com/influxdata/telegraf/cmd/telegraf"
 
-SYSTEMD_SERVICE_${PN} = "${PN}.service"
+SYSTEMD_SERVICE:${PN} = "${PN}.service"
 
-do_install_append() {
+do_install:append() {
     # FIXME: This has mixed architecture files and causes errors during
     # packaging
     rm -rf ${D}${libdir}/go/pkg/mod ${D}${libdir}/go/pkg/sumdb
@@ -31,4 +31,4 @@ do_install_append() {
     echo "d /var/log/${PN} 0755 root root -" > ${D}${sysconfdir}/tmpfiles.d/${PN}.conf
 }
 
-RDEPENDS_${PN}-dev += "bash"
+RDEPENDS:${PN}-dev += "bash"

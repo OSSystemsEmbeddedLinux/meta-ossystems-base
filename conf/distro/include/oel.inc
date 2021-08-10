@@ -43,11 +43,11 @@ BB_HASHSERVE ??= "auto"
 WARN_TO_ERROR_QA = "already-stripped compile-host-path install-host-path \
                     installed-vs-shipped ldflags pn-overrides rpaths staticdev \
                     unknown-configure-option useless-rpaths"
-WARN_QA_remove = "${WARN_TO_ERROR_QA}"
-ERROR_QA_append = " ${WARN_TO_ERROR_QA}"
+WARN_QA:remove = "${WARN_TO_ERROR_QA}"
+ERROR_QA:append = " ${WARN_TO_ERROR_QA}"
 
 # Also check for host user contamination in the rootfs
-ROOTFS_POSTPROCESS_COMMAND_append = " rootfs_check_host_user_contaminated;"
+ROOTFS_POSTPROCESS_COMMAND:append = " rootfs_check_host_user_contaminated;"
 
 SANITY_TESTED_DISTROS ?= " \
     poky-3.0 \n \
@@ -145,10 +145,10 @@ OE_IMPORTS += "oe.terminal"
 
 # Since many embedded systems don't have non-root users, allow autospawn for
 # root as well.
-PACKAGECONFIG_append_pn-pulseaudio = " autospawn-for-root"
+PACKAGECONFIG:append:pn-pulseaudio = " autospawn-for-root"
 
 # Ensure we have the writable paths we need in a read-only rootfs
-VOLATILE_BINDS_append = "\
+VOLATILE_BINDS:append = "\
 	/var/volatile/root-home ${ROOT_HOME}\n\
 	/var/volatile/media /media\n\
 	/var/volatile/resolv.conf /etc/resolv.conf\n\
@@ -156,7 +156,7 @@ VOLATILE_BINDS_append = "\
 
 # Override pulseaudio to use a system rather than user systemd service when we
 # don't have pam available, as the user service won't be started
-systemd_userunitdir_pn-pulseaudio = "${@bb.utils.contains('DISTRO_FEATURES', 'pam', '${systemd_unitdir}/user', '${systemd_unitdir}/system', d)}"
+systemd_userunitdir:pn-pulseaudio = "${@bb.utils.contains('DISTRO_FEATURES', 'pam', '${systemd_unitdir}/user', '${systemd_unitdir}/system', d)}"
 
 # We prefer busybox rather than tinylogin
 VIRTUAL-RUNTIME_login_manager ??= "busybox"
@@ -198,9 +198,9 @@ LAYERDIR_UNKNOWN = 'UNKNOWN'
 # Support pulling downloads and sstate from inside individual layers. This
 # will let us ship self contained layers to a release without risking file
 # conflicts between them.
-PREMIRRORS_prepend = "${@'.*://.*/.* file://${RECIPE_LAYERDIR}/downloads\n' if '${RECIPE_LAYERDIR}' != 'UNKNOWN' else ''}"
+PREMIRRORS:prepend = "${@'.*://.*/.* file://${RECIPE_LAYERDIR}/downloads\n' if '${RECIPE_LAYERDIR}' != 'UNKNOWN' else ''}"
 LAYER_SSTATE_MIRRORS = "${@" ".join('file://%s' % sl for sl in ('%s/sstate-cache' % l for l in '${BBLAYERS}'.split()) if os.path.exists(sl))}"
-SSTATE_MIRROR_SITES_prepend = "${LAYER_SSTATE_MIRRORS} "
+SSTATE_MIRROR_SITES:prepend = "${LAYER_SSTATE_MIRRORS} "
 
 ####
 #### Includes
@@ -244,9 +244,9 @@ def arm_tune_handler(d):
 DEFAULTTUNE_oel := "${@arm_tune_handler(d)}"
 
 DISTRO_ARM_INSTRUCTION ?= "arm"
-DISTRO_ARM_INSTRUCTION_armv4 ?= "arm"
-DISTRO_ARM_INSTRUCTION_armv5te ?= "arm"
-DISTRO_ARM_INSTRUCTION_armv6 ?= "arm"
+DISTRO_ARM_INSTRUCTION:armv4 ?= "arm"
+DISTRO_ARM_INSTRUCTION:armv5te ?= "arm"
+DISTRO_ARM_INSTRUCTION:armv6 ?= "arm"
 ARM_INSTRUCTION_SET = "${DISTRO_ARM_INSTRUCTION}"
 
 HOSTTOOLS += "id"

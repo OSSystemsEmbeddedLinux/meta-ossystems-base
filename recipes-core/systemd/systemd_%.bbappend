@@ -1,1 +1,1 @@
-RDEPENDS_${PN} += "util-linux-umount"
+RDEPENDS:${PN} += "util-linux-umount"

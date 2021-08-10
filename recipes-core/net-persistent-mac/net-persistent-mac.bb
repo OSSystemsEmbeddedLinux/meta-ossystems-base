@@ -14,7 +14,7 @@ OSSYSTEMS_FACTORY_DEFAULTS_HOOKS = "file://${BPN}.factory-defaults-hook"
 
 inherit ossystems-factory-defaults systemd
 
-SYSTEMD_SERVICE_${PN} = "${PN}.service"
+SYSTEMD_SERVICE:${PN} = "${PN}.service"
 
 do_configure[noexec] = "1"
 do_compile[noexec] = "1"

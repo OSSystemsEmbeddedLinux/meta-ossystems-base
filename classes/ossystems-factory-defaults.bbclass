@@ -44,7 +44,7 @@ member() {
 
 SRC_URI += "${OSSYSTEMS_FACTORY_DEFAULTS_HOOKS}"
 
-do_install_append() {
+do_install:append() {
     install -d ${D}${OSSYSTEMS_FACTORY_DEFAULTS_DIR}
 
     # Check if files exist
@@ -80,12 +80,12 @@ do_install_append() {
     fi
 }
 
-PACKAGES_prepend = "${PN}-ossystems-factory-defaults "
+PACKAGES:prepend = "${PN}-ossystems-factory-defaults "
 
-FILES_${PN}-ossystems-factory-defaults += "\
+FILES:${PN}-ossystems-factory-defaults += "\
     ${OSSYSTEMS_FACTORY_DEFAULTS_RUNTIME_DIR} \
     ${OSSYSTEMS_FACTORY_DEFAULTS_DIR} \
     ${OSSYSTEMS_FACTORY_DEFAULTS_HOOKS_DIR} \
 "
 
-RDEPENDS_${PN} += "ossystems-factory-defaults ${PN}-ossystems-factory-defaults"
+RDEPENDS:${PN} += "ossystems-factory-defaults ${PN}-ossystems-factory-defaults"

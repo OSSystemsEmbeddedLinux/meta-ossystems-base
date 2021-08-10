@@ -7,14 +7,14 @@
 
 inherit update-alternatives allarch
 
-ALTERNATIVE_${PN} += "bootanimation"
+ALTERNATIVE:${PN} += "bootanimation"
 ALTERNATIVE_TARGET[bootanimation] = "/lib/easysplash/${PN}.zip"
 ALTERNATIVE_LINK_NAME[bootanimation] = "/lib/easysplash/bootanimation.zip"
 ALTERNATIVE_PRIORITY[bootanimation] = "50"
 
-do_install_append() {
+do_install:append() {
     install -Dm 0644 ${S}/*.zip ${D}/lib/easysplash/${PN}.zip
 }
 
-FILES_${PN} += "/lib/easysplash/${PN}.zip"
-RDEPENDS_${PN} += "easysplash"
+FILES:${PN} += "/lib/easysplash/${PN}.zip"
+RDEPENDS:${PN} += "easysplash"

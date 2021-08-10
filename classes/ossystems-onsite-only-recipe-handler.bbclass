@@ -28,7 +28,7 @@ def ossystems_onsite_only_recipe_handler(d):
     bb.note("O.S. Systems OnSite-Only Recipes handler: Disabled")
 
     for recipe in onsite_only_recipes.split():
-        d.setVar("SRCPV_pn-%s" % recipe, "OSSystemsOnSiteOnlyRecipeTag")
+        d.setVar("SRCPV:pn-%s" % recipe, "OSSystemsOnSiteOnlyRecipeTag")
         bb.debug(1, "O.S. Systems OnSite-Only Recipes handler: Overriding %s" % recipe)
 
 def ossystems_onsite_only_recipe_check(d):

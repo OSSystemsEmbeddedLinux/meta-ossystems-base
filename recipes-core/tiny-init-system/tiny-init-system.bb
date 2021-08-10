@@ -17,5 +17,5 @@ do_install() {
     install -Dm 0755 ${WORKDIR}/rc.local.sample ${D}${sysconfdir}/rc.local.sample
 }
 
-FILES_${PN} = "/init ${sysconfdir}/rc.local.sample"
-RDEPENDS_${PN} = "busybox"
+FILES:${PN} = "/init ${sysconfdir}/rc.local.sample"
+RDEPENDS:${PN} = "busybox"

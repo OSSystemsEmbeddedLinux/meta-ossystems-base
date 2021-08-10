@@ -12,7 +12,7 @@ S = "${WORKDIR}/git"
 INITSCRIPT_NAME = "${PN}"
 INITSCRIPT_PARAMS = "defaults"
 
-SYSTEMD_SERVICE_${PN} = "zram_swap.service"
+SYSTEMD_SERVICE:${PN} = "zram_swap.service"
 
 do_install () {
     install -Dm 0755 ${S}/sbin/${PN}  ${D}${base_sbindir}/${PN}
@@ -27,5 +27,5 @@ do_install () {
     fi
 }
 
-RDEPENDS_${PN} = "e2fsprogs-tune2fs"
-RRECOMMENDS_${PN} = "kernel-module-zram"
+RDEPENDS:${PN} = "e2fsprogs-tune2fs"
+RRECOMMENDS:${PN} = "kernel-module-zram"

@@ -15,4 +15,4 @@ do_install() {
     cp -rf ${WORKDIR}/git/* ${D}${datadir}/${PN}
 }
 
-FILES_${PN} += "${datadir}/${PN}"
+FILES:${PN} += "${datadir}/${PN}"
