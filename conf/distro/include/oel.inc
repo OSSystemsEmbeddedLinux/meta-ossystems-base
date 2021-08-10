@@ -8,7 +8,7 @@ MAINTAINER = "O.S. Systems Software LTDA. <contato@ossystems.com.br>"
 
 TARGET_VENDOR = "-oel"
 
-LOCALCONF_VERSION = "1"
+LOCALCONF_VERSION = "2"
 
 # Target i686 for the sdk binaries, rather than the build arch.
 #
