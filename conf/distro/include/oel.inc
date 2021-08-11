@@ -50,20 +50,21 @@ ERROR_QA:append = " ${WARN_TO_ERROR_QA}"
 ROOTFS_POSTPROCESS_COMMAND:append = " rootfs_check_host_user_contaminated;"
 
 SANITY_TESTED_DISTROS ?= " \
-    poky-3.0 \n \
-    poky-3.1 \n \
+    poky-3.2 \n \
+    poky-3.3 \n \
     ubuntu-16.04 \n \
     ubuntu-18.04 \n \
     ubuntu-20.04 \n \
-    fedora-30 \n \
     fedora-31 \n \
     fedora-32 \n \
+    fedora-33 \n \
     centos-7 \n \
     centos-8 \n \
     debian-8 \n \
     debian-9 \n \
     debian-10 \n \
     opensuseleap-15.1 \n \
+    opensuseleap-15.2 \n \
 "
 
 #
