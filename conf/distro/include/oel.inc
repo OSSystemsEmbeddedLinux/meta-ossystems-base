@@ -18,7 +18,9 @@ SDKMACHINE ?= "x86_64"
 # Paths
 OELDIR ?= "${COREBASE}/.."
 DEPLOY_DIR_IMAGE = "${DEPLOY_DIR}/images/${MACHINE}"
-SDKPATH = "/opt/${DISTRO}/${SDK_VERSION}"
+
+SDK_NAME = "${DISTRO}-${TCLIBC}-${SDKMACHINE}-${IMAGE_BASENAME}-${TUNE_PKGARCH}-${MACHINE}"
+SDKPATHINSTALL = "/opt/${DISTRO}/${SDK_VERSION}"
 
 # Move the persist db up out of TMPDIR so it survives its removal
 PERSISTENT_DIR = "${TOPDIR}/db"
