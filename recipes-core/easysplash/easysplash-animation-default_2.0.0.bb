@@ -9,7 +9,7 @@ do_configure[noexec] = "1"
 do_compile[noexec] = "1"
 
 do_install() {
-    (cd ${S} ; oe_runmake install-glowing-animations DESTDIR=${D})
+    (cd ${S} ; oe_runmake install-glowing-animation DESTDIR=${D})
 
     # We will handle the default animation using the update-alternatives system.
     rm ${D}${base_libdir}/easysplash/animation
