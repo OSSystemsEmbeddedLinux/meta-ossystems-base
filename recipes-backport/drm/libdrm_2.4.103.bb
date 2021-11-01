@@ -10,10 +10,9 @@ LIC_FILES_CHKSUM = "file://xf86drm.c;beginline=9;endline=32;md5=c8a3b961af7667c5
 PROVIDES = "drm"
 DEPENDS = "libpthread-stubs"
 
-SRC_URI = "http://dri.freedesktop.org/libdrm/${BP}.tar.xz \
-          "
+SRC_URI = "http://dri.freedesktop.org/libdrm/${BP}.tar.xz"
 
-SRC_URI[sha256sum] = "c554cef03b033636a975543eab363cc19081cb464595d3da1ec129f87370f888"
+SRC_URI[sha256sum] = "3fe0affdba6460166a7323290c18cf68e9b59edcb520722826cb244e9cb50222"
 
 inherit meson pkgconfig manpages
 
@@ -35,26 +34,26 @@ PACKAGECONFIG[valgrind] = "-Dvalgrind=true,-Dvalgrind=false,valgrind"
 PACKAGECONFIG[install-test-programs] = "-Dinstall-test-programs=true,-Dinstall-test-programs=false"
 PACKAGECONFIG[cairo-tests] = "-Dcairo-tests=true,-Dcairo-tests=false"
 PACKAGECONFIG[udev] = "-Dudev=true,-Dudev=false,udev"
-PACKAGECONFIG[manpages] = "-Dman-pages=true,-Dman-pages=false,libxslt-native xmlto-native python3-docutils-native"
+PACKAGECONFIG[manpages] = "-Dman-pages=true,-Dman-pages=false,libxslt-native xmlto-native"
 
-ALLOW_EMPTY:${PN}-drivers = "1"
+ALLOW_EMPTY_${PN}-drivers = "1"
 PACKAGES =+ "${PN}-tests ${PN}-drivers ${PN}-radeon ${PN}-nouveau ${PN}-omap \
              ${PN}-intel ${PN}-exynos ${PN}-kms ${PN}-freedreno ${PN}-amdgpu \
              ${PN}-etnaviv"
 
-RRECOMMENDS:${PN}-drivers = "${PN}-radeon ${PN}-nouveau ${PN}-omap ${PN}-intel \
+RRECOMMENDS_${PN}-drivers = "${PN}-radeon ${PN}-nouveau ${PN}-omap ${PN}-intel \
                              ${PN}-exynos ${PN}-freedreno ${PN}-amdgpu \
                              ${PN}-etnaviv"
 
-FILES:${PN}-tests = "${bindir}/*"
-FILES:${PN}-radeon = "${libdir}/libdrm_radeon.so.*"
-FILES:${PN}-nouveau = "${libdir}/libdrm_nouveau.so.*"
-FILES:${PN}-omap = "${libdir}/libdrm_omap.so.*"
-FILES:${PN}-intel = "${libdir}/libdrm_intel.so.*"
-FILES:${PN}-exynos = "${libdir}/libdrm_exynos.so.*"
-FILES:${PN}-kms = "${libdir}/libkms*.so.*"
-FILES:${PN}-freedreno = "${libdir}/libdrm_freedreno.so.*"
-FILES:${PN}-amdgpu = "${libdir}/libdrm_amdgpu.so.* ${datadir}/${PN}/amdgpu.ids"
-FILES:${PN}-etnaviv = "${libdir}/libdrm_etnaviv.so.*"
+FILES_${PN}-tests = "${bindir}/*"
+FILES_${PN}-radeon = "${libdir}/libdrm_radeon.so.*"
+FILES_${PN}-nouveau = "${libdir}/libdrm_nouveau.so.*"
+FILES_${PN}-omap = "${libdir}/libdrm_omap.so.*"
+FILES_${PN}-intel = "${libdir}/libdrm_intel.so.*"
+FILES_${PN}-exynos = "${libdir}/libdrm_exynos.so.*"
+FILES_${PN}-kms = "${libdir}/libkms*.so.*"
+FILES_${PN}-freedreno = "${libdir}/libdrm_freedreno.so.*"
+FILES_${PN}-amdgpu = "${libdir}/libdrm_amdgpu.so.* ${datadir}/${PN}/amdgpu.ids"
+FILES_${PN}-etnaviv = "${libdir}/libdrm_etnaviv.so.*"
 
 BBCLASSEXTEND = "native nativesdk"
