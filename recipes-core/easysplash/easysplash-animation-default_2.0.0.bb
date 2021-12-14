@@ -21,7 +21,7 @@ do_install() {
 
 ALTERNATIVE_PRIORITY[animation] = "10"
 
-RDEPENDS_${PN} += " \
+RDEPENDS:${PN} += " \
     gstreamer1.0-libav \
     gstreamer1.0-plugins-base-playback \
     gstreamer1.0-plugins-good-isomp4 \

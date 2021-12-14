@@ -9,9 +9,9 @@ inherit cargo pkgconfig systemd update-rc.d
 DEPENDS = "glib-2.0 gstreamer1.0"
 
 INITSCRIPT_NAME = "${PN}-start"
-INITSCRIPT_PARAMS_${PN} = "start 5 S ."
+INITSCRIPT_PARAMS:${PN} = "start 5 S ."
 
-SYSTEMD_SERVICE_${PN} = "${PN}-start.service ${PN}-quit.service"
+SYSTEMD_SERVICE:${PN} = "${PN}-start.service ${PN}-quit.service"
 
 EXTRA_CARGO_FLAGS += " \
     ${@bb.utils.contains('PACKAGECONFIG', 'systemd', '--features systemd', '', d)} \
@@ -25,9 +25,9 @@ PACKAGECONFIG ?= "\
 PACKAGECONFIG[sysvinit] = "INIT=1, INIT=0,"
 PACKAGECONFIG[systemd] = "SYSTEMD=1, SYSTEM=0, systemd"
 
-do_install_append() {
+do_install:append() {
     (cd ${S} ; oe_runmake install-service DESTDIR=${D})
     rm ${D}${sysconfdir}/default/easysplash
 }
 
-RDEPENDS_${PN} += "easysplash-config"
+RDEPENDS:${PN} += "easysplash-config"

@@ -19,7 +19,7 @@ do_install() {
     mv ${D}${base_libdir}/easysplash/ossystems-demo ${D}${base_libdir}/easysplash/${PN}
 }
 
-RDEPENDS_${PN} += " \
+RDEPENDS:${PN} += " \
     gstreamer1.0-libav \
     gstreamer1.0-plugins-base-playback \
     gstreamer1.0-plugins-good-isomp4 \

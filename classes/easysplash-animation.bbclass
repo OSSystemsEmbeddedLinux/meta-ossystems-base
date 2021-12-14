@@ -7,10 +7,10 @@
 
 inherit update-alternatives allarch
 
-ALTERNATIVE_${PN} += "animation"
+ALTERNATIVE:${PN} += "animation"
 ALTERNATIVE_TARGET[animation] = "${base_libdir}/easysplash/${PN}"
 ALTERNATIVE_LINK_NAME[animation] = "${base_libdir}/easysplash/animation"
 ALTERNATIVE_PRIORITY[animation] = "50"
 
-FILES_${PN} += "${base_libdir}/easysplash/${PN}"
-RDEPENDS_${PN} += "easysplash"
+FILES:${PN} += "${base_libdir}/easysplash/${PN}"
+RDEPENDS:${PN} += "easysplash"
