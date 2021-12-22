@@ -35,9 +35,6 @@ INHERIT += "layerdirs"
 # Do an up front type check to sanity check user configuration
 INHERIT += "typecheck"
 
-# Add reproducible build support
-INHERIT += "reproducible_build"
-
 BB_SIGNATURE_HANDLER ?= "OEEquivHash"
 BB_HASHSERVE ??= "auto"
 
