@@ -126,9 +126,6 @@ BUILDHISTORY_COMMIT ?= "1"
 # Do an up front type check to sanity check user configuration
 INHERIT += "typecheck"
 
-# Allow blacklisting recipes
-INHERIT += "blacklist"
-
 # Copy the image license manifest into DEPLOY_DIR_IMAGE
 INHERIT += "deploy-license-manifest"
 
