@@ -12,12 +12,12 @@ inherit systemd update-rc.d
 
 ## Configuration variables
 
-# The known good values are 'fdo' and 'rdk'; most machines use the 'fdo' as it
+# The known good values are 'wl' and 'rdk'; most machines use the 'wl' as it
 # is the preferred backend.
-COG_PLATFORM   ?= "fdo"
+COG_PLATFORM ?= "wl"
 
-# Force fullscreen when using 'fdo' platform.
-COG_PLATFORM_FDO_VIEW_FULLSCREEN ?= "1"
+# Force fullscreen when using 'wl' platform.
+COG_PLATFORM_WL_VIEW_FULLSCREEN ?= "1"
 
 # URL to load when start.
 COG_URL        ?= "https://ossystems.com.br"
@@ -54,7 +54,7 @@ do_install() {
     sed -e 's,@COG_PLATFORM@,${COG_PLATFORM},g' \
         -e 's,@COG_URL@,${COG_URL},g' \
         -e 's,@COG_EXTRA_ARGS@,${COG_EXTRA_ARGS},g' \
-        -e 's,@COG_PLATFORM_FDO_VIEW_FULLSCREEN@,${COG_PLATFORM_FDO_VIEW_FULLSCREEN},g' \
+        -e 's,@COG_PLATFORM_WL_VIEW_FULLSCREEN@,${COG_PLATFORM_WL_VIEW_FULLSCREEN},g' \
         -i ${D}${sysconfdir}/default/cog
 }
 
