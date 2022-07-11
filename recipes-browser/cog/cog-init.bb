@@ -49,6 +49,8 @@ do_install() {
 
     install -Dm 0644 ${WORKDIR}/${PN}.default ${D}${sysconfdir}/default/cog
 
+    echo ${COG_ENV} >> ${D}${sysconfdir}/default/cog
+
     sed -e 's,@COG_PLATFORM@,${COG_PLATFORM},g' \
         -e 's,@COG_URL@,${COG_URL},g' \
         -e 's,@COG_EXTRA_ARGS@,${COG_EXTRA_ARGS},g' \
