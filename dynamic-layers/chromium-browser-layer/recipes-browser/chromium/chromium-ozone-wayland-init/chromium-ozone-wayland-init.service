@@ -1,0 +1,11 @@
+[Unit]
+Description=Chromium Ozone Wayland Browser
+After=graphical.target network-online.target
+Requires=graphical.target network-online.target
+
+[Service]
+EnvironmentFile=/etc/default/chromium
+ExecStart=/usr/bin/chromium $CHROMIUM_ARGS
+
+[Install]
+WantedBy=graphical.target
