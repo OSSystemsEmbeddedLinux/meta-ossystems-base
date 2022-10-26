@@ -4,7 +4,7 @@ After=graphical.target network-online.target
 Requires=graphical.target network-online.target
 
 [Service]
-EnvironmentFile=/etc/default/chromium
+EnvironmentFile=/etc/default/chromium-ozone-wayland
 ExecStart=/usr/bin/chromium $CHROMIUM_ARGS
 
 [Install]
