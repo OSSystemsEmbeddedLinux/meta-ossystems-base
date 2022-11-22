@@ -1,0 +1,12 @@
+#!/bin/sh
+# Copyright (C) 2011 O.S. Systems Software LTDA.
+# Licensed on MIT
+
+finish_enabled() {
+    return 0
+}
+
+finish_run() {
+    mkdir -p $ROOTFS_DIR/run
+    mount --move /run $ROOTFS_DIR/run
+}
