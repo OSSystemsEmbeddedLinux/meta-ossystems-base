@@ -1,0 +1,6 @@
+[Unit]
+Description=Start psplash-systemd progress communication helper
+DefaultDependencies=no
+After=psplash-start.service
+ConditionPathExists=/run/psplash_fifo
+RequiresMountsFor=/run
