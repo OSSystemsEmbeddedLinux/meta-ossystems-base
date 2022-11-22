@@ -1,0 +1,5 @@
+[Unit]
+Description=Start psplash boot splash screen
+DefaultDependencies=no
+RequiresMountsFor=/run
+ConditionPathExists=!/run/psplash_fifo
