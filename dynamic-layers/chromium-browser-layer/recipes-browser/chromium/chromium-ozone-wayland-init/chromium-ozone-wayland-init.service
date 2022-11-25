@@ -1,7 +1,9 @@
 [Unit]
 Description=Chromium Ozone Wayland Browser
-After=graphical.target network-online.target
-Requires=graphical.target network-online.target
+After=weston.service
+Before=graphical.target
+Wants=weston-touch-calibrator.service
+Requires=graphical.target
 
 [Service]
 EnvironmentFile=/etc/default/chromium-ozone-wayland
