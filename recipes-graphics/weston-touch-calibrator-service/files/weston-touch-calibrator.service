@@ -1,0 +1,12 @@
+[Unit]
+Description=Weston Touch Screen Calibrator
+ConditionPathExists=!/etc/touch-calibration.dat
+After=graphical.target
+Requires=weston.socket
+
+[Service]
+EnvironmentFile=/etc/default/weston-touch-calibrator
+ExecStart=/usr/bin/weston-touch-calibrator $DEVICE
+
+[Install]
+WantedBy=graphical.target

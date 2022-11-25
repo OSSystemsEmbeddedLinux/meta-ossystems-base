@@ -1,0 +1,2 @@
+WAYLAND_DISPLAY="/run/wayland-0"
+DEVICE="/sys/devices/soc0/soc/2100000.aips-bus/21a4000.i2c/i2c-1/i2c-5/5-0038/input/input1/event1"
