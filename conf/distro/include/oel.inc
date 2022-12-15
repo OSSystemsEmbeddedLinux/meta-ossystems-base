@@ -111,6 +111,8 @@ PREFERRED_VERSION_linux-yocto ?= "5.10%"
 # We avoid appending TCLIBC name on the TMPDIR
 TCLIBCAPPEND = ""
 
+RUSTVERSION ?= "1.65%"
+
 ####
 #### Inherits
 ####
