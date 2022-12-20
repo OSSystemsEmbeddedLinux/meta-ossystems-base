@@ -8,7 +8,7 @@ products being developed with OpenEmbedded and/or Yocto Project.
 This layer depends on:
 
 URI: git://git.openembedded.org/openembedded-core
-branch: master
+branch: langdale
 revision: HEAD
 
 Contributing
