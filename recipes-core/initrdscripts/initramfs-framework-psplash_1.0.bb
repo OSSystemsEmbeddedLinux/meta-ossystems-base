@@ -1,8 +1,8 @@
 SUMMARY = "Modular psplash to initramfs system"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-RDEPENDS_${PN} += "${VIRTUAL-RUNTIME_base-utils}"
-RRECOMMENDS_${PN} = "${VIRTUAL-RUNTIME_base-utils-syslog}"
+RDEPENDS:${PN} += "${VIRTUAL-RUNTIME_base-utils}"
+RRECOMMENDS:${PN} = "${VIRTUAL-RUNTIME_base-utils-syslog}"
 
 PR = "r4"
 
@@ -23,6 +23,6 @@ do_install() {
 
 PACKAGES = "initramfs-module-psplash"
 
-SUMMARY_initramfs-module-psplash = "initramfs psplash support"
-RDEPENDS_initramfs-module-psplash = "initramfs-framework-base psplash"
-FILES_initramfs-module-psplash = "/init.d"
+SUMMARY:initramfs-module-psplash = "initramfs psplash support"
+RDEPENDS:initramfs-module-psplash = "initramfs-framework-base psplash"
+FILES:initramfs-module-psplash = "/init.d"
