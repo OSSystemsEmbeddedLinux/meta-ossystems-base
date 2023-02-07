@@ -22,7 +22,7 @@ do_install() {
     install -Dm 0644 ${WORKDIR}/touchscreen.rules ${D}${base_libdir}/udev/rules.d/98-touchscreen.rules
 }
 
-RDEPENDS_${PN} += " \
+RDEPENDS:${PN} += " \
     weston-init \
     weston-touch-calibrator \
 "
