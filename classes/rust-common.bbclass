@@ -19,6 +19,12 @@ RUSTFLAGS += "${RUSTLIB} ${RUST_DEBUG_REMAP}"
 RUSTLIB_DEP ?= "libstd-rs"
 RUST_PANIC_STRATEGY ?= "unwind"
 
+# Native builds are not effected by TCLIBC. Without this, rust-native
+# thinks it's "target" (i.e. x86_64-linux) is a musl target.
+RUST_LIBC = "${TCLIBC}"
+RUST_LIBC:class-crosssdk = "glibc"
+RUST_LIBC:class-native = "glibc"
+
 def target_is_armv7(d):
     '''Determine if target is armv7'''
     # TUNE_FEATURES may include arm* even if the target is not arm
