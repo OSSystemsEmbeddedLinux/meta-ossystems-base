@@ -163,7 +163,7 @@ VIRTUAL-RUNTIME_base-utils-syslog = "${@bb.utils.contains('DISTRO_FEATURES', 'sy
 
 # Default to these image types
 IMAGE_FSTYPES ?= "tar.bz2 ext3"
-UBI_VOLNAME = "rootfs"
+UBI_VOLNAME ?= "rootfs"
 
 # Quadruple the normal. 'du' is not a good way to really see how much
 # space will be needed and fails badly as the fs size grows.
