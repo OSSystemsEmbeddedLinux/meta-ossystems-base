@@ -26,8 +26,7 @@ RDEPENDS:${PN} += " \
     gstreamer1.0-plugins-bad-kms \
     gstreamer1.0-plugins-bad-camerabin \
     gstreamer1.0-plugins-good-videofilter \
-    gstreamer1.0-plugins-base-videoconvert \
-    gstreamer1.0-plugins-base-videoscale \
+    gstreamer1.0-plugins-base-videoconvertscale \
     gstreamer1.0-plugins-good-deinterlace \
     gstreamer1.0-plugins-good-multifile \
     gstreamer1.0-plugins-base-typefindfunctions \
