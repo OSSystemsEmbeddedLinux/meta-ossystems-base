@@ -1,0 +1,11 @@
+[Unit]
+Description=Start Wi-Fi Connection Application
+Wants=network.target
+After=NetworkManager.service dbus.service
+
+[Service]
+ExecStart=/usr/bin/wifi-connect-start.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
