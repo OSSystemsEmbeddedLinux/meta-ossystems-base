@@ -1,0 +1,14 @@
+[Unit]
+Description=Qt Kiosk Browser
+DefaultDependencies=no
+Conflicts=getty@tty1.service
+After=systemd-user-sessions.service easysplash-quit.service weston.service
+Before=graphical.target
+
+[Service]
+EnvironmentFile=/etc/default/qt-kiosk-browser
+ExecStart=/usr/bin/qt-kiosk-browser --platform wayland /etc/qt-kiosk-browser.conf
+
+[Install]
+Alias=display-manager.service
+WantedBy=graphical.target
