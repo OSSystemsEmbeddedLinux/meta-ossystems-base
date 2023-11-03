@@ -3,7 +3,7 @@ HOMEPAGE = "https://github.com/influxdata/telegraf"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${S}/src/${GO_IMPORT}/LICENSE;md5=4c87a94f9ef84eb3e8c5f0424fef3b9e"
 
-SRC_URI = "git://github.com/influxdata/telegraf;branch=release-1.14"
+SRC_URI = "https://github.com/influxdata/telegraf;branch=release-1.14"
 SRCREV = "e77ce3d11d2b3d2f66e85921142d4927752054b2"
 
 inherit go-mod systemd
