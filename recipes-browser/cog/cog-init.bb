@@ -41,13 +41,13 @@ do_compile[noexec] = "1"
 
 do_install() {
     if ${@bb.utils.contains('DISTRO_FEATURES','sysvinit','true','false',d)}; then
-        install -Dm 0755 ${WORKDIR}/${PN}.initd ${D}${sysconfdir}/init.d/cog
+        install -Dm 0755 ${UNPACKDIR}/${PN}.initd ${D}${sysconfdir}/init.d/cog
     fi
     if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
-        install -Dm 0644 ${WORKDIR}/${PN}.service ${D}${systemd_system_unitdir}/cog.service
+        install -Dm 0644 ${UNPACKDIR}/${PN}.service ${D}${systemd_system_unitdir}/cog.service
     fi
 
-    install -Dm 0644 ${WORKDIR}/${PN}.default ${D}${sysconfdir}/default/cog
+    install -Dm 0644 ${UNPACKDIR}/${PN}.default ${D}${sysconfdir}/default/cog
 
     echo ${COG_ENV} >> ${D}${sysconfdir}/default/cog
 
