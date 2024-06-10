@@ -7,14 +7,12 @@ SRC_URI = "\
     file://rc.local.sample \
 "
 
-S = "${WORKDIR}"
-
 do_configure[noexec] = "1"
 do_compile[noexec] = "1"
 
 do_install() {
-    install -m 0755 ${WORKDIR}/init ${D}
-    install -Dm 0755 ${WORKDIR}/rc.local.sample ${D}${sysconfdir}/rc.local.sample
+    install -m 0755 ${S}/init ${D}
+    install -Dm 0755 ${S}/rc.local.sample ${D}${sysconfdir}/rc.local.sample
 }
 
 FILES:${PN} = "/init ${sysconfdir}/rc.local.sample"

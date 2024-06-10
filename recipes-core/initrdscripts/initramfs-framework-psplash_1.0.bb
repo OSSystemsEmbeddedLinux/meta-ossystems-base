@@ -13,12 +13,10 @@ SRC_URI = " \
     file://psplash-finish \
 "
 
-S = "${WORKDIR}"
-
 do_install() {
     # psplash
-    install -Dm 0755 ${WORKDIR}/psplash ${D}/init.d/11-psplash
-    install -Dm 0755 ${WORKDIR}/psplash-finish ${D}/init.d/98-psplash_finish
+    install -Dm 0755 ${S}/psplash ${D}/init.d/11-psplash
+    install -Dm 0755 ${S}/psplash-finish ${D}/init.d/98-psplash_finish
 }
 
 PACKAGES = "initramfs-module-psplash"

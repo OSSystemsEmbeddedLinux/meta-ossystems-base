@@ -14,7 +14,7 @@ EOF
 addtask do_generate_locale_conf after do_compile before do_install
 
 do_install:append() {
-    install -Dm 0644 ${WORKDIR}/profile.d_locale.sh ${D}${sysconfdir}/profile.d/locale.sh
+    install -Dm 0644 ${S}/profile.d_locale.sh ${D}${sysconfdir}/profile.d/locale.sh
 
     if [ "${@d.getVar('DEFAULT_SYSTEM_LOCALE', True)}" != "" ]; then
         install -Dm 0644 ${WORKDIR}/locale.conf ${D}${sysconfdir}/locale.conf
