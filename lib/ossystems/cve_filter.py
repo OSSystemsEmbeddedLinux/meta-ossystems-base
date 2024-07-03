@@ -81,6 +81,8 @@ class Cve:
         self.__printIssues = []
         self.__ignored_cves = []
         self.__version = 0
+        self.__scoreV2cf = 0
+        self.__scoreV3cf = 0
 
     # def __del__ (self):
     #    self.__cveJsonFile.close()
@@ -112,6 +114,12 @@ class Cve:
     def setCVEVersion(self, version=0):
         self.__version = version
 
+    def setScoreV2CutOff(self, score):
+        self.__scoreV2cf = score
+
+    def setScoreV3CutOff(self, score):
+        self.__scoreV3cf = score
+
     def getCVEPackages(self):
         return self.__packages
 
@@ -126,7 +134,7 @@ class Cve:
             p = Package(pack["name"], pack["version"])
             entry = False
             for id in pack["issue"]:
-                if (float(id["scorev2"]) >= 9 or float(id["scorev3"]) >= 9) and id[
+                if (float(id["scorev2"]) >= self.__scoreV2cf or float(id["scorev3"]) >= self.__scoreV3cf) and id[
                     "status"
                 ] != "Ignored":
                     if not (id["id"] in self.__ignored_cves):
