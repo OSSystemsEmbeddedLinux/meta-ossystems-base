@@ -4,7 +4,7 @@ The app is built on Rust and binds to GStreamer, so it can run in any backend th
 
 require easysplash-common-2.0.inc
 
-inherit cargo pkgconfig systemd update-rc.d
+inherit cargo_bin pkgconfig systemd update-rc.d
 
 DEPENDS = "glib-2.0 gstreamer1.0"
 
