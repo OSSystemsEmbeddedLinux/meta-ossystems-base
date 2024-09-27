@@ -107,9 +107,6 @@ QEMU_TARGETS ?= "arm aarch64 i386 x86_64 mips mipsel mips64 mips64el ppc ppc64 p
 # Preferred kernel version for QEMU based machines
 PREFERRED_VERSION_linux-yocto ?= "6.1%"
 
-# We avoid appending TCLIBC name on the TMPDIR
-TCLIBCAPPEND = ""
-
 ####
 #### Inherits
 ####
