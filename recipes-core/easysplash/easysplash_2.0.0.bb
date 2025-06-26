@@ -30,13 +30,18 @@ EXTRA_CARGO_FLAGS += " \
     ${@bb.utils.contains('PACKAGECONFIG', 'systemd', '--features systemd', '', d)} \
 "
 
+EXTRA_OEMAKE += " \
+    SYSTEMD=${@bb.utils.contains("PACKAGECONFIG", "systemd", "1", "0", d)} \
+    INITD=${@bb.utils.contains("PACKAGECONFIG", "sysvinit", "1", "0", d)} \
+"
+
 PACKAGECONFIG ?= "\
     ${@bb.utils.filter('DISTRO_FEATURES', 'sysvinit', d)} \
     ${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)} \
 "
 
-PACKAGECONFIG[sysvinit] = "INIT=1, INIT=0,"
-PACKAGECONFIG[systemd] = "SYSTEMD=1, SYSTEM=0, systemd"
+PACKAGECONFIG[sysvinit] = ""
+PACKAGECONFIG[systemd] = ",,systemd"
 
 do_install:append() {
     (cd ${S} ; oe_runmake install-service DESTDIR=${D})
