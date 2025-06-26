@@ -19,15 +19,15 @@ do_configure() {
     sed -e 's,__OSSYSTEMS_FACTORY_DEFAULTS_DIR__,${OSSYSTEMS_FACTORY_DEFAULTS_DIR}, ;
             s,__OSSYSTEMS_FACTORY_DEFAULTS_HOOKS_DIR__,${OSSYSTEMS_FACTORY_DEFAULTS_HOOKS_DIR}, ;
             s,__OSSYSTEMS_FACTORY_DEFAULTS_RUNTIME_DIR__,${OSSYSTEMS_FACTORY_DEFAULTS_RUNTIME_DIR},' \
-        -i ${WORKDIR}/factory-defaults
+        -i ${UNPACKDIR}/factory-defaults
 }
 
 do_install() {
     install -d ${D}${sysconfdir}/factory-defaults.d
     if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
-        install -Dm 0755 ${WORKDIR}/factory-defaults ${D}${bindir}/factory-defaults
-        install -Dm 0644 ${WORKDIR}/${PN}.service ${D}${systemd_system_unitdir}/${PN}.service
+        install -Dm 0755 ${UNPACKDIR}/factory-defaults ${D}${bindir}/factory-defaults
+        install -Dm 0644 ${UNPACKDIR}/${PN}.service ${D}${systemd_system_unitdir}/${PN}.service
     else
-        install -Dm 0755 ${WORKDIR}/factory-defaults ${D}${sysconfdir}/init.d/factory-defaults
+        install -Dm 0755 ${UNPACKDIR}/factory-defaults ${D}${sysconfdir}/init.d/factory-defaults
     fi
 }
