@@ -75,7 +75,7 @@ do_install:append() {
         install -d ${D}${OSSYSTEMS_FACTORY_DEFAULTS_HOOKS_DIR}
         for hook in ${OSSYSTEMS_FACTORY_DEFAULTS_HOOKS}; do
             hook="`echo $hook | sed -r 's,^[^:]+://,,'`" # drop <scheme>://
-            install -m 755 ${WORKDIR}/$hook ${D}${OSSYSTEMS_FACTORY_DEFAULTS_HOOKS_DIR}
+            install -m 755 ${UNPACKDIR}/$hook ${D}${OSSYSTEMS_FACTORY_DEFAULTS_HOOKS_DIR}
         done
     fi
 }
