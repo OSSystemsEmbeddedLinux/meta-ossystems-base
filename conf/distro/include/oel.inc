@@ -165,10 +165,6 @@ UBI_VOLNAME ?= "rootfs"
 # space will be needed and fails badly as the fs size grows.
 IMAGE_ROOTFS_EXTRA_SPACE = "40960"
 
-# Sane default locales for images
-GLIBC_GENERATE_LOCALES ?= "en_US en_US.UTF-8"
-IMAGE_LINGUAS ?= "en-us"
-
 # Include nss-myhostname for sysvinit, so the hostname resolves. systemd
 # includes myhostname itself.
 DISTRO_EXTRA_RRECOMMENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', '', 'nss-myhostname', d)}"
