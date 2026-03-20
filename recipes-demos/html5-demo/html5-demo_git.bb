@@ -5,14 +5,12 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 SRC_URI = "git://github.com/OSSystems/${BPN}.git;protocol=https;branch=master"
 SRCREV = "e9ede7082b9e9e919e25b3a147d18e46dc3802f0"
 
-S = "${WORKDIR}/git"
-
 do_configure[noexec] = "1"
 do_compile[noexec] = "1"
 
 do_install() {
     install -d ${D}${datadir}/${PN}
-    cp -rf ${WORKDIR}/git/* ${D}${datadir}/${PN}
+    cp -rf ${S}/* ${D}${datadir}/${PN}
 }
 
 FILES:${PN} += "${datadir}/${PN}"
