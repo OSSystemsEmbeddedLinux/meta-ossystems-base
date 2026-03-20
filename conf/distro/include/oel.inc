@@ -165,10 +165,6 @@ UBI_VOLNAME ?= "rootfs"
 # space will be needed and fails badly as the fs size grows.
 IMAGE_ROOTFS_EXTRA_SPACE = "40960"
 
-# Sane default locales for images
-GLIBC_GENERATE_LOCALES ?= "en_US en_US.UTF-8"
-IMAGE_LINGUAS ?= "en-us"
-
 # Include nss-myhostname for sysvinit, so the hostname resolves. systemd
 # includes myhostname itself.
 DISTRO_EXTRA_RRECOMMENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', '', 'nss-myhostname', d)}"
@@ -201,16 +197,6 @@ SSTATE_MIRROR_SITES:prepend = "${LAYER_SSTATE_MIRRORS} "
 
 # Ensure that we implement shared state reuse handling for non-target recipes
 require conf/distro/include/sstate.inc
-
-# Disable static libs by default
-require conf/distro/include/no-static-libs.inc
-
-# Enable uninative
-require conf/distro/include/yocto-uninative.inc
-INHERIT += "uninative"
-
-# Enable security flags
-require conf/distro/include/security_flags.inc
 
 DISTROOVERRIDES = "oel"
 
