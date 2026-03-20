@@ -202,16 +202,6 @@ SSTATE_MIRROR_SITES:prepend = "${LAYER_SSTATE_MIRRORS} "
 # Ensure that we implement shared state reuse handling for non-target recipes
 require conf/distro/include/sstate.inc
 
-# Disable static libs by default
-require conf/distro/include/no-static-libs.inc
-
-# Enable uninative
-require conf/distro/include/yocto-uninative.inc
-INHERIT += "uninative"
-
-# Enable security flags
-require conf/distro/include/security_flags.inc
-
 DISTROOVERRIDES = "oel"
 
 # This function changes the default tune for machines which are based on armv7a
