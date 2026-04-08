@@ -90,7 +90,7 @@ DISTRO_FEATURES ?= "${OEL_DEFAULT_DISTRO_FEATURES} \
 DISTRO_EXTRA_RDEPENDS += "${OEL_DEFAULT_EXTRA_RDEPENDS}"
 DISTRO_EXTRA_RRECOMMENDS += "${OEL_DEFAULT_EXTRA_RRECOMMENDS}"
 
-DISTRO_FEATURES_BACKFILL_CONSIDERED ?= "pulseaudio gobject-introspection-data"
+DISTRO_FEATURES_OPTED_OUT ?= "pulseaudio gobject-introspection-data"
 
 # Default to systemd, not sysvinit
 INIT_MANAGER ?= "systemd"
