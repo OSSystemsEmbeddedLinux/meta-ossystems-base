@@ -121,9 +121,6 @@ INHERIT += "buildhistory"
 BUILDHISTORY_DIR ?= "${TOPDIR}/buildhistory"
 BUILDHISTORY_COMMIT ?= "1"
 
-# Copy the image license manifest into DEPLOY_DIR_IMAGE
-INHERIT += "deploy-license-manifest"
-
 # Ensure we have what we need for the below type checks
 OE_IMPORTS += "oe.terminal"
 
