@@ -119,9 +119,6 @@ INHERIT += "buildhistory"
 BUILDHISTORY_DIR ?= "${TOPDIR}/buildhistory"
 BUILDHISTORY_COMMIT ?= "1"
 
-# Do an up front type check to sanity check user configuration
-INHERIT += "typecheck"
-
 # Copy the image license manifest into DEPLOY_DIR_IMAGE
 INHERIT += "deploy-license-manifest"
 
@@ -175,9 +172,6 @@ DISTRO_EXTRA_RRECOMMENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 
 
 # Work around missing vardep bug in bitbake
 sstate_stage_all[vardeps] += "sstate_stage_dirs"
-
-# LAYERDIRs for our layers, by name
-INHERIT += "layerdirs"
 
 # Layer name and path for the recipe
 RECIPE_LAYERNAME = "${@bb.utils.get_file_layer('${FILE}', d) or 'UNKNOWN'}"
