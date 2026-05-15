@@ -81,7 +81,7 @@ SDK_VERSION[vardepsexclude] = "DATE"
 BBFILE_PRIORITY_openembedded-layer = "1"
 
 # Preferred kernel version for QEMU based machines
-PREFERRED_VERSION_linux-yocto ?= "6.6%"
+PREFERRED_VERSION_linux-yocto ?= "6.18%"
 
 ####
 #### Inherits
