@@ -17,7 +17,6 @@ SDKMACHINE ?= "x86_64"
 
 # Paths
 OELDIR ?= "${COREBASE}/.."
-DEPLOY_DIR_IMAGE = "${DEPLOY_DIR}/images/${MACHINE}"
 
 SDK_NAME = "${DISTRO}-${TCLIBC}-${SDKMACHINE}-${IMAGE_BASENAME}-${TUNE_PKGARCH}-${MACHINE}"
 SDKPATHINSTALL = "/opt/${DISTRO}/${SDK_VERSION}"
@@ -34,9 +33,6 @@ INHERIT += "layerdirs"
 
 # Do an up front type check to sanity check user configuration
 INHERIT += "typecheck"
-
-BB_SIGNATURE_HANDLER ?= "OEEquivHash"
-BB_HASHSERVE ??= "auto"
 
 # QA check settings - a little stricter than the OE-Core defaults
 WARN_TO_ERROR_QA = "already-stripped compile-host-path install-host-path \
@@ -84,18 +80,13 @@ OELAYOUT_ABI = "12"
 OEL_DEFAULT_DISTRO_FEATURES ??= "argp ipv4 ipv6"
 OEL_EXTRA_DISTRO_FEATURES ??= ""
 OEL_DEFAULT_EXTRA_RDEPENDS = "packagegroup-core-boot"
-OEL_DEFAULT_EXTRA_RRECOMMENDS = ""
 
 DISTRO_FEATURES ?= "${OEL_DEFAULT_DISTRO_FEATURES} \
                     ${OEL_EXTRA_DISTRO_FEATURES}"
 
 DISTRO_EXTRA_RDEPENDS += "${OEL_DEFAULT_EXTRA_RDEPENDS}"
-DISTRO_EXTRA_RRECOMMENDS += "${OEL_DEFAULT_EXTRA_RRECOMMENDS}"
 
 DISTRO_FEATURES_OPTED_OUT ?= "pulseaudio gobject-introspection-data"
-
-# Default to systemd, not sysvinit
-INIT_MANAGER ?= "systemd"
 
 # Exclude DATE from DISTRO/SDK_VERSION checksums
 DISTRO_VERSION[vardepsexclude] = "DATE"
@@ -113,16 +104,8 @@ PREFERRED_VERSION_linux-yocto ?= "6.6%"
 #### Inherits
 ####
 
-# Remove .la files for packages
-INHERIT += "remove-libtool"
-
 # We want information about image contents
 INHERIT += "buildhistory"
-BUILDHISTORY_DIR ?= "${TOPDIR}/buildhistory"
-BUILDHISTORY_COMMIT ?= "1"
-
-# Ensure we have what we need for the below type checks
-OE_IMPORTS += "oe.terminal"
 
 ####
 #### Preferences and providers
@@ -191,8 +174,6 @@ SSTATE_MIRROR_SITES:prepend = "${LAYER_SSTATE_MIRRORS} "
 # Ensure that we implement shared state reuse handling for non-target recipes
 require conf/distro/include/sstate.inc
 
-DISTROOVERRIDES = "oel"
-
 # This function changes the default tune for machines which are based on armv7a
 # to use common tune value.
 def arm_tune_handler(d):
@@ -220,8 +201,6 @@ DISTRO_ARM_INSTRUCTION:armv4 ?= "arm"
 DISTRO_ARM_INSTRUCTION:armv5te ?= "arm"
 DISTRO_ARM_INSTRUCTION:armv6 ?= "arm"
 ARM_INSTRUCTION_SET = "${DISTRO_ARM_INSTRUCTION}"
-
-HOSTTOOLS += "id"
 
 # Default system locale used in /etc/locale.conf file
 DEFAULT_SYSTEM_LOCALE ?= "en_US.UTF-8"
