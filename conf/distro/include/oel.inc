@@ -64,14 +64,6 @@ SANITY_TESTED_DISTROS ?= " \
     ubuntu-26.04 \
 "
 
-#
-# OELAYOUT_ABI allows us to notify users when the format of TMPDIR changes in
-# an incompatible way. Such changes should usually be detailed in the commit
-# that breaks the format and have been previously discussed on the mailing list
-# with general agreement from the core team.
-#
-OELAYOUT_ABI = "12"
-
 ####
 #### Distro Features & Recipe Configuration
 ####
