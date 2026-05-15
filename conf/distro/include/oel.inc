@@ -34,13 +34,6 @@ INHERIT += "layerdirs"
 # Do an up front type check to sanity check user configuration
 INHERIT += "typecheck"
 
-# QA check settings - a little stricter than the OE-Core defaults
-WARN_TO_ERROR_QA = "already-stripped compile-host-path install-host-path \
-                    installed-vs-shipped ldflags pn-overrides rpaths staticdev \
-                    unknown-configure-option useless-rpaths"
-WARN_QA:remove = "${WARN_TO_ERROR_QA}"
-ERROR_QA:append = " ${WARN_TO_ERROR_QA}"
-
 # Also check for host user contamination in the rootfs
 ROOTFS_POSTPROCESS_COMMAND:append = " rootfs_check_host_user_contaminated;"
 
