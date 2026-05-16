@@ -23,6 +23,11 @@ PERSISTENT_DIR = "${TOPDIR}/db"
 DUMP_HEADREVS_DB ?= '${OELDIR}/${MACHINE}/saved_persist_data.db'
 INHERIT += "restore-dumped-headrevs"
 
+# Co-locate the hash equivalence database with SSTATE_DIR so multiple builds
+# sharing the same sstate cache also share the hashserv DB (per OE-Core's
+# sanity.bbclass).
+BB_HASHSERVE_DB_DIR ??= "${SSTATE_DIR}"
+
 # LAYERDIRs for our layers, by name
 INHERIT += "layerdirs"
 
