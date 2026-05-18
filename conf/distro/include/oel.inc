@@ -1,4 +1,4 @@
-DISTRO_VERSION = "24.04-snapshot-${DATE}"
+DISTRO_VERSION = "26.04-snapshot-${DATE}"
 
 SDK_VENDOR = "-oelsdk"
 SDK_VERSION := "${@'${DISTRO_VERSION}'.replace('snapshot-${DATE}','snapshot')}"
@@ -54,6 +54,8 @@ SANITY_TESTED_DISTROS ?= " \
     ubuntu-16.04 \n \
     ubuntu-18.04 \n \
     ubuntu-20.04 \n \
+    ubuntu-22.04 \n \
+    ubuntu-24.04 \n \
     fedora-31 \n \
     fedora-32 \n \
     fedora-33 \n \
@@ -105,7 +107,7 @@ BBFILE_PRIORITY_openembedded-layer = "1"
 QEMU_TARGETS ?= "arm aarch64 i386 x86_64 mips mipsel mips64 mips64el ppc ppc64 ppc64le riscv32 riscv64 sh4"
 
 # Preferred kernel version for QEMU based machines
-PREFERRED_VERSION_linux-yocto ?= "6.6%"
+PREFERRED_VERSION_linux-yocto ?= "6.18%"
 
 ####
 #### Inherits
@@ -113,7 +115,6 @@ PREFERRED_VERSION_linux-yocto ?= "6.6%"
 
 # Remove .la files for packages
 INHERIT += "remove-libtool"
-
 # We want information about image contents
 INHERIT += "buildhistory"
 BUILDHISTORY_DIR ?= "${TOPDIR}/buildhistory"
