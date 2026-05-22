@@ -9,7 +9,6 @@ SRC_URI = "git://github.com/OSSystems/EasySplash.git;branch=${SRCBRANCH};protoco
 
 PV = "2.0.0"
 
-S = "${WORKDIR}/git"
 
 EXTRA_OEMAKE += " \
     prefix=${prefix} \

@@ -35,12 +35,14 @@ PACKAGECONFIG ?= "\
     ${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)} \
 "
 
-PACKAGECONFIG[sysvinit] = "INIT=1, INIT=0,"
-PACKAGECONFIG[systemd] = "SYSTEMD=1, SYSTEM=0, systemd"
+PACKAGECONFIG[sysvinit] = ",,"
+PACKAGECONFIG[systemd] = ",, systemd"
 
 do_install:append() {
-    (cd ${S} ; oe_runmake install-service DESTDIR=${D})
-    rm ${D}${sysconfdir}/default/easysplash
+    (cd ${S} ; oe_runmake install-service DESTDIR=${D} \
+          ${@bb.utils.contains('PACKAGECONFIG', 'sysvinit', 'INIT=1', 'INIT=0', d)} \
+          ${@bb.utils.contains('PACKAGECONFIG', 'systemd', 'SYSTEMD=1', 'SYSTEMD=0', d)})
+      rm ${D}${sysconfdir}/default/easysplash
 }
 
 RDEPENDS:${PN} += "easysplash-config"
