@@ -1,22 +1,12 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend:oel := "${THISDIR}/${PN}:"
 
-SRC_URI += "file://profile.d_locale.sh"
+SRC_URI:append:oel = " file://profile.d_locale.sh"
 
-DEFAULT_SYSTEM_LOCALE ??= ""
-
-do_generate_locale_conf() {
-    if [ "${@d.getVar('DEFAULT_SYSTEM_LOCALE', True)}" != "" ]; then
-        cat > ${WORKDIR}/locale.conf <<EOF
-LANG=${DEFAULT_SYSTEM_LOCALE}
-EOF
-    fi
-}
-addtask do_generate_locale_conf after do_compile before do_install
-
-do_install:append() {
+do_install:append:oel() {
     install -Dm 0644 ${S}/profile.d_locale.sh ${D}${sysconfdir}/profile.d/locale.sh
 
     if [ "${@d.getVar('DEFAULT_SYSTEM_LOCALE', True)}" != "" ]; then
-        install -Dm 0644 ${WORKDIR}/locale.conf ${D}${sysconfdir}/locale.conf
+        install -d ${D}${sysconfdir}
+        printf 'LANG=%s\n' "${DEFAULT_SYSTEM_LOCALE}" > ${D}${sysconfdir}/locale.conf
     fi
 }
