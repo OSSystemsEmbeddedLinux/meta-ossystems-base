@@ -38,3 +38,5 @@ RDEPENDS:${PN} += "\
     gstreamer1.0-plugins-good-multifile \
     gstreamer1.0-plugins-good-videofilter \
 "
+
+BBCLASSEXTEND = ""

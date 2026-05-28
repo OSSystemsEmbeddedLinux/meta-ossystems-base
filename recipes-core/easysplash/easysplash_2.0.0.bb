@@ -52,3 +52,5 @@ do_install:append() {
 }
 
 RDEPENDS:${PN} += "easysplash-config"
+
+BBCLASSEXTEND = ""
