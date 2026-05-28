@@ -1,9 +1,14 @@
 SUMMARY = "Default EasySplash Animation intended for general use"
+DESCRIPTION = "Default EasySplash animation assets intended for general use."
+HOMEPAGE = "https://github.com/OSSystems/EasySplash"
+BUGTRACKER = "https://github.com/OSSystems/EasySplash/issues"
+SECTION = "graphics"
+CVE_PRODUCT = "easysplash"
 LICENSE = "CLOSED"
 
 require easysplash-common-2.0.inc
 
-inherit easysplash-animation
+inherit easysplash_animation
 
 do_configure[noexec] = "1"
 do_compile[noexec] = "1"
@@ -21,15 +26,15 @@ do_install() {
 
 ALTERNATIVE_PRIORITY[animation] = "10"
 
-RDEPENDS:${PN} += " \
+RDEPENDS:${PN} += "\
     gstreamer1.0-libav \
-    gstreamer1.0-plugins-base-playback \
-    gstreamer1.0-plugins-good-isomp4 \
-    gstreamer1.0-plugins-bad-kms \
     gstreamer1.0-plugins-bad-camerabin \
-    gstreamer1.0-plugins-good-videofilter \
+    gstreamer1.0-plugins-bad-kms \
+    gstreamer1.0-plugins-base-playback \
+    gstreamer1.0-plugins-base-typefindfunctions \
     gstreamer1.0-plugins-base-videoconvertscale \
     gstreamer1.0-plugins-good-deinterlace \
+    gstreamer1.0-plugins-good-isomp4 \
     gstreamer1.0-plugins-good-multifile \
-    gstreamer1.0-plugins-base-typefindfunctions \
+    gstreamer1.0-plugins-good-videofilter \
 "
