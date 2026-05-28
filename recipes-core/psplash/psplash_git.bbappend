@@ -1,4 +1,4 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend:oel := "${THISDIR}/files:"
 
 SRC_URI:append:oel = " \
     file://psplash-colors.h \

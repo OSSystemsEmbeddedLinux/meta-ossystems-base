@@ -13,6 +13,8 @@ SRC_URI = " \
     file://psplash-finish \
 "
 
+S = "${UNPACKDIR}"
+
 do_install() {
     # psplash
     install -Dm 0755 ${S}/psplash ${D}/init.d/11-psplash
