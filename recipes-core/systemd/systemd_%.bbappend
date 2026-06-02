@@ -1,1 +1,1 @@
-RDEPENDS:${PN} += "util-linux-umount"
+RDEPENDS:${PN}:append:oel = " util-linux-umount"

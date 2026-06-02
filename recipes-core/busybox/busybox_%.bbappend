@@ -1,5 +1,5 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
-SRC_URI:append:oel = "\
+FILESEXTRAPATHS:prepend:oel := "${THISDIR}/files:"
+SRC_URI:append:oel = " \
     file://setsid.cfg \
     file://resize.cfg \
     file://pidof.cfg \

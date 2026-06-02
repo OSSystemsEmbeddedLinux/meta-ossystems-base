@@ -1,9 +1,14 @@
 SUMMARY = "O.S. Systems EasySplash Animation"
+DESCRIPTION = "O.S. Systems branded EasySplash animation assets."
+HOMEPAGE = "https://github.com/OSSystems/EasySplash"
+BUGTRACKER = "https://github.com/OSSystems/EasySplash/issues"
+SECTION = "graphics"
+CVE_PRODUCT = "easysplash"
 LICENSE = "CLOSED"
 
 require easysplash-common-2.0.inc
 
-inherit easysplash-animation
+inherit easysplash_animation
 
 do_configure[noexec] = "1"
 do_compile[noexec] = "1"
@@ -19,15 +24,17 @@ do_install() {
     mv ${D}${base_libdir}/easysplash/ossystems-demo ${D}${base_libdir}/easysplash/${PN}
 }
 
-RDEPENDS:${PN} += " \
+RDEPENDS:${PN} += "\
     gstreamer1.0-libav \
-    gstreamer1.0-plugins-base-playback \
-    gstreamer1.0-plugins-good-isomp4 \
-    gstreamer1.0-plugins-bad-kms \
     gstreamer1.0-plugins-bad-camerabin \
-    gstreamer1.0-plugins-good-videofilter \
+    gstreamer1.0-plugins-bad-kms \
+    gstreamer1.0-plugins-base-playback \
+    gstreamer1.0-plugins-base-typefindfunctions \
     gstreamer1.0-plugins-base-videoconvertscale \
     gstreamer1.0-plugins-good-deinterlace \
+    gstreamer1.0-plugins-good-isomp4 \
     gstreamer1.0-plugins-good-multifile \
-    gstreamer1.0-plugins-base-typefindfunctions \
+    gstreamer1.0-plugins-good-videofilter \
 "
+
+BBCLASSEXTEND = ""
