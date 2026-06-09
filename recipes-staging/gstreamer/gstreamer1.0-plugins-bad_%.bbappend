@@ -1,1 +1,1 @@
-PACKAGECONFIG:append = " kms"
+PACKAGECONFIG:append:oel = " kms"
