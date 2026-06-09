@@ -1,10 +1,18 @@
+SUMMARY = "Plugin-driven metrics collection agent"
 DESCRIPTION = "The plugin-driven server agent for collecting & reporting metrics"
 HOMEPAGE = "https://github.com/influxdata/telegraf"
+BUGTRACKER = "https://github.com/influxdata/telegraf/issues"
+SECTION = "console/network"
+CVE_PRODUCT = "telegraf"
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${S}/src/${GO_IMPORT}/LICENSE;md5=4c87a94f9ef84eb3e8c5f0424fef3b9e"
+LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=fe53cff8eef1afa881ea0e6325071ecd"
 
-SRC_URI = "git://github.com/influxdata/telegraf;protocol=https;branch=release-1.14"
-SRCREV = "e77ce3d11d2b3d2f66e85921142d4927752054b2"
+SRC_URI = "git://github.com/influxdata/telegraf;protocol=https;branch=release-1.38;destsuffix=${BP}/src/${GO_IMPORT} \
+           file://telegraf.conf \
+"
+
+SRCREV = "c79b06d58e912124624d029a88bbe182254f0ff4"
+S = "${UNPACKDIR}/${BP}"
 
 inherit go-mod systemd
 
@@ -22,15 +30,11 @@ do_install:append() {
     # FIXME: This has mixed architecture files and causes errors during
     # packaging
     rm -rf ${D}${libdir}/go/pkg/mod ${D}${libdir}/go/pkg/sumdb
-
-    # Fix the python version to use.
-    sed -i -e's,^#!/usr/bin/python,#!/usr/bin/env python,' ${D}${libdir}/go/src/${GO_IMPORT}/scripts/build.py
-
-    install -Dm 0644 ${S}/src/${GO_IMPORT}/etc/${PN}.conf ${D}${sysconfdir}/${PN}/${PN}.conf
+    install -Dm 0644 ${UNPACKDIR}/telegraf.conf ${D}${sysconfdir}/${PN}/${PN}.conf
     install -Dm 0644 ${S}/src/${GO_IMPORT}/scripts/${PN}.service ${D}${systemd_system_unitdir}/${PN}.service
     install -d ${D}${sysconfdir}/${PN}/${PN}.d
     install -d ${D}${sysconfdir}/tmpfiles.d
-    echo "d /var/log/${PN} 0755 root root -" > ${D}${sysconfdir}/tmpfiles.d/${PN}.conf
+    echo "d ${localstatedir}/log/${PN} 0755 root root -" > ${D}${sysconfdir}/tmpfiles.d/${PN}.conf
 }
 
 RDEPENDS:${PN}-dev += "bash"
