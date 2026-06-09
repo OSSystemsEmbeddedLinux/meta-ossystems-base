@@ -1,19 +1,26 @@
 SUMMARY = "Startup script and service for the Chromium Browser using Ozone"
+DESCRIPTION = "Installs init scripts, systemd unit files, and default configuration for launching Chromium Ozone Wayland."
+HOMEPAGE = "https://www.chromium.org"
+BUGTRACKER = "https://issues.chromium.org/issues"
+SECTION = "graphics"
+CVE_PRODUCT = "chromium"
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+LIC_FILES_CHKSUM = "file://COPYING.MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
 SRC_URI = "\
+    file://COPYING.MIT \
     file://${BPN}.default \
     file://${BPN}.initd \
     file://${BPN}.service \
 "
+S = "${UNPACKDIR}"
 
 inherit systemd update-rc.d
 
 ## Configuration variables
 
 # URL to load when start.
-CHROMIUM_URL        ?= "https://ossystems.com.br"
+CHROMIUM_URL ?= "https://ossystems.com.br"
 
 # Extra arguments to pass to 'chromium' application.
 CHROMIUM_EXTRA_ARGS ?= ""
@@ -34,13 +41,13 @@ do_compile[noexec] = "1"
 
 do_install() {
     if ${@bb.utils.contains('DISTRO_FEATURES','sysvinit','true','false',d)}; then
-        install -Dm 0755 ${WORKDIR}/${BPN}.initd ${D}${sysconfdir}/init.d/chromium-ozone-wayland
+        install -Dm 0755 ${UNPACKDIR}/${BPN}.initd ${D}${sysconfdir}/init.d/chromium-ozone-wayland
     fi
     if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
-        install -Dm 0644 ${WORKDIR}/${BPN}.service ${D}${systemd_system_unitdir}/chromium-ozone-wayland.service
+        install -Dm 0644 ${UNPACKDIR}/${BPN}.service ${D}${systemd_system_unitdir}/chromium-ozone-wayland.service
     fi
 
-    install -Dm 0644 ${WORKDIR}/${BPN}.default ${D}${sysconfdir}/default/chromium-ozone-wayland
+    install -Dm 0644 ${UNPACKDIR}/${BPN}.default ${D}${sysconfdir}/default/chromium-ozone-wayland
 
     echo ${CHROMIUM_ENV} >> ${D}${sysconfdir}/default/chromium-ozone-wayland
 
@@ -49,6 +56,6 @@ do_install() {
         -i ${D}${sysconfdir}/default/chromium-ozone-wayland
 }
 
-RDEPENDS:${PN} += "chromium-ozone-wayland"
-
 PACKAGE_ARCH = "${MACHINE_ARCH}"
+
+RDEPENDS:${PN} += "chromium-ozone-wayland"
