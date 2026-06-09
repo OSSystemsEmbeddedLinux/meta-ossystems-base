@@ -1,16 +1,31 @@
 SUMMARY = "A wrapper script for the zram kernel module with interactive and init support"
+DESCRIPTION = "Installs zram-init service and configuration for compressed memory devices."
+HOMEPAGE = "https://github.com/vaeth/zram-init"
+BUGTRACKER = "https://github.com/vaeth/zram-init/issues"
+SECTION = "base"
+CVE_PRODUCT = "zram-init"
 LICENSE = "GPL-2.0-only"
-LIC_FILES_CHKSUM = "file://${S}/README.md;beginline=5;endline=7;md5=1c6f4971407e5a5b1aa502b9badcdf98"
+LIC_FILES_CHKSUM = "file://README.md;beginline=5;endline=7;md5=1c6f4971407e5a5b1aa502b9badcdf98"
 
 inherit update-rc.d systemd
 
+DEPENDS += "gettext-native"
+PE = "1"
+
 SRC_URI = "git://github.com/vaeth/zram-init;protocol=https;branch=main"
-SRCREV = "703f63bd3e595b9b357d74c58db1370b40af250d"
+SRCREV = "66ef54e36d67abf76a8bfa2c2f1a6a0d38cd2498"
+
+EXTRA_OEMAKE += "SHEBANG='#!/bin/sh'"
 
 INITSCRIPT_NAME = "${PN}"
 INITSCRIPT_PARAMS = "defaults"
 
 SYSTEMD_SERVICE:${PN} = "zram_swap.service"
+
+do_compile:prepend() {
+    # Force upstream's generated script to be recreated with the OE shebang.
+    rm -f ${S}/sbin/${PN}
+}
 
 do_install () {
     install -Dm 0755 ${S}/sbin/${PN}  ${D}${base_sbindir}/${PN}
