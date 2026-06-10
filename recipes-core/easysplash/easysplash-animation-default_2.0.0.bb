@@ -8,7 +8,7 @@ LICENSE = "CLOSED"
 
 require easysplash-common-2.0.inc
 
-inherit easysplash_animation
+inherit easysplash-animation
 
 do_configure[noexec] = "1"
 do_compile[noexec] = "1"
