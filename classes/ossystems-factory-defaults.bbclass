@@ -32,6 +32,7 @@
 
 inherit ossystems-factory-defaults-base
 
+member[doc] = "Return success if the first argument is present in the remaining arguments."
 member() {
     elt=$1
     shift
@@ -65,7 +66,7 @@ do_install:append() {
     local dir
     for file in $no_leading_slash; do
         dir="${D}/`dirname $file`"
-        mkdir -p $dir
+        install -d $dir
         cd $dir
         ln -sf ${OSSYSTEMS_FACTORY_DEFAULTS_RUNTIME_DIR}/$file `basename $file`
     done
