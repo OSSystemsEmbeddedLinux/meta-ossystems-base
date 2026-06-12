@@ -1,0 +1,31 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: OSSystems <ossystems@example.com>
+Date: Fri, 5 Jun 2026 14:50:00 +0000
+Subject: [PATCH] params: disable num default features
+
+params only uses num::NumCast, so it does not need num's default
+bigint, complex, rational, and rustc-serialize feature set. Disabling
+the defaults avoids compiling legacy rustc-serialize derives that no
+longer build with current Rust.
+
+Upstream-Status: Inappropriate [no upstream]
+
+Signed-off-by: OSSystems <ossystems@example.com>
+---
+ Cargo.toml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Cargo.toml b/Cargo.toml
+index b7f1c63..e648f9c 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -25,6 +25,7 @@ version = "0.8"
+ 
+ [dependencies.num]
+ version = "0.1"
++default-features = false
+ 
+ [dependencies.tempdir]
+ version = "0.3"
+-- 
+2.43.0

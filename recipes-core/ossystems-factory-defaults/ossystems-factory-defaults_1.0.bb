@@ -1,8 +1,14 @@
 SUMMARY = "Tool to restore image state to factory defaults"
+DESCRIPTION = "Installs the factory-defaults utility and service for restoring configured files to factory defaults."
+HOMEPAGE = "https://github.com/OSSystemsEmbeddedLinux/meta-ossystems-base"
+BUGTRACKER = "https://github.com/OSSystemsEmbeddedLinux/meta-ossystems-base/issues"
+SECTION = "base"
+CVE_PRODUCT = "ossystems-factory-defaults"
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+LIC_FILES_CHKSUM = "file://COPYING.MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
 SRC_URI = "\
+    file://COPYING.MIT \
     file://factory-defaults \
     file://${BPN}.service \
 "

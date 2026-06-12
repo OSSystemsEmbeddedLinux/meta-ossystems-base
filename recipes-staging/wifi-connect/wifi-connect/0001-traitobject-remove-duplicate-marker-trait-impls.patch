@@ -1,0 +1,32 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: OSSystems <ossystems@example.com>
+Date: Fri, 5 Jun 2026 14:40:00 +0000
+Subject: [PATCH] traitobject: remove duplicate marker trait impls
+
+Recent Rust versions canonicalize duplicate and reordered auto-trait
+bounds, so these impls conflict with `Send + Sync`.
+
+Upstream-Status: Inappropriate [no upstream]
+
+Signed-off-by: OSSystems <ossystems@example.com>
+---
+ src/impls.rs | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/src/impls.rs b/src/impls.rs
+index c8eab21..6379a8b 100644
+--- a/src/impls.rs
++++ b/src/impls.rs
+@@ -69,10 +69,7 @@
+ unsafe impl<T> Trait for ::std::iter::Iterator<Item=T> + Send + Sync { }
+ unsafe impl Trait for ::std::marker::Send + Send { }
+ unsafe impl Trait for ::std::marker::Send + Sync { }
+-unsafe impl Trait for ::std::marker::Send + Send + Sync { }
+-unsafe impl Trait for ::std::marker::Sync + Send { }
+ unsafe impl Trait for ::std::marker::Sync + Sync { }
+-unsafe impl Trait for ::std::marker::Sync + Send + Sync { }
+ unsafe impl Trait for ::std::ops::Drop + Send { }
+ unsafe impl Trait for ::std::ops::Drop + Sync { }
+ unsafe impl Trait for ::std::ops::Drop + Send + Sync { }
+-- 
+2.43.0

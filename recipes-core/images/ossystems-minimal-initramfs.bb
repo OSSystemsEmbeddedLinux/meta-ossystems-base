@@ -4,6 +4,10 @@
 # Released under the MIT license
 
 SUMMARY = "The very minimal initramfs image capable of booting a device"
+DESCRIPTION = "Minimal initramfs image with enough userspace to boot a device."
+BUGTRACKER = "https://github.com/OSSystemsEmbeddedLinux/meta-ossystems-base/issues"
+SECTION = "images"
+CVE_PRODUCT = "meta-ossystems-base"
 
 PACKAGE_INSTALL = "initramfs-module-mdev ${VIRTUAL-RUNTIME_base-utils} ${ROOTFS_BOOTSTRAP_INSTALL}"
 
@@ -22,7 +26,7 @@ inherit core-image
 IMAGE_ROOTFS_SIZE = "8192"
 IMAGE_ROOTFS_EXTRA_SPACE = "0"
 
-BAD_RECOMMENDATIONS += " \
+BAD_RECOMMENDATIONS += "\
     busybox-udhcpc \
     busybox-syslog \
     initramfs-module-rootfs \

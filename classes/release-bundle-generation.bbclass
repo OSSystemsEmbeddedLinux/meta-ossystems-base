@@ -20,11 +20,12 @@ do_configure[noexec] = "1"
 do_compile[noexec] = "1"
 do_install[noexec] = "1"
 do_populate_sysroot[noexec] = "1"
+do_packagedata[noexec] = "1"
 do_package[noexec] = "1"
 do_package_qa[noexec] = "1"
-do_packagedata[noexec] = "1"
 
-LICENSE = "MIT"
+SRC_URI = "file://bundle-shar-extract.sh"
+
 PACKAGES = ""
 
 INHIBIT_DEFAULT_DEPS = "1"
@@ -35,25 +36,18 @@ RELEASE_BUNDLE_VERSION ?= "${DISTRO_VERSION}"
 
 RELEASE_BUNDLE_DEPLOY = "${DEPLOY_DIR}/release-bundle"
 RELEASE_BUNDLE_WORKDIR = "${TMPDIR}/release-bundle/workdir"
+RELEASE_BUNDLE_TMP_DOWNLOAD_CACHE ?= "${TMPDIR}/release-bundle/download-cache"
 RELEASE_BUNDLE_OUTPUTNAME ?= "${RELEASE_BUNDLE_NAME}-release-${RELEASE_BUNDLE_VERSION}"
 RELEASE_BUNDLE_RECIPES_WITH_SOURCE ?= ""
 
-SRC_URI = "file://bundle-shar-extract.sh"
-
-python() {
-    recipes = d.getVar('RELEASE_BUNDLE_RECIPES_WITH_SOURCE', True).split()
-    d.appendVarFlag('do_release_bundle_finalize',
-                    'depends',
-                    " ".join(map(lambda x:
-                                        x + ":do_collect_recipe_source",
-                                 recipes)))
-
-    d.delVarFlag('do_build', 'recrdeptask')
-    d.delVarFlag('do_build', 'depends')
-}
+do_build[depends] = ""
+do_build[recrdeptask] = ""
+do_release_bundle_finalize[depends] += "${@' '.join('%s:do_collect_recipe_source' % recipe for recipe in d.getVar('RELEASE_BUNDLE_RECIPES_WITH_SOURCE').split())}"
 
 addtask collect_platform_source before do_release_bundle_finalize
 do_collect_platform_source[cleandirs] = "${RELEASE_BUNDLE_WORKDIR}"
+do_collect_platform_source[depends] += "repo-native:do_populate_sysroot "
+do_collect_platform_source[doc] = "Collect platform repositories into the release bundle work directory."
 do_collect_platform_source[nostamp] = "1"
 do_collect_platform_source() {
     cd "${PLATFORM_ROOT_DIR}"
@@ -77,6 +71,7 @@ RELEASE_BUNDLE_TAR_OPTS = "--owner=root --group=root"
 RELEASE_BUNDLE_OLDEST_KERNEL = "3.2.0"
 RELEASE_BUNDLE_PATH = "\$HOME/src/${RELEASE_BUNDLE_NAME}/${RELEASE_BUNDLE_VERSION}"
 
+tar_release_bundle[doc] = "Create the compressed release bundle archive."
 fakeroot tar_release_bundle() {
     mkdir -p ${RELEASE_BUNDLE_DEPLOY}
     cd ${RELEASE_BUNDLE_WORKDIR}
@@ -86,13 +81,18 @@ fakeroot tar_release_bundle() {
 addtask release_bundle_finalize after do_unpack do_collect_platform_source before do_build
 do_release_bundle_finalize[dirs] = "${RELEASE_BUNDLE_WORKDIR}/download"
 do_release_bundle_finalize[depends] += "pbzip2-native:do_populate_sysroot "
+do_release_bundle_finalize[doc] = "Finalize and emit the self-extracting release bundle."
 do_release_bundle_finalize() {
-    cp --archive -L ${RELEASE_BUNDLE_TMP_DOWNLOAD_CACHE}/*/* ${RELEASE_BUNDLE_WORKDIR}/
+    for bundle_dir in ${RELEASE_BUNDLE_TMP_DOWNLOAD_CACHE}/*/*; do
+        [ -e "$bundle_dir" ] || continue
+        cp --archive -L "$bundle_dir" ${RELEASE_BUNDLE_WORKDIR}/
+    done
+
     find ${RELEASE_BUNDLE_WORKDIR} -type d -empty -delete
 
     tar_release_bundle
 
-    cp "${WORKDIR}/bundle-shar-extract.sh" ${RELEASE_BUNDLE_DEPLOY}/${RELEASE_BUNDLE_OUTPUTNAME}.sh
+    cp "${UNPACKDIR}/bundle-shar-extract.sh" ${RELEASE_BUNDLE_DEPLOY}/${RELEASE_BUNDLE_OUTPUTNAME}.sh
 
     # substitute variables
     sed -e "s#@RELEASE_BUNDLE_PATH@#${RELEASE_BUNDLE_PATH}#g" \
