@@ -62,6 +62,7 @@ PACKAGES += "inputattach joystick"
 
 # We won't package any file here as we are following the same packaging schema
 # Debian does and we are splitting it in 'inputattach' and 'joystick' packages.
+# nooelint: oelint.var.filesoverride  intentionally empties the main package (see above)
 FILES:${PN} = ""
 
 FILES:inputattach += "\

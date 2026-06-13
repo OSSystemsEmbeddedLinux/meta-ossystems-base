@@ -1,3 +1,4 @@
+# nooelint: oelint.bbclass.underscores oelint.file.inlinesuppress_na  no EXPORT_FUNCTIONS here, so the dash is harmless
 # -*- python -*-
 # release-bundle-generation.bbclass
 #
@@ -45,6 +46,7 @@ do_build[recrdeptask] = ""
 do_release_bundle_finalize[depends] += "${@' '.join('%s:do_collect_recipe_source' % recipe for recipe in d.getVar('RELEASE_BUNDLE_RECIPES_WITH_SOURCE').split())}"
 
 addtask collect_platform_source before do_release_bundle_finalize
+do_collect_platform_source[doc] = "Garbage-collect and copy the platform source tree (.repo, sources, setup-environment) into the release bundle workdir."
 do_collect_platform_source[cleandirs] = "${RELEASE_BUNDLE_WORKDIR}"
 do_collect_platform_source[depends] += "repo-native:do_populate_sysroot "
 do_collect_platform_source[doc] = "Collect platform repositories into the release bundle work directory."
@@ -79,6 +81,7 @@ fakeroot tar_release_bundle() {
 }
 
 addtask release_bundle_finalize after do_unpack do_collect_platform_source before do_build
+do_release_bundle_finalize[doc] = "Assemble the final self-extracting release bundle from the collected sources and download cache."
 do_release_bundle_finalize[dirs] = "${RELEASE_BUNDLE_WORKDIR}/download"
 do_release_bundle_finalize[depends] += "pbzip2-native:do_populate_sysroot "
 do_release_bundle_finalize[doc] = "Finalize and emit the self-extracting release bundle."

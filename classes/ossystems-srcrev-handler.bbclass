@@ -1,3 +1,4 @@
+# nooelint: oelint.bbclass.underscores oelint.file.inlinesuppress_na  no EXPORT_FUNCTIONS here, so the dash is harmless
 # -*- python -*-
 # ossystems-srcrev-handler.bbclass
 # Copyright (C) 2013, 2014 O.S. Systems Software Ltda.  All Rights Reserved
@@ -52,6 +53,7 @@ def ossystems_srcrev_handler(d):
             d.setVar("SRCREV:pn-%s" % pkg, rev)
 
 addhandler ossystems_srcrev_eventhandler
+ossystems_srcrev_eventhandler[doc] = "Apply the project per-recipe SRCREV overrides at ConfigParsed."
 python ossystems_srcrev_eventhandler() {
     if bb.event.getName(e) == "ConfigParsed":
         ossystems_srcrev_handler(e.data)
