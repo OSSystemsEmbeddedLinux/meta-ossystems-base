@@ -1,0 +1,37 @@
+name: OE Lint
+
+on:
+  pull_request:
+  merge_group:
+  push:
+    branches:
+      - master
+
+concurrency:
+  group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  oelint:
+    runs-on: ubuntu-latest
+    # Advisory (non-blocking) for now. Released oelint-adv still reports known
+    # false positives that our upstream fixes remove but which are not in a
+    # release yet:
+    #   * oelint-adv #889    - gomod SRC_URI support; without it the generated
+    #                          telegraf-go-mods.inc trips ~536 srcuri* findings.
+    #   * oelint-parser #383 - leftover-buffer drain; without it two event
+    #                          handlers trip oelint.task.docstrings.
+    # The findings stay visible in the job log. Once both land in nixpkgs'
+    # oelint-adv, drop continue-on-error to make this a blocking gate.
+    continue-on-error: true
+    steps:
+      - uses: ossystems/nix-actions@v1
+        with:
+          install-nix: true             # hosted runner ships no Nix
+          flake-check: false            # this layer is not a flake
+          build-hosts: false            # nothing local to build
+          build-devshells: false
+          # The lint shell is a plain mkShell (oelint-adv on PATH), so unlike
+          # the default FHS bwrap shell it runs `--command` non-interactively.
+          devshell: github:OSSystems/yocto-env.nix#lint
+          run: ./contrib/oelint/run-oelint.sh
