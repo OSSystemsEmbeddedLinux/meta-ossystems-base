@@ -1,3 +1,4 @@
+# nooelint: oelint.bbclass.underscores oelint.file.inlinesuppress_na  no EXPORT_FUNCTIONS here, so the dash is harmless
 # -*- python -*-
 # easysplash-animation.bbclass allows for easy packaging of EasySplash
 # animation packages.

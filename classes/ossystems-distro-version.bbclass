@@ -1,3 +1,4 @@
+# nooelint: oelint.bbclass.underscores oelint.file.inlinesuppress_na  no EXPORT_FUNCTIONS here, so the dash is harmless
 # -*- python -*-
 # ossystems-distro-version.bbclass provides a DISTRO_VERSION variable
 # that can be used to identify the release of a product.

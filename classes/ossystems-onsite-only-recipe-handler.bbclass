@@ -1,3 +1,4 @@
+# nooelint: oelint.bbclass.underscores oelint.file.inlinesuppress_na  no EXPORT_FUNCTIONS here, so the dash is harmless
 # -*- python -*-
 # ossystems-onsite-only-recipe-handler.bbclass
 # Copyright (C) 2015-2020 O.S. Systems Software Ltda. All Rights Reserved
@@ -43,11 +44,13 @@ def ossystems_onsite_only_recipe_check(d):
             raise bb.parse.SkipPackage("O.S. Systems OnSite-Only Recipes handler: recipe skipped.")
 
 addhandler ossystems_onsite_only_recipe_eventhandler
+ossystems_onsite_only_recipe_eventhandler[doc] = "Disable on-site-only recipes at ConfigParsed when building off-site."
 python ossystems_onsite_only_recipe_eventhandler() {
     if bb.event.getName(e) == "ConfigParsed":
         ossystems_onsite_only_recipe_handler(e.data)
 }
 
+# nooelint: oelint.task.noanonpython  required to SkipPackage per-recipe at parse time
 python () {
     ossystems_onsite_only_recipe_check(d)
 }
