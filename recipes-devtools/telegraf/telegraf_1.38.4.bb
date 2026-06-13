@@ -6,15 +6,17 @@ SECTION = "console/network"
 CVE_PRODUCT = "telegraf"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=fe53cff8eef1afa881ea0e6325071ecd"
+require ${BPN}-licenses.inc
 
 SRC_URI = "git://github.com/influxdata/telegraf;protocol=https;branch=release-1.38;destsuffix=${BP}/src/${GO_IMPORT} \
            file://telegraf.conf \
 "
+require ${BPN}-go-mods.inc
 
 SRCREV = "c79b06d58e912124624d029a88bbe182254f0ff4"
 S = "${UNPACKDIR}/${BP}"
 
-inherit go-mod systemd
+inherit go-mod go-mod-update-modules systemd
 
 # Avoid dynamic linking as it causes segfault
 GO_LINKSHARED = ""
@@ -28,8 +30,6 @@ GO_IMPORT = "github.com/influxdata/telegraf"
 GO_INSTALL = "github.com/influxdata/telegraf/cmd/telegraf"
 
 SYSTEMD_SERVICE:${PN} = "${PN}.service"
-
-do_compile[network] = "1"
 
 do_install:append() {
     # FIXME: This has mixed architecture files and causes errors during
