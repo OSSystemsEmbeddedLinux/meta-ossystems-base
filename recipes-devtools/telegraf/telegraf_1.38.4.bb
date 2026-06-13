@@ -19,6 +19,11 @@ inherit go-mod systemd
 # Avoid dynamic linking as it causes segfault
 GO_LINKSHARED = ""
 
+# The binary is large enough that the PLT-to-GOT displacement overflows the
+# 28-bit short ARM PLT entry, tripping a BFD_ASSERT in binutils (elf32-arm.c).
+# Use 16-byte long PLT entries, which reach the full address space.
+GO_EXTLDFLAGS:append:arm = " -Wl,--long-plt"
+
 GO_IMPORT = "github.com/influxdata/telegraf"
 GO_INSTALL = "github.com/influxdata/telegraf/cmd/telegraf"
 
