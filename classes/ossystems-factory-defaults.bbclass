@@ -1,3 +1,4 @@
+# nooelint: oelint.bbclass.underscores oelint.file.inlinesuppress_na  no EXPORT_FUNCTIONS here, so the dash is harmless
 # Copyright (c) 2015-2020 O.S. Systems Software LTDA.
 #
 # The ossystems-factory-defaults class provides some variables that

@@ -1,3 +1,4 @@
+# nooelint: oelint.bbclass.underscores oelint.file.inlinesuppress_na  no EXPORT_FUNCTIONS here, so the dash is harmless
 OSSYSTEMS_FACTORY_DEFAULTS_DIR ?= "${datadir}/factory-defaults"
 OSSYSTEMS_FACTORY_DEFAULTS_FILES ?= ""
 OSSYSTEMS_FACTORY_DEFAULTS_HOOKS ?= ""
