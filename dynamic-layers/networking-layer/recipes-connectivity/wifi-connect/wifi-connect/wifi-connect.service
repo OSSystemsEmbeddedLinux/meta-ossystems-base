@@ -2,6 +2,7 @@
 Description=Start Wi-Fi Connection Application
 Wants=network.target
 After=NetworkManager.service dbus.service
+ConditionPathExistsGlob=/sys/class/net/*/wireless
 
 [Service]
 ExecStart=/usr/bin/wifi-connect-start.sh

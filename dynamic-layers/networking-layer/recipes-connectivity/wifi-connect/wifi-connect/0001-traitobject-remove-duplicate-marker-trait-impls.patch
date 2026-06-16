@@ -1,14 +1,14 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: OSSystems <ossystems@example.com>
-Date: Fri, 5 Jun 2026 14:40:00 +0000
+From: Luciano Gomes <luciano.dittgen@ossystems.com.br>
+Date: Tue, 16 Jun 2026 00:00:00 +0000
 Subject: [PATCH] traitobject: remove duplicate marker trait impls
 
 Recent Rust versions canonicalize duplicate and reordered auto-trait
 bounds, so these impls conflict with `Send + Sync`.
 
-Upstream-Status: Inappropriate [no upstream]
+Upstream-Status: Inappropriate [oe-specific]
 
-Signed-off-by: OSSystems <ossystems@example.com>
+Signed-off-by: Luciano Gomes <luciano.dittgen@ossystems.com.br>
 ---
  src/impls.rs | 3 ---
  1 file changed, 3 deletions(-)
