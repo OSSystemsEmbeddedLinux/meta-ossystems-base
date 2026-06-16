@@ -1,6 +1,6 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: OSSystems <ossystems@example.com>
-Date: Fri, 5 Jun 2026 14:50:00 +0000
+From: Luciano Gomes <luciano.dittgen@ossystems.com.br>
+Date: Tue, 16 Jun 2026 00:00:00 +0000
 Subject: [PATCH] params: disable num default features
 
 params only uses num::NumCast, so it does not need num's default
@@ -8,9 +8,9 @@ bigint, complex, rational, and rustc-serialize feature set. Disabling
 the defaults avoids compiling legacy rustc-serialize derives that no
 longer build with current Rust.
 
-Upstream-Status: Inappropriate [no upstream]
+Upstream-Status: Inappropriate [oe-specific]
 
-Signed-off-by: OSSystems <ossystems@example.com>
+Signed-off-by: Luciano Gomes <luciano.dittgen@ossystems.com.br>
 ---
  Cargo.toml | 1 +
  1 file changed, 1 insertion(+)
