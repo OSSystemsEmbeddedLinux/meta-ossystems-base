@@ -8,6 +8,8 @@ LICENSE = "CLOSED"
 
 SRC_URI += "file://easysplash.default"
 
+S = "${UNPACKDIR}"
+
 do_install() {
     install -Dm 0644 ${UNPACKDIR}/easysplash.default ${D}${sysconfdir}/default/easysplash
 }

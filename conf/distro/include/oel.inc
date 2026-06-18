@@ -4,6 +4,9 @@ SDK_VENDOR = "-oelsdk"
 SDK_VERSION := "${@'${DISTRO_VERSION}'.replace('snapshot-${DATE}','snapshot')}"
 SDK_NAME_PREFIX = "${DISTRO}"
 
+# Product policy: accept recipes/components flagged as commercial.
+LICENSE_FLAGS_ACCEPTED:append = " commercial"
+
 MAINTAINER = "O.S. Systems Software LTDA. <contato@ossystems.com.br>"
 
 TARGET_VENDOR = "-oel"

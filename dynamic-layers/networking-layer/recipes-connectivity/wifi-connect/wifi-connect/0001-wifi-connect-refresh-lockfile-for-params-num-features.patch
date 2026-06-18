@@ -1,6 +1,6 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: OSSystems <ossystems@example.com>
-Date: Fri, 5 Jun 2026 15:00:00 +0000
+From: Luciano Gomes <luciano.dittgen@ossystems.com.br>
+Date: Tue, 16 Jun 2026 00:00:00 +0000
 Subject: [PATCH] wifi-connect: refresh lockfile for params num features
 
 The vendored params crate is patched to disable num default features.
@@ -9,7 +9,7 @@ to rewrite the lockfile during do_compile.
 
 Upstream-Status: Inappropriate [oe-specific]
 
-Signed-off-by: OSSystems <ossystems@example.com>
+Signed-off-by: Luciano Gomes <luciano.dittgen@ossystems.com.br>
 ---
  Cargo.lock | 55 +++---------------------------------------------------
  1 file changed, 3 insertions(+), 52 deletions(-)
