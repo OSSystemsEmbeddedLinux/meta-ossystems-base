@@ -303,6 +303,7 @@ SRC_URI += "\
     gomod://github.com/karrick/godirwalk;version=v1.16.2;sha256sum=4b03e8c1cd90d22a2c273a1efc9a2489ae4cffe91c9f399e60c2e145020b38d6 \
     gomod://github.com/kballard/go-shellquote;version=v0.0.0-20180428030007-95032a82bc51;sha256sum=ae4cb7b097dc4eb0c248dff00ed3bbf0f36984c4162ad1d615266084e58bd6cc \
     gomod://github.com/klauspost/compress;version=v1.18.6;sha256sum=61b417d2d3b6b7f5b5f4179f311fb156bd5bcea040353150c41111dc1777f11a \
+    gomod://github.com/klauspost/cpuid/v2;version=v2.3.0;sha256sum=e6766f75ecfadf12fd045e4bdd9383f2a5bd3f9bd4c88a6db72861c84cf41486 \
     gomod://github.com/klauspost/pgzip;version=v1.2.6;sha256sum=8ac508e93b22dca1a731a3a4c921b57c5ed1daea7b3629a2cf85c3b7530dda84 \
     gomod://github.com/kolo/xmlrpc;version=v0.0.0-20220921171641-a4b6fa1dd06b;sha256sum=310742360a864798a1bfce6db8604263574c0be502670c8bfedeab8fcbe9d191 \
     gomod://github.com/kr/fs;version=v0.1.0;sha256sum=d376bd98e81aea34585fc3b04bab76363e9e87cde69383964e57e9779f2af81e \
