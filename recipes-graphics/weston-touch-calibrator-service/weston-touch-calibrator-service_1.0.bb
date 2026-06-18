@@ -13,7 +13,9 @@ SRC_URI = "\
     file://touchscreen.rules \
 "
 
-inherit systemd
+inherit systemd features_check
+
+REQUIRED_DISTRO_FEATURES += "wayland"
 
 SYSTEMD_SERVICE:${PN} = "weston-touch-calibrator.service"
 
