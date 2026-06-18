@@ -66,6 +66,7 @@ SANITY_TESTED_DISTROS ?= " \
 # Override these in oel based distros
 OEL_DEFAULT_DISTRO_FEATURES ??= "ipv4 ipv6"
 OEL_EXTRA_DISTRO_FEATURES ??= ""
+OEL_EXTRA_DISTRO_FEATURES += " wayland"
 OEL_DEFAULT_EXTRA_RDEPENDS = "packagegroup-core-boot"
 
 DISTRO_FEATURES ?= "${OEL_DEFAULT_DISTRO_FEATURES} \
