@@ -5,6 +5,8 @@ BUGTRACKER = "https://github.com/OSSystems/EasySplash/issues"
 SECTION = "graphics"
 CVE_PRODUCT = "easysplash"
 LICENSE = "CLOSED"
+LICENSE_FLAGS = "commercial"
+LICENSE_FLAGS_DETAILS[commercial] = "Requires gstreamer1.0-libav, which is license-flagged commercial."
 
 require easysplash-common-2.0.inc
 
