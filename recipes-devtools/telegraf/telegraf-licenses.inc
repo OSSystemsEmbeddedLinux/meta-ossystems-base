@@ -315,6 +315,7 @@ LIC_FILES_CHKSUM += "\
     file://pkg/mod/github.com/klauspost/compress@v1.18.6/snappy/LICENSE;md5=b8b79c7d4cda128290b98c6a21f9aac6;spdx=BSD-3-Clause \
     file://pkg/mod/github.com/klauspost/compress@v1.18.6/snappy/xerial/LICENSE;md5=49edd5648b6349a1af65ea5a69db2753;spdx=MIT \
     file://pkg/mod/github.com/klauspost/compress@v1.18.6/zstd/internal/xxhash/LICENSE.txt;md5=802da049c92a99b4387d3f3d91b00fa9;spdx=MIT \
+    file://pkg/mod/github.com/klauspost/cpuid/v2@v2.3.0/LICENSE;md5=00d6f962401947482d082858f7ba2ff3;spdx=MIT \
     file://pkg/mod/github.com/klauspost/pgzip@v1.2.6/GO_LICENSE;md5=591778525c869cdde0ab5a1bf283cd81;spdx=BSD-3-Clause \
     file://pkg/mod/github.com/kolo/xmlrpc@v0.0.0-20220921171641-a4b6fa1dd06b/LICENSE;md5=1f1c20df475af4e157a22828f3b9eb61;spdx=MIT \
     file://pkg/mod/github.com/kr/fs@v0.1.0/LICENSE;md5=591778525c869cdde0ab5a1bf283cd81;spdx=BSD-3-Clause \
