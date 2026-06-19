@@ -15,7 +15,7 @@ SRC_URI = "\
 
 inherit systemd features_check
 
-REQUIRED_DISTRO_FEATURES += "wayland"
+REQUIRED_DISTRO_FEATURES += "wayland pam"
 
 SYSTEMD_SERVICE:${PN} = "weston-touch-calibrator.service"
 
