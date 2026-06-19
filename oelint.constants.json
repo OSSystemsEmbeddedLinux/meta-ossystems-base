@@ -1,0 +1,26 @@
+{
+    "comment": "Layer-specific oelint-adv constant DB. oelint-adv auto-loads 'oelint.constants.json' from the layer root (the directory holding conf/layer.conf) whenever a file from this layer is linted, so no --constantmods is needed. These are real variables/overrides oelint cannot know about when run standalone (outside a full bitbake build).",
+    "variables": {
+        "known": [
+            "OPENGL_WINSYS",
+            "OS_RELEASE_FIELDS",
+            "OSSYSTEMS_FACTORY_DEFAULTS_DIR",
+            "OSSYSTEMS_FACTORY_DEFAULTS_FILES",
+            "OSSYSTEMS_FACTORY_DEFAULTS_HOOKS",
+            "OSSYSTEMS_FACTORY_DEFAULTS_HOOKS_DIR",
+            "OSSYSTEMS_FACTORY_DEFAULTS_POSTINST_FILES",
+            "OSSYSTEMS_FACTORY_DEFAULTS_RUNTIME_DIR",
+            "RELEASE_BUNDLE_LAYERNAME",
+            "RELEASE_BUNDLE_RECIPES_WITH_SOURCE",
+            "VERSION"
+        ]
+    },
+    "replacements": {
+        "distros": [
+            "oel"
+        ],
+        "machines": [
+            "arm"
+        ]
+    }
+}

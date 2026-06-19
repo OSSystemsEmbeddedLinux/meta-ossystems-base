@@ -1,3 +1,4 @@
+# nooelint: oelint.bbclass.underscores oelint.file.inlinesuppress_na  no EXPORT_FUNCTIONS here, so the dash is harmless
 # Copyright (c) 2018 Arm Limited and Contributors. All rights reserved.
 #
 # SPDX-License-Identifier: MIT
@@ -42,7 +43,6 @@
 
 IMAGE_LICENSE_CHECKER_ROOTFS_DENYLIST ?= ""
 IMAGE_LICENSE_CHECKER_NON_ROOTFS_DENYLIST ?= ""
-
 
 def bad_license(d, license, denylist):
     """
@@ -134,8 +134,8 @@ python check_rootfs_licenses() {
     if bad_packages:
         bb.fatal("Packages have denylisted licenses: {}".format(", ".join(bad_packages)))
 }
+check_rootfs_licenses[doc] = "Fail the build if any package installed on the rootfs has a denylisted license."
 ROOTFS_POSTPROCESS_COMMAND:prepend = "check_rootfs_licenses; "
-
 
 python check_deploy_licenses() {
     """
@@ -153,4 +153,5 @@ python check_deploy_licenses() {
     if bad_recipes:
         bb.fatal("Deployed image dependencies have denylisted licenses: {}".format(", ".join(bad_recipes)))
 }
+check_deploy_licenses[doc] = "Fail the build if any recipe deploying files into the image has a denylisted license."
 IMAGE_POSTPROCESS_COMMAND:prepend = "check_deploy_licenses; "

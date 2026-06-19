@@ -4,6 +4,9 @@ SDK_VENDOR = "-oelsdk"
 SDK_VERSION := "${@'${DISTRO_VERSION}'.replace('snapshot-${DATE}','snapshot')}"
 SDK_NAME_PREFIX = "${DISTRO}"
 
+# Product policy: accept recipes/components flagged as commercial.
+LICENSE_FLAGS_ACCEPTED:append = " commercial"
+
 MAINTAINER = "O.S. Systems Software LTDA. <contato@ossystems.com.br>"
 
 TARGET_VENDOR = "-oel"
@@ -63,6 +66,7 @@ SANITY_TESTED_DISTROS ?= " \
 # Override these in oel based distros
 OEL_DEFAULT_DISTRO_FEATURES ??= "ipv4 ipv6"
 OEL_EXTRA_DISTRO_FEATURES ??= ""
+OEL_EXTRA_DISTRO_FEATURES += " wayland"
 OEL_DEFAULT_EXTRA_RDEPENDS = "packagegroup-core-boot"
 
 DISTRO_FEATURES ?= "${OEL_DEFAULT_DISTRO_FEATURES} \

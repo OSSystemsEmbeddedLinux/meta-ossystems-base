@@ -1,5 +1,5 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend:oel := "${THISDIR}/${PN}:"
 
-PACKAGE_BEFORE_PN = "${PN}-touch-calibrator"
+PACKAGE_BEFORE_PN:append:oel = " ${PN}-touch-calibrator"
 
-FILES:${PN}-touch-calibrator = "${bindir}/weston-touch-calibrator"
+FILES:${PN}-touch-calibrator += "${bindir}/weston-touch-calibrator"

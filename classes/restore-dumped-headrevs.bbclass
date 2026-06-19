@@ -1,3 +1,4 @@
+# nooelint: oelint.bbclass.underscores oelint.file.inlinesuppress_na  no EXPORT_FUNCTIONS here, so the dash is harmless
 def copy_persist_domain(d, domain, other_db_path, restore=False):
     import contextlib
 
@@ -18,6 +19,7 @@ def restore_headrevs(d, dump_db_path):
 DUMP_HEADREVS_DB ?= '${COREBASE}/saved_persist_data.db'
 DUMP_HEADREVS_STAMP ?= '${STAMP}.restored_headrevs'
 
+restore_dumped_headrevs[doc] = "Restore dumped BB_URI_HEADREVS persistent data once, at config-parse time, when a dump database is present."
 python restore_dumped_headrevs() {
     stamp_path = d.getVar('DUMP_HEADREVS_STAMP', True)
     dump_db_path = d.getVar('DUMP_HEADREVS_DB', True)
