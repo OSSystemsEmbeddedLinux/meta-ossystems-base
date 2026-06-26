@@ -64,9 +64,8 @@ SANITY_TESTED_DISTROS ?= " \
 ####
 
 # Override these in oel based distros
-OEL_DEFAULT_DISTRO_FEATURES ??= "ipv4 ipv6"
+OEL_DEFAULT_DISTRO_FEATURES ??= ""
 OEL_EXTRA_DISTRO_FEATURES ??= ""
-OEL_EXTRA_DISTRO_FEATURES += " wayland"
 OEL_DEFAULT_EXTRA_RDEPENDS = "packagegroup-core-boot"
 
 DISTRO_FEATURES ?= "${OEL_DEFAULT_DISTRO_FEATURES} \
@@ -74,7 +73,11 @@ DISTRO_FEATURES ?= "${OEL_DEFAULT_DISTRO_FEATURES} \
 
 DISTRO_EXTRA_RDEPENDS += "${OEL_DEFAULT_EXTRA_RDEPENDS}"
 
-DISTRO_FEATURES_OPTED_OUT ?= "pulseaudio gobject-introspection-data"
+DISTRO_FEATURES_OPTED_OUT ?= " \
+    acl alsa bluetooth debuginfod ext2 \
+    wifi xattr nfs zeroconf pci 3g nfc x11 vfat seccomp pulseaudio \
+    gobject-introspection-data ldconfig opengl ptest multiarch wayland vulkan \
+"
 
 # Exclude DATE from DISTRO/SDK_VERSION checksums
 DISTRO_VERSION[vardepsexclude] = "DATE"
