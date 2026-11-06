@@ -31,6 +31,33 @@ GO_INSTALL = "github.com/influxdata/telegraf/cmd/telegraf"
 
 SYSTEMD_SERVICE:${PN} = "${PN}.service"
 
+# go install only extracts the modules in the target's build graph, which is
+# arch-specific (klauspost/cpuid is amd64-only), but telegraf-licenses.inc
+# lists every module in SRC_URI. Extract the rest from the module cache, as
+# go would, so do_populate_lic finds each LICENSE on every architecture.
+python telegraf_extract_all_modules() {
+    import glob, os, zipfile
+    modcache = d.getVar('GOMODCACHE')
+    download = os.path.join(modcache, 'cache', 'download')
+    for zpath in glob.glob(os.path.join(download, '**', '@v', '*.zip'), recursive=True):
+        version = os.path.basename(zpath)[:-len('.zip')]
+        escaped = os.path.relpath(os.path.dirname(os.path.dirname(zpath)), download)
+        dest = os.path.join(modcache, '%s@%s' % (escaped, version))
+        if os.path.isdir(dest):
+            continue
+        with zipfile.ZipFile(zpath) as z:
+            for info in z.infolist():
+                name = info.filename.split('@%s/' % version, 1)[1]
+                if not name or name.endswith('/'):
+                    continue
+                target = os.path.join(dest, name)
+                os.makedirs(os.path.dirname(target), exist_ok=True)
+                with z.open(info) as src, open(target, 'wb') as dst:
+                    dst.write(src.read())
+}
+telegraf_extract_all_modules[doc] = "Extract every Go module left zipped in the module cache, so each module LICENSE exists on every architecture."
+do_compile[postfuncs] += "telegraf_extract_all_modules"
+
 do_install:append() {
     # FIXME: This has mixed architecture files and causes errors during
     # packaging
