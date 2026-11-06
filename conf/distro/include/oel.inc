@@ -162,28 +162,6 @@ SSTATE_MIRROR_SITES:prepend = "${LAYER_SSTATE_MIRRORS} "
 # Ensure that we implement shared state reuse handling for non-target recipes
 require conf/distro/include/sstate.inc
 
-# This function changes the default tune for machines which are based on armv7a
-# to use common tune value.
-def arm_tune_handler(d):
-    features = d.getVar('TUNE_FEATURES', True).split()
-    if 'armv7a' in features or 'armv7ve' in features:
-        tune = 'armv7ahf'
-        if 'bigendian' in features:
-            tune += 'b'
-        if 'vfpv3' in features:
-            tune += '-vfpv3'
-        if 'vfpv3d16' in features:
-            tune += '-vfpv3d16'
-        if 'neon' in features:
-            tune += '-neon'
-        if 'vfpv4' in features:
-            tune += '-vfpv4'
-    else:
-        tune = d.getVar('DEFAULTTUNE', True)
-    return tune
-
-DEFAULTTUNE_oel := "${@arm_tune_handler(d)}"
-
 DISTRO_ARM_INSTRUCTION ?= "arm"
 DISTRO_ARM_INSTRUCTION:armv4 ?= "arm"
 DISTRO_ARM_INSTRUCTION:armv5te ?= "arm"
