@@ -71,6 +71,9 @@ OEL_DEFAULT_EXTRA_RDEPENDS = "packagegroup-core-boot"
 DISTRO_FEATURES ?= "${OEL_DEFAULT_DISTRO_FEATURES} \
                     ${OEL_EXTRA_DISTRO_FEATURES}"
 
+# OE-Core requires distros to pick an init manager; oel uses systemd.
+INIT_MANAGER ?= "systemd"
+
 DISTRO_EXTRA_RDEPENDS += "${OEL_DEFAULT_EXTRA_RDEPENDS}"
 
 DISTRO_FEATURES_OPTED_OUT ?= " \
@@ -117,9 +120,6 @@ VOLATILE_BINDS:append = "\
 # Override pulseaudio to use a system rather than user systemd service when we
 # don't have pam available, as the user service won't be started
 systemd_userunitdir:pn-pulseaudio = "${@bb.utils.contains('DISTRO_FEATURES', 'pam', '${systemd_unitdir}/user', '${systemd_unitdir}/system', d)}"
-
-# We prefer busybox rather than tinylogin
-VIRTUAL-RUNTIME_login_manager ??= "busybox"
 
 # Use systemd as syslog in distros that has systemd in DISTRO_FEATURES
 VIRTUAL-RUNTIME_base-utils-syslog = "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', 'busybox-syslog', d)}"
