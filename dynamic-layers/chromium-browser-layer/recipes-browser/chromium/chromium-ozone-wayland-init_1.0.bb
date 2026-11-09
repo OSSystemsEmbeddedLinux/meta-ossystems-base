@@ -33,7 +33,7 @@ CHROMIUM_EXTRA_ARGS ?= ""
 SYSTEMD_SERVICE:${PN} = "chromium-ozone-wayland.service"
 
 # Start after weston-init
-INITSCRIPT_NAME = "${BPM}"
+INITSCRIPT_NAME = "chromium-ozone-wayland"
 INITSCRIPT_PARAMS = "start 10 5 2 . stop 19 0 1 6 ."
 
 do_configure[noexec] = "1"
