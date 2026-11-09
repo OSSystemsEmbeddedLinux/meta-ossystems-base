@@ -37,7 +37,7 @@ INHERIT += "layerdirs"
 INHERIT += "typecheck"
 
 # Also check for host user contamination in the rootfs
-ROOTFS_POSTPROCESS_COMMAND:append = " rootfs_check_host_user_contaminated;"
+ROOTFS_POSTPROCESS_COMMAND:append = " rootfs_check_host_user_contaminated"
 
 SANITY_TESTED_DISTROS ?= " \
     almalinux-8 \
