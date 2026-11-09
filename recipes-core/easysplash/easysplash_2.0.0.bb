@@ -25,7 +25,7 @@ inherit cargo pkgconfig systemd update-rc.d cargo-update-recipe-crates
 # DEFAULT_PREFERENCE = "-1"
 
 CARGO_SRC_DIR = ""
-PV .= "+git${SRCPV}"
+PV .= "+git"
 
 INITSCRIPT_NAME = "${PN}-start"
 INITSCRIPT_PARAMS:${PN} = "start 5 S ."
