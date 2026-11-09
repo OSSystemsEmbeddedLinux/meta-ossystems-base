@@ -17,7 +17,7 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
 DESC="chromium-browser"
 NAME="chromium-ozone-wayland"
-DAEMON=/usr/bin/$NAME
+DAEMON=/usr/bin/chromium
 CHROMIUM_ARGS=""
 PIDFILE=/var/run/$NAME.pid
 
