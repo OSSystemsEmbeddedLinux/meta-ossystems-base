@@ -1,6 +1,6 @@
 # nooelint: oelint.bbclass.underscores oelint.file.inlinesuppress_na  no EXPORT_FUNCTIONS here, so the dash is harmless
-ROOTFS_POSTPROCESS_COMMAND += "deploy_license_manifest;"
-IMAGE_POSTPROCESS_COMMAND += "link_license_manifest;"
+ROOTFS_POSTPROCESS_COMMAND += "deploy_license_manifest"
+IMAGE_POSTPROCESS_COMMAND += "link_license_manifest"
 
 deploy_license_manifest[doc] = "Copy the image license manifest into the deploy directory and generate a CSV variant."
 deploy_license_manifest () {
