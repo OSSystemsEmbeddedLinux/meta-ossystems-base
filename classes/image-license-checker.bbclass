@@ -135,7 +135,8 @@ python check_rootfs_licenses() {
         bb.fatal("Packages have denylisted licenses: {}".format(", ".join(bad_packages)))
 }
 check_rootfs_licenses[doc] = "Fail the build if any package installed on the rootfs has a denylisted license."
-ROOTFS_POSTPROCESS_COMMAND:prepend = "check_rootfs_licenses; "
+# nooelint: oelint.var.rootfspostcmd  the trailing space keeps this prepend apart from the next function
+ROOTFS_POSTPROCESS_COMMAND:prepend = "check_rootfs_licenses "
 
 python check_deploy_licenses() {
     """
@@ -154,4 +155,4 @@ python check_deploy_licenses() {
         bb.fatal("Deployed image dependencies have denylisted licenses: {}".format(", ".join(bad_recipes)))
 }
 check_deploy_licenses[doc] = "Fail the build if any recipe deploying files into the image has a denylisted license."
-IMAGE_POSTPROCESS_COMMAND:prepend = "check_deploy_licenses; "
+IMAGE_POSTPROCESS_COMMAND:prepend = "check_deploy_licenses "
