@@ -20,11 +20,11 @@ do_generate_mirror_tarball[dirs] = "${DL_DIR}"
 do_generate_mirror_tarball[vardeps] += "SRCREV"
 do_generate_mirror_tarball[nostamp] = "1"
 python do_generate_mirror_tarball() {
-    src_uri = (d.getVar('SRC_URI', True) or '').split()
+    src_uri = (d.getVar('SRC_URI') or '').split()
     if len(src_uri) == 0:
         return
 
-    pn = d.getVar('PN', True)
+    pn = d.getVar('PN')
     bb.debug(1, "Generating mirror tarball for '%s' recipe." % pn)
 
     # FIXME: The cache needs to be cleaned up or recipes which
@@ -51,16 +51,16 @@ do_collect_recipe_source[file-checksums] += " ${@get_lic_checksum_file_list(d)}"
 do_collect_recipe_source[vardeps] += "SRCREV"
 do_collect_recipe_source[nostamp] = "1"
 python do_collect_recipe_source() {
-    src_uri = (d.getVar('SRC_URI', True) or '').split()
+    src_uri = (d.getVar('SRC_URI') or '').split()
     if len(src_uri) == 0:
         return
 
-    pn = d.getVar('PN', True)
-    layerdir = d.getVar('RELEASE_BUNDLE_LAYERDIR', True)
+    pn = d.getVar('PN')
+    layerdir = d.getVar('RELEASE_BUNDLE_LAYERDIR')
     bb.debug(1, "Collecting the source code for '%s' recipe in %s" % (pn, layerdir))
 
-    dl_dir = d.getVar('DL_DIR', True)
-    dl_dir_bundle = oe.path.join(d.getVar('RELEASE_BUNDLE_TMP_DOWNLOAD_CACHE', True), pn, layerdir, 'downloads')
+    dl_dir = d.getVar('DL_DIR')
+    dl_dir_bundle = oe.path.join(d.getVar('RELEASE_BUNDLE_TMP_DOWNLOAD_CACHE'), pn, layerdir, 'downloads')
 
     try:
         fetcher = bb.fetch2.Fetch(src_uri, d)

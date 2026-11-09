@@ -17,26 +17,26 @@
 # OSSYSTEMS_ONSITE_ONLY_RECIPES will be disabled.
 
 def ossystems_onsite_only_recipe_handler(d):
-    onsite_only_recipes = d.getVar('OSSYSTEMS_ONSITE_ONLY_RECIPES', True)
+    onsite_only_recipes = d.getVar('OSSYSTEMS_ONSITE_ONLY_RECIPES')
     if not onsite_only_recipes:
         bb.debug(1, "O.S. Systems OnSite-Only Recipes handler: OSSYSTEMS_ONSITE_ONLY_RECIPES is not set.")
         return
 
-    if d.getVar('OSSYSTEMS_USE_ONSITE_ONLY_RECIPES', True) == "1":
+    if d.getVar('OSSYSTEMS_USE_ONSITE_ONLY_RECIPES') == "1":
         bb.note("O.S. Systems OnSite-Only Recipes handler: Enabled")
         return
 
     bb.note("O.S. Systems OnSite-Only Recipes handler: Disabled")
 
 def ossystems_onsite_only_recipe_check(d):
-    recipes = d.getVar('OSSYSTEMS_ONSITE_ONLY_RECIPES', True)
+    recipes = d.getVar('OSSYSTEMS_ONSITE_ONLY_RECIPES')
     if not recipes:
         return
 
-    if d.getVar('OSSYSTEMS_USE_ONSITE_ONLY_RECIPES', True) == "1":
+    if d.getVar('OSSYSTEMS_USE_ONSITE_ONLY_RECIPES') == "1":
         return
 
-    pn = d.getVar('PN', True)
+    pn = d.getVar('PN')
     if pn in recipes.split():
         raise bb.parse.SkipPackage("O.S. Systems OnSite-Only Recipes handler: recipe skipped.")
 

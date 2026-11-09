@@ -28,7 +28,7 @@ def ossystems_get_distro_version(d):
     devel_version_re = d.getVar('OSSYSTEMS_DISTRO_VERSION_DEVEL_VERSION_RE', False)
     stable_version_re = d.getVar('OSSYSTEMS_DISTRO_VERSION_STABLE_VERSION_RE', False)
 
-    bspdir = d.getVar('PLATFORM_ROOT_DIR', True)
+    bspdir = d.getVar('PLATFORM_ROOT_DIR')
     layerdir = os.path.join(bspdir, '.repo', 'manifests')
 
     cmd = 'cd %s ; git describe --always 2> /dev/null' % (layerdir)
