@@ -11,6 +11,12 @@ concurrency:
   group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
+env:
+  YOCTO_ENV_REV: e181bffff69b534899b1f6af4ca3195cbdf5a6bd # oelint-adv 9.11.3
+
 jobs:
   oelint:
     runs-on: ubuntu-latest
@@ -21,5 +27,7 @@ jobs:
           flake-check: false
           build-hosts: false
           build-devshells: false
-          devshell: github:OSSystems/yocto-env.nix#lint
+          devshell: github:OSSystems/yocto-env.nix/${{ env.YOCTO_ENV_REV }}#lint
+          cache-key-suffix: -yocto-env-${{ env.YOCTO_ENV_REV }}
+          cache-save: ${{ github.event_name == 'push' }}
           run: ./contrib/oelint/run-oelint.sh
