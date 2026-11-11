@@ -18,7 +18,9 @@ do_compile[noexec] = "1"
 
 do_install() {
     install -d ${D}${datadir}/${PN}
-    cp -rf ${S}/* ${D}${datadir}/${PN}
+    cd ${S}
+    find * -type d -exec install -d ${D}${datadir}/${PN}/{} \;
+    find * -type f -exec install -m 0644 {} ${D}${datadir}/${PN}/{} \;
 }
 
 FILES:${PN} += "${datadir}/${PN}"
