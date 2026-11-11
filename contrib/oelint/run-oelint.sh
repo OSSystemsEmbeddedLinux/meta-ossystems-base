@@ -4,16 +4,17 @@
 # All linter configuration is declarative and lives at the layer root, so this
 # script only has to enumerate the files (oelint-adv does not recurse into
 # directories):
-#   * .oelint.cfg           - sets '--release' and the single layer-wide
-#                             suppression (oelint.var.bbclassextend); auto-loaded
-#                             from the working directory
+#   * .oelint.cfg           - sets '--release' and the layer-wide suppressions
+#                             (oelint.var.bbclassextend,
+#                             oelint.var.licenseremotefile); auto-loaded from the
+#                             working directory
 #   * oelint.constants.json - the layer constant-DB additions, auto-loaded by
 #                             oelint-adv from the layer root (no --constantmods)
 #
-# Aside from oelint.var.bbclassextend (which never applies to a target-only
-# layer), exceptions stay inline as '# nooelint: <rule.id>' comments next to the
-# finding, so new recipes are always fully linted and each exception is
-# documented in place (and flagged by oelint.file.inlinesuppress_na once stale).
+# Aside from the layer-wide suppressions in .oelint.cfg, exceptions stay inline
+# as '# nooelint: <rule.id>' comments next to the finding, so new recipes are
+# always fully linted and each exception is documented in place (and flagged by
+# oelint.file.inlinesuppress_na once stale).
 set -eu
 
 # Neutralise CDPATH so 'cd' below can't print or jump to an unexpected dir.
