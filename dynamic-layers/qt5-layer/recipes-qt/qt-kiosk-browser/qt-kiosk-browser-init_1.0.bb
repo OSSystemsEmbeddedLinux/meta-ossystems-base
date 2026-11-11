@@ -40,7 +40,7 @@ INITSCRIPT_NAME = "qt-kiosk-browser"
 
 do_install() {
     if ${@bb.utils.contains('DISTRO_FEATURES','sysvinit','true','false',d)}; then
-        install -Dm 0755 ${UNPACKDIR}/${PN}.initd ${D}${sysconfdir}/init.d/kiosk
+        install -Dm 0755 ${UNPACKDIR}/${PN}.initd ${D}${sysconfdir}/init.d/qt-kiosk-browser
     fi
     if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
         install -Dm 0644 ${UNPACKDIR}/${PN}.service ${D}${systemd_system_unitdir}/qt-kiosk-browser.service

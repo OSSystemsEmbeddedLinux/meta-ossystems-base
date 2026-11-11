@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ### BEGIN INIT INFO
-# Provides:         $NAME
+# Provides:         qt-kiosk-browser
 # Required-Start:   $remote_fs $syslog
 # Required-Stop:    $remote_fs $syslog
 # Default-Start:    2 3 4 5
@@ -11,12 +11,19 @@
 set -e
 
 DESC="Qt kiosk browser init"
-NAME="qt-kiosk-browser-init"
+NAME="qt-kiosk-browser"
 DAEMON=/usr/bin/$NAME
 DAEMON_ARGS="--platform wayland /etc/$NAME.conf --no-sandbox"
 PIDFILE=/var/run/$NAME.pid
 
 test -x ${DAEMON} || exit 0
+
+# Same environment as the systemd unit's EnvironmentFile
+if [ -r /etc/default/$NAME ]; then
+    set -a
+    . /etc/default/$NAME
+    set +a
+fi
 
 umask 022
 
