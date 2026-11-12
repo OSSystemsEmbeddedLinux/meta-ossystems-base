@@ -23,6 +23,10 @@ SRC_URI = "\
 
 SRC_URI[sha256sum] = "4da29745c782b7db18f5f37c49e77bf163121dd3761e2fc7636fa0cbf35c2456"
 
+# The tarball is named linuxconsoletools, not after PN.
+UPSTREAM_CHECK_URI = "https://sourceforge.net/projects/linuxconsole/files/"
+UPSTREAM_CHECK_REGEX = "linuxconsoletools-(?P<pver>\d+(\.\d+)+)\.tar"
+
 S = "${UNPACKDIR}/linuxconsoletools-${PV}"
 
 inherit systemd pkgconfig
