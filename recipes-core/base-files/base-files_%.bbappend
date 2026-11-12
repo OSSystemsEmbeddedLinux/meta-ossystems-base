@@ -5,7 +5,7 @@ SRC_URI:append:oel = " file://profile.d_locale.sh"
 do_install:append:oel() {
     install -Dm 0644 ${S}/profile.d_locale.sh ${D}${sysconfdir}/profile.d/locale.sh
 
-    if [ "${@d.getVar('DEFAULT_SYSTEM_LOCALE', True)}" != "" ]; then
+    if [ "${@d.getVar('DEFAULT_SYSTEM_LOCALE')}" != "" ]; then
         install -d ${D}${sysconfdir}
         printf 'LANG=%s\n' "${DEFAULT_SYSTEM_LOCALE}" > ${D}${sysconfdir}/locale.conf
     fi

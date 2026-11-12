@@ -1,5 +1,5 @@
 def save_layerdirs(d):
-    for layerpath in d.getVar('BBLAYERS', True).split():
+    for layerpath in d.getVar('BBLAYERS').split():
         layerconf = os.path.join(layerpath, 'conf', 'layer.conf')
 
         l = bb.data.init()
@@ -7,7 +7,7 @@ def save_layerdirs(d):
         l = bb.parse.handle(layerconf, l, baseconfig=True)
         l.expandVarref('LAYERDIR')
 
-        for layername in (l.getVar('BBFILE_COLLECTIONS', True) or '').split():
+        for layername in (l.getVar('BBFILE_COLLECTIONS') or '').split():
             d.setVar('LAYERDIR_%s' % layername, layerpath)
 
 cfg_save_layerdirs[doc] = "Record each layer's directory in LAYERDIR_<collection> at config-parse time."

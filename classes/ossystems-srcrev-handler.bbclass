@@ -20,10 +20,10 @@
 # of products based on Yocto Project and this class is part of the system.
 
 def _stable_release(d):
-    return (d.getVar('OSSYSTEMS_SRCREV_AUTOREV', True) != "1")
+    return (d.getVar('OSSYSTEMS_SRCREV_AUTOREV') != "1")
 
 def ossystems_srcrev_handler(d):
-    srcrevs = d.getVar('OSSYSTEMS_SRCREVS_FILE', True)
+    srcrevs = d.getVar('OSSYSTEMS_SRCREVS_FILE')
     if not srcrevs:
         bb.debug(1, "O.S. Systems SRCREV handler: OSSYSTEMS_SRCREVS_FILE is not set.")
         return

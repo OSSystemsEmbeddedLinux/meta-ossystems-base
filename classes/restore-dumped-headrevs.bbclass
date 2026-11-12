@@ -21,8 +21,8 @@ DUMP_HEADREVS_STAMP ?= '${STAMP}.restored_headrevs'
 
 restore_dumped_headrevs[doc] = "Restore dumped BB_URI_HEADREVS persistent data once, at config-parse time, when a dump database is present."
 python restore_dumped_headrevs() {
-    stamp_path = d.getVar('DUMP_HEADREVS_STAMP', True)
-    dump_db_path = d.getVar('DUMP_HEADREVS_DB', True)
+    stamp_path = d.getVar('DUMP_HEADREVS_STAMP')
+    dump_db_path = d.getVar('DUMP_HEADREVS_DB')
     if not os.path.exists(stamp_path) and os.path.exists(dump_db_path):
         restore_headrevs(d, dump_db_path)
         bb.utils.mkdirhier(os.path.dirname(stamp_path))
