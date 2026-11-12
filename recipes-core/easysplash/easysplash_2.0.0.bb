@@ -45,8 +45,10 @@ PACKAGECONFIG[sysvinit] = ",,"
 PACKAGECONFIG[systemd] = ",, systemd"
 
 do_install:append() {
+    # Pass the unit directory so it always follows systemd_system_unitdir.
     (cd ${S} ; oe_runmake install-service DESTDIR=${D} \
-          ${@bb.utils.contains('PACKAGECONFIG', 'sysvinit', 'INIT=1', 'INIT=0', d)} \
+          systemdsystemunitdir=${systemd_system_unitdir} \
+          ${@bb.utils.contains('PACKAGECONFIG', 'sysvinit', 'INITD=1', 'INITD=0', d)} \
           ${@bb.utils.contains('PACKAGECONFIG', 'systemd', 'SYSTEMD=1', 'SYSTEMD=0', d)})
       rm ${D}${sysconfdir}/default/easysplash
 }
