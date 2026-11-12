@@ -1,7 +1,7 @@
 PV = "2.0.0"
 
 SRC_URI = "git://github.com/OSSystems/EasySplash.git;branch=master;protocol=https"
-SRCREV = "81a44392efe15fd12ea673f1c828a52e95103eea"
+SRCREV = "7829a12e8d8ff3740eff806cbeb63be96ab4250e"
 
 # Upstream has no tag for 2.0.0, so the version check follows the branch head.
 UPSTREAM_CHECK_COMMITS = "1"
