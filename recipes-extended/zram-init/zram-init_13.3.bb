@@ -13,7 +13,7 @@ DEPENDS += "gettext-native"
 PE = "1"
 
 SRC_URI = "git://github.com/vaeth/zram-init;protocol=https;branch=main"
-SRCREV = "66ef54e36d67abf76a8bfa2c2f1a6a0d38cd2498"
+SRCREV = "96579c79295da74cc1921270946b99baa035d0d3"
 
 EXTRA_OEMAKE += "SHEBANG='#!/bin/sh'"
 
