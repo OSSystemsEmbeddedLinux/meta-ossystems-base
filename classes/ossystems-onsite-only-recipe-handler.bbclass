@@ -17,31 +17,28 @@
 # OSSYSTEMS_ONSITE_ONLY_RECIPES will be disabled.
 
 def ossystems_onsite_only_recipe_handler(d):
-    onsite_only_recipes = d.getVar('OSSYSTEMS_ONSITE_ONLY_RECIPES', True)
+    onsite_only_recipes = d.getVar('OSSYSTEMS_ONSITE_ONLY_RECIPES')
     if not onsite_only_recipes:
         bb.debug(1, "O.S. Systems OnSite-Only Recipes handler: OSSYSTEMS_ONSITE_ONLY_RECIPES is not set.")
         return
 
-    if d.getVar('OSSYSTEMS_USE_ONSITE_ONLY_RECIPES', True) == "1":
+    if d.getVar('OSSYSTEMS_USE_ONSITE_ONLY_RECIPES') == "1":
         bb.note("O.S. Systems OnSite-Only Recipes handler: Enabled")
         return
 
     bb.note("O.S. Systems OnSite-Only Recipes handler: Disabled")
 
-    for recipe in onsite_only_recipes.split():
-        d.setVar("SRCPV:pn-%s" % recipe, "OSSystemsOnSiteOnlyRecipeTag")
-        bb.debug(1, "O.S. Systems OnSite-Only Recipes handler: Overriding %s" % recipe)
-
 def ossystems_onsite_only_recipe_check(d):
-    recipes = d.getVar('OSSYSTEMS_ONSITE_ONLY_RECIPES', True)
+    recipes = d.getVar('OSSYSTEMS_ONSITE_ONLY_RECIPES')
     if not recipes:
         return
 
-    pn = d.getVar('PN', True)
+    if d.getVar('OSSYSTEMS_USE_ONSITE_ONLY_RECIPES') == "1":
+        return
+
+    pn = d.getVar('PN')
     if pn in recipes.split():
-        srcpv = d.getVar('SRCPV', True)
-        if srcpv == "OSSystemsOnSiteOnlyRecipeTag":
-            raise bb.parse.SkipPackage("O.S. Systems OnSite-Only Recipes handler: recipe skipped.")
+        raise bb.parse.SkipPackage("O.S. Systems OnSite-Only Recipes handler: recipe skipped.")
 
 addhandler ossystems_onsite_only_recipe_eventhandler
 ossystems_onsite_only_recipe_eventhandler[doc] = "Disable on-site-only recipes at ConfigParsed when building off-site."
