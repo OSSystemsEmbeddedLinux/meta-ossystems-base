@@ -13,6 +13,9 @@ SRC_URI = "\
 "
 SRCREV = "f6ce362a53e4ce5405383bef94864adf10777377"
 
+# Upstream has no release tags: report new commits on the branch instead.
+UPSTREAM_CHECK_COMMITS = "1"
+
 do_configure[noexec] = "1"
 do_compile[noexec] = "1"
 

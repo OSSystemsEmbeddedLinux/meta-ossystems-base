@@ -4,7 +4,11 @@ HOMEPAGE = "https://github.com/OSSystems/EasySplash"
 BUGTRACKER = "https://github.com/OSSystems/EasySplash/issues"
 SECTION = "graphics"
 CVE_PRODUCT = "easysplash"
-LICENSE = "CLOSED"
+LICENSE = "Apache-2.0 OR MIT"
+LIC_FILES_CHKSUM = "\
+    file://LICENSE-APACHE-2.0;md5=1836efb2eb779966696f473ee8540542 \
+    file://LICENSE-MIT;md5=b377b220f43d747efdec40d69fcaa69d \
+"
 LICENSE_FLAGS = "commercial"
 LICENSE_FLAGS_DETAILS[commercial] = "Requires gstreamer1.0-libav, which is license-flagged commercial."
 

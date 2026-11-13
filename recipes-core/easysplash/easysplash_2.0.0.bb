@@ -9,7 +9,7 @@ HOMEPAGE = "https://github.com/OSSystems/EasySplash"
 BUGTRACKER = "https://github.com/OSSystems/EasySplash/issues"
 SECTION = "graphics"
 CVE_PRODUCT = "easysplash"
-LICENSE = "Apache-2.0 | MIT"
+LICENSE = "Apache-2.0 OR MIT"
 LIC_FILES_CHKSUM = "\
     file://LICENSE-APACHE-2.0;md5=1836efb2eb779966696f473ee8540542 \
     file://LICENSE-MIT;md5=b377b220f43d747efdec40d69fcaa69d \
@@ -25,7 +25,7 @@ inherit cargo pkgconfig systemd update-rc.d cargo-update-recipe-crates
 # DEFAULT_PREFERENCE = "-1"
 
 CARGO_SRC_DIR = ""
-PV .= "+git${SRCPV}"
+PV .= "+git"
 
 INITSCRIPT_NAME = "${PN}-start"
 INITSCRIPT_PARAMS:${PN} = "start 5 S ."
@@ -45,8 +45,10 @@ PACKAGECONFIG[sysvinit] = ",,"
 PACKAGECONFIG[systemd] = ",, systemd"
 
 do_install:append() {
+    # Pass the unit directory so it always follows systemd_system_unitdir.
     (cd ${S} ; oe_runmake install-service DESTDIR=${D} \
-          ${@bb.utils.contains('PACKAGECONFIG', 'sysvinit', 'INIT=1', 'INIT=0', d)} \
+          systemdsystemunitdir=${systemd_system_unitdir} \
+          ${@bb.utils.contains('PACKAGECONFIG', 'sysvinit', 'INITD=1', 'INITD=0', d)} \
           ${@bb.utils.contains('PACKAGECONFIG', 'systemd', 'SYSTEMD=1', 'SYSTEMD=0', d)})
       rm ${D}${sysconfdir}/default/easysplash
 }
