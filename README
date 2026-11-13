@@ -11,6 +11,20 @@ URI: git://git.openembedded.org/openembedded-core
 branch: master
 revision: HEAD
 
+CVE checking
+------------
+
+The layer no longer ships a CVE filter class: OE-Core dropped the
+cve-check class it relied on. Use OE-Core's SBOM-based checker instead,
+which reads the image SPDX and writes VEX-aware reports to the deploy
+directory:
+
+    bitbake-config-build enable-fragment core/yocto/sbom-cve-check
+
+or, in local.conf:
+
+    OE_FRAGMENTS += "core/yocto/sbom-cve-check"
+
 Contributing
 ------------
 
