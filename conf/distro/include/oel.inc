@@ -133,9 +133,6 @@ DISTRO_EXTRA_RRECOMMENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 
 #### Workarounds & Overrides
 ####
 
-# Work around missing vardep bug in bitbake
-sstate_stage_all[vardeps] += "sstate_stage_dirs"
-
 # Layer name and path for the recipe
 RECIPE_LAYERNAME = "${@bb.utils.get_file_layer('${FILE}', d) or 'UNKNOWN'}"
 RECIPE_LAYERDIR = "${LAYERDIR_${RECIPE_LAYERNAME}}"
