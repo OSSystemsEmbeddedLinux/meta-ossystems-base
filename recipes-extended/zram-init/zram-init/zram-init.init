@@ -1,0 +1,41 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          zram-init
+# Required-Start:    $local_fs
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Swap on a compressed zram device
+### END INIT INFO
+#
+# The sysvinit counterpart of zram_swap.service: a zram swap device of
+# half the RAM. Override ZRAM_SIZE (MiB) and ZRAM_ALGO in
+# /etc/default/zram-init.
+
+ZRAM_ALGO=zstd
+ZRAM_SIZE=
+
+[ -r /etc/default/zram-init ] && . /etc/default/zram-init
+
+[ -n "$ZRAM_SIZE" ] || \
+	ZRAM_SIZE=$(awk '/^MemTotal:/{print int($2/2048)}' /proc/meminfo)
+
+case "$1" in
+start)
+	/sbin/zram-init ${ZRAM_ALGO:+-a"$ZRAM_ALGO"} -Lzram_swap "$ZRAM_SIZE"
+	;;
+stop)
+	/sbin/zram-init 0
+	;;
+restart|force-reload)
+	"$0" stop
+	"$0" start
+	;;
+status)
+	grep -q '^/dev/zram0 ' /proc/swaps
+	;;
+*)
+	echo "Usage: $0 {start|stop|restart|force-reload|status}" >&2
+	exit 2
+	;;
+esac

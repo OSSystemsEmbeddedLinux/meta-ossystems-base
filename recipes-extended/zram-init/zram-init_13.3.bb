@@ -12,7 +12,12 @@ inherit update-rc.d systemd
 DEPENDS += "gettext-native"
 PE = "1"
 
-SRC_URI = "git://github.com/vaeth/zram-init;protocol=https;branch=main"
+SRC_URI = "\
+    git://github.com/vaeth/zram-init;protocol=https;branch=main \
+    file://0001-zram_swap.service-Read-the-RAM-size-from-proc-meminf.patch \
+    file://0002-zram-init-Pass-the-device-number-to-hot_remove.patch \
+    file://zram-init.init \
+"
 SRCREV = "96579c79295da74cc1921270946b99baa035d0d3"
 
 EXTRA_OEMAKE += "SHEBANG='#!/bin/sh'"
@@ -35,8 +40,7 @@ do_install () {
         install -Dm 0644 ${S}/systemd/system/zram_swap.service ${D}${systemd_unitdir}/system/zram_swap.service
     fi
     if ${@bb.utils.contains('DISTRO_FEATURES','sysvinit','true','false',d)}; then
-        install -Dm 0755 ${S}/openrc/init.d/${PN} ${D}/${sysconfdir}/init.d/${PN}
-        install -Dm 0644 ${S}/openrc/conf.d/${PN} ${D}${sysconfdir}/openrc/conf.d/${PN}
+        install -Dm 0755 ${UNPACKDIR}/zram-init.init ${D}${sysconfdir}/init.d/${PN}
     fi
 }
 
