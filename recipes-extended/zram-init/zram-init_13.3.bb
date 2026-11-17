@@ -15,6 +15,7 @@ PE = "1"
 SRC_URI = "\
     git://github.com/vaeth/zram-init;protocol=https;branch=main \
     file://0001-zram_swap.service-Read-the-RAM-size-from-proc-meminf.patch \
+    file://0002-zram-init-Pass-the-device-number-to-hot_remove.patch \
 "
 SRCREV = "96579c79295da74cc1921270946b99baa035d0d3"
 
