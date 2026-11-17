@@ -28,3 +28,16 @@ class ZramInitTest(OERuntimeTestCase):
 
         status, output = self.target.run('cat /proc/swaps')
         self.assertIn('/dev/zram', output, msg='no zram swap active:\n%s' % output)
+
+        # Stopping must tear the device down cleanly so it can start again.
+        status, output = self.target.run('systemctl stop zram_swap.service')
+        self.assertEqual(status, 0, msg=output)
+        status, output = self.target.run('systemctl is-failed zram_swap.service')
+        self.assertNotEqual(output.strip(), 'failed',
+                            msg=self.target.run('systemctl status --full zram_swap.service')[1])
+        status, output = self.target.run('cat /proc/swaps')
+        self.assertNotIn('/dev/zram', output, msg='zram swap still active after stop:\n%s' % output)
+
+        status, output = self.target.run('systemctl start zram_swap.service')
+        self.assertEqual(status, 0,
+                         msg=self.target.run('systemctl status --full zram_swap.service')[1])
