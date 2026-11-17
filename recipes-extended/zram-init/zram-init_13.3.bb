@@ -12,7 +12,10 @@ inherit update-rc.d systemd
 DEPENDS += "gettext-native"
 PE = "1"
 
-SRC_URI = "git://github.com/vaeth/zram-init;protocol=https;branch=main"
+SRC_URI = "\
+    git://github.com/vaeth/zram-init;protocol=https;branch=main \
+    file://0001-zram_swap.service-Read-the-RAM-size-from-proc-meminf.patch \
+"
 SRCREV = "96579c79295da74cc1921270946b99baa035d0d3"
 
 EXTRA_OEMAKE += "SHEBANG='#!/bin/sh'"

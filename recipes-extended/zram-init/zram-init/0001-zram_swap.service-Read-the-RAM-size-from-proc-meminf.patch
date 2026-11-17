@@ -1,0 +1,32 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Luciano Dittgen <luciano.dittgen@ossystems.com.br>
+Date: Tue, 17 Nov 2026 15:31:20 -0300
+Subject: [PATCH] zram_swap.service: Read the RAM size from /proc/meminfo
+
+The unit sizes the swap device from "free -m". BusyBox free ignores -m
+and prints KiB, so on a BusyBox system the device is requested 1024
+times too large (110880 MB on a 216 MiB machine). The kernel cannot
+allocate it and zram-init fails with "cannot set zram0 size".
+
+Take MemTotal from /proc/meminfo, which is in KiB everywhere, and halve
+it into MiB. This also drops the dependency on procps.
+
+Upstream-Status: Pending
+Signed-off-by: Luciano Dittgen <luciano.dittgen@ossystems.com.br>
+---
+ systemd/system/zram_swap.service | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/systemd/system/zram_swap.service b/systemd/system/zram_swap.service
+index 99aae6e..19afea5 100644
+--- a/systemd/system/zram_swap.service
++++ b/systemd/system/zram_swap.service
+@@ -14,7 +14,7 @@ RemainAfterExit=true
+ # zram_tmp.service and zram_var_tmp.service and that
+ # num_devices in modprobe.d/zram.conf contains the maximal used number + 1
+ 
+-ExecStart=/bin/sh -c "exec /sbin/zram-init -azstd -Lzram_swap `LC_ALL=C free -m | awk '/^Mem:/{print int($2/2)}'`"
++ExecStart=/bin/sh -c "exec /sbin/zram-init -azstd -Lzram_swap `awk '/^MemTotal:/{print int($2/2048)}' /proc/meminfo`"
+ ExecStop=/sbin/zram-init 0
+ 
+ [Install]
