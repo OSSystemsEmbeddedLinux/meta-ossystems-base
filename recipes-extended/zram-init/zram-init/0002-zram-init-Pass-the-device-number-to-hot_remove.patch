@@ -1,0 +1,32 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Luciano Dittgen <luciano.dittgen@ossystems.com.br>
+Date: Tue, 17 Nov 2026 15:31:12 -0300
+Subject: [PATCH] zram-init: Pass the device number to hot_remove
+
+The zram-control hot_remove attribute takes the device id ("0"), not
+the device node path. Writing "/dev/zram0" fails with EINVAL, so
+"zram-init 0" reports "failed to reset zram0" and exits 1 even though
+the swap was turned off and the device reset. Under systemd this makes
+ExecStop of zram_swap.service fail.
+
+Write $dev instead of $devnode.
+
+Upstream-Status: Pending
+Signed-off-by: Luciano Dittgen <luciano.dittgen@ossystems.com.br>
+---
+ sbin/zram-init.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/sbin/zram-init.in b/sbin/zram-init.in
+index f577cfc..56d9108 100755
+--- a/sbin/zram-init.in
++++ b/sbin/zram-init.in
+@@ -346,7 +346,7 @@ then	if $swap
+ 		then	zramctl --reset -- "$devnode" || status=$?
+ 		else	SysCtl 1 "$block/reset" || status=$?
+ 			if $umount && test -w "$zclass/hot_remove"
+-			then	SysCtl "$devnode" "$zclass/hot_remove" \
++			then	SysCtl "$dev" "$zclass/hot_remove" \
+ 					|| status=$?
+ 			fi
+ 		fi
