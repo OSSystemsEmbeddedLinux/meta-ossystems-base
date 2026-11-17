@@ -69,11 +69,10 @@ INIT_MANAGER ?= "systemd"
 
 DISTRO_EXTRA_RDEPENDS += "${OEL_DEFAULT_EXTRA_RDEPENDS}"
 
-DISTRO_FEATURES_OPTED_OUT ?= " \
-    acl alsa bluetooth debuginfod ext2 \
-    wifi xattr nfs zeroconf pci 3g nfc x11 vfat seccomp pulseaudio \
-    gobject-introspection-data ldconfig opengl ptest multiarch wayland vulkan \
-"
+# Opt in to OE-Core's default features explicitly instead of opting out of
+# the rest: a feature OE-Core later adds to its defaults stays off in oel
+# until it is listed here.
+DISTRO_FEATURES_DEFAULTS ?= "ipv4 ipv6"
 
 # Exclude DATE from DISTRO/SDK_VERSION checksums
 DISTRO_VERSION[vardepsexclude] = "DATE"
